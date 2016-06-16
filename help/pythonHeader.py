@@ -8,6 +8,7 @@ path = ''
 # Adds path if not default folder
 if len(sys.argv) > 0:
 	path = sys.argv[1:]
+	print path[0]
 
 title = raw_input("Enter a title for your script: ")
 
@@ -32,7 +33,7 @@ gnu = 'Copyright 200X Sawan J. Kapai Harpalani \n# This file is part of MMOTrack
 div = '======================================='
 
 # Create a file that can be written to.
-filename = open(path + title, 'w')
+filename = open(path[0] + title, 'w')
 
 # Set the date automatically.
 date = strftime("%Y-%m-%d")
