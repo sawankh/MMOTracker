@@ -1,7 +1,13 @@
 # Import the modules needed to run the script.
 from os.path import exists
 from time import strftime
-import os
+import os, sys
+
+path = ''
+
+# Adds path if not default folder
+if len(sys.argv) > 0:
+	path = sys.argv[1:]
 
 title = raw_input("Enter a title for your script: ")
 
@@ -26,7 +32,7 @@ gnu = 'Copyright 200X Sawan J. Kapai Harpalani \n# This file is part of MMOTrack
 div = '======================================='
 
 # Create a file that can be written to.
-filename = open(title, 'w')
+filename = open(path + title, 'w')
 
 # Set the date automatically.
 date = strftime("%Y-%m-%d")

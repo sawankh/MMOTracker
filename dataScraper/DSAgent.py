@@ -47,9 +47,9 @@ def main(argv):
 		elif opt in ('-c', '--config'):
 		 	configFile = arg
 		elif opt in ('-u', '--username'):
-		 	userName = arg
+		 	userName = askUser()
 		elif opt in ('-p', '--password'):
-		 	password = arg		
+		 	password = askPassword()		
 		else:
 		 	printError(PARAM_ERROR)
 
@@ -68,3 +68,9 @@ def printError(errorType):
 		print 'Error occurred while reading configuration file!'	
 
 	sys.exit(2)
+
+def askUser():
+	#### Ask user name ####
+
+def askPassword():
+	#### Ask user password ####	
