@@ -18,7 +18,7 @@
 #=============================================================================
 
 
-import sys, getopt
+import sys, getopt, getpass
 
 sys.path.insert(0, 'constants/')
 
@@ -30,7 +30,7 @@ def main(argv):
 		printError(NO_ARG)
 
 	try:
-		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username', 'password='])
+		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username', 'password'])
 	except getopt.GetoptError:
 		printError(OPTION_ERROR)
 
@@ -44,7 +44,8 @@ def main(argv):
 		elif opt in ('-u', '--username'):
 		 	userName = askUser()
 		elif opt in ('-p', '--password'):
-		 	password = askPassword()		
+		 	password = askPassword()
+		 	print password		
 		else:
 		 	printError(PARAM_ERROR)
 
@@ -76,9 +77,9 @@ def printHelp():
 def askUser():
 	return raw_input("Insert username: ")
 
+# Asks user password 
 def askPassword():
-	#### Ask user password ####
-	print "foo"	
+	return getpass.getpass("Enter password: ")
 
 if __name__ == '__main__':
 	main(sys.argv[1:]) 
