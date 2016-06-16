@@ -19,7 +19,10 @@
 
 
 import sys, getopt
-from agentconstants import *
+
+sys.path.insert(0, 'constants/')
+
+import agentconstants
 
 
 def main(argv):
@@ -63,8 +66,8 @@ def printError(errorType):
 
 def askUser():
 	#### Ask user name ####
-	print "aa"
+	print "foo"
 
 def askPassword():
 	#### Ask user password ####
-	print "aa"	
+	print "foo"	
