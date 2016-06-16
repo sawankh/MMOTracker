@@ -19,15 +19,7 @@
 
 
 import sys, getopt
-
-
-
-# Error Constants
-OPTION_ERROR = 0
-PARAM_ERROR = 1
-NO_ARG = 2
-MAND_ARG_MISSING = 3
-READING_CONF_ERROR = 4
+from agentconstants import *
 
 
 def main(argv):
@@ -71,6 +63,8 @@ def printError(errorType):
 
 def askUser():
 	#### Ask user name ####
+	print "aa"
 
 def askPassword():
-	#### Ask user password ####	
+	#### Ask user password ####
+	print "aa"	
