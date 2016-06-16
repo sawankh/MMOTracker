@@ -22,15 +22,15 @@ import sys, getopt
 
 sys.path.insert(0, 'constants/')
 
-import agentconstants
+from agentconstants import *
 
 
 def main(argv):
-	if len(argv):
+	if len(argv) <= 0:
 		printError(NO_ARG)
 
 	try:
-		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username=', 'password='])
+		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username', 'password='])
 	except getopt.GetoptError:
 		printError(OPTION_ERROR)
 
@@ -64,10 +64,21 @@ def printError(errorType):
 
 	sys.exit(2)
 
+
+# Prints help for the commands available
+def printHelp():
+	for help in COMMAND_HELP:
+		print help
+	sys.exit(2)
+
+
+# Asks user name
 def askUser():
-	#### Ask user name ####
-	print "foo"
+	return raw_input("Insert username: ")
 
 def askPassword():
 	#### Ask user password ####
 	print "foo"	
+
+if __name__ == '__main__':
+	main(sys.argv[1:]) 
