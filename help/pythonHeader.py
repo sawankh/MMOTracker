@@ -16,7 +16,7 @@ title = raw_input("Enter a title for your script: ")
 title = title + '.py'
 
 # Convert all letters to lower case.
-title = title.lower()
+#title = title.lower()
 
 # Remove spaces from the title.
 title = title.replace(' ', '_')
