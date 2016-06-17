@@ -30,11 +30,12 @@ def main(argv):
 		printError(NO_ARG)
 
 	try:
-		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username', 'password'])
+		opts, args = getopt.getopt(argv, 'h:c:u:p:o', ['help', 'configFile=', 'username', 'password', 'outputPath='])
 	except getopt.GetoptError:
 		printError(OPTION_ERROR)
 
 	configFile = ''
+	outputPath = ''
 
 	for opt, arg in opts:
 		if opt in ('-h', '--help'):
@@ -45,7 +46,8 @@ def main(argv):
 		 	userName = askUser()
 		elif opt in ('-p', '--password'):
 		 	password = askPassword()
-		 	print password		
+		elif opt in ('-o', '--outputPath'):
+			outputPath = arg		
 		else:
 		 	printError(PARAM_ERROR)
 
