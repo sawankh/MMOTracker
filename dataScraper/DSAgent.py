@@ -47,7 +47,7 @@ def main(argv):
 		elif opt in ('-p', '--password'):
 		 	password = askPassword()
 		elif opt in ('-o', '--outputPath'):
-			outputPath = arg		
+			outputPath = arg
 		else:
 		 	printError(PARAM_ERROR)
 
