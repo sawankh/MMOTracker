@@ -19,10 +19,13 @@
 
 import json
 
+# Constants
+DEFAULT_IDENTATION = 4
+
 # Creates a json object from a string
 def stringToJSON(jsonString):
 	return json.loads(jsonString)
 
 # prints json object in a pretty way
-def printJSON(jsonObject, indentationValue):
+def printJSON(jsonObject, indentationValue = DEFAULT_IDENTATION):
 	print json.dumps(jsonObject, indent = indentationValue, sort_keys = True)
