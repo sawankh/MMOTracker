@@ -31,6 +31,18 @@ def getRequestPayload(request, payload):
 def postRequest(request, content):
 	return requests.post(request, data = content)
 
+# Gets url of the request
+def getURL(request):
+	return request.url
+
+# Gets status code for request
+def getCode(request):
+	return request.status_code
+
+# Prints code of request
+def printCode(request):
+	print "The request's status code is: " + request.status_code
+
 # Prints url
 def printURL(request):
-	print request.url
+	print "The request's url is: " + request.url
