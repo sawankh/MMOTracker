@@ -41,7 +41,7 @@ def getCode(request):
 
 # Prints code of request
 def printCode(request):
-	print "The request's status code is: " + request.status_code
+	print "The request's status code is: " + str(request.status_code)
 
 # Prints url
 def printURL(request):
