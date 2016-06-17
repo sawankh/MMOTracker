@@ -39,6 +39,10 @@ def getURL(request):
 def getCode(request):
 	return request.status_code
 
+# Gets JSON response from request
+def getJSON(request):
+	return request.json()
+
 # Prints code of request
 def printCode(request):
 	print "The request's status code is: " + str(request.status_code)
