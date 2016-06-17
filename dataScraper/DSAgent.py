@@ -22,7 +22,7 @@ import sys, getopt, getpass
 
 sys.path.insert(0, 'constants/')
 
-from agentconstants import *
+from agentConstants import *
 
 
 def main(argv):
