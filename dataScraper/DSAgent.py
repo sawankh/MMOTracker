@@ -18,7 +18,7 @@
 #=============================================================================
 
 
-import sys, getopt, getpass
+import sys, getopt, getpass, textwrap
 
 sys.path.insert(0, 'constants/')
 
@@ -71,7 +71,10 @@ def printError(errorType):
 # Prints help for the commands available
 def printHelp():
 	for help in COMMAND_HELP:
-		print help
+		splitedText = help.split(":")
+		prefix = splitedText[0] + ":"
+		wrapper = textwrap.TextWrapper(initial_indent = prefix, width = 700, subsequent_indent=' '*len(prefix)) 
+		print wrapper.fill(splitedText[1])
 	sys.exit(2)
 
 
