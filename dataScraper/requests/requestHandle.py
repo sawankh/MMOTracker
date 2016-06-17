@@ -39,6 +39,14 @@ def getURL(request):
 def getCode(request):
 	return request.status_code
 
+# Gets raw response for request
+def getRaw(request):
+	return request.raw
+
+# Get raw content for request
+def getContent(request):
+	return request.content
+
 # Gets JSON response from request
 def getJSON(request):
 	return request.json()

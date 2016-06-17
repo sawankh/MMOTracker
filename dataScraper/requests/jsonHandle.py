@@ -26,6 +26,21 @@ DEFAULT_IDENTATION = 4
 def stringToJSON(jsonString):
 	return json.loads(jsonString)
 
+# Transform json object to string
+def jsonToString(jsonObject):
+	return json.dumps(jsonObject)
+
 # prints json object in a pretty way
 def printJSON(jsonObject, indentationValue = DEFAULT_IDENTATION):
 	print json.dumps(jsonObject, indent = indentationValue, sort_keys = True)
+
+def flattenJSON(jsonObject, delim):
+    result = {}
+    for i in jsonObject.keys():
+        if isinstance( jsonObject[i], dict ):
+            get = flattenJSON( jsonObject[i], delim )
+            for j in get.keys():
+                result[ i + delim + j ] = get[j]
+        else:
+            result[i] = jsonObject[i]
+    return result
