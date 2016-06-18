@@ -46,3 +46,11 @@ def flattenJSON(jsonObject, delim = DEFAULT_DELIMITATOR):
         else:
             result[i] = jsonObject[i]
     return result
+
+# Check if the object contains elements of the same size
+def checkSize(jsonObjectList):
+    sizeFirst = len(jsonObjectList[0].keys()) 
+    for item in jsonObjectList:
+        if sizeFirst != len(item.keys()):
+            return False
+    return True
