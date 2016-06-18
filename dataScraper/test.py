@@ -4,6 +4,7 @@ sys.path.insert(0, 'requests/')
 
 from requestHandle import *
 from jsonHandle import *
+from csvHandle import *
 
 r = getRequest("http://jsonplaceholder.typicode.com/posts")
 printCode(r)
@@ -18,3 +19,4 @@ for item in d:
 	x = flattenJSON(item)
 	dlist.append(x)
 print checkSize(dlist)
+#writeCSV("test.csv", dlist)
