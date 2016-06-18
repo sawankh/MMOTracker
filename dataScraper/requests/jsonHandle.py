@@ -21,6 +21,7 @@ import json
 
 # Constants
 DEFAULT_IDENTATION = 4
+DEFAULT_DELIMITATOR = '__'
 
 # Creates a json object from a string
 def stringToJSON(jsonString):
@@ -34,7 +35,8 @@ def jsonToString(jsonObject):
 def printJSON(jsonObject, indentationValue = DEFAULT_IDENTATION):
 	print json.dumps(jsonObject, indent = indentationValue, sort_keys = True)
 
-def flattenJSON(jsonObject, delim):
+# Removes levels of the json object, returning a flat object
+def flattenJSON(jsonObject, delim = DEFAULT_DELIMITATOR):
     result = {}
     for i in jsonObject.keys():
         if isinstance( jsonObject[i], dict ):

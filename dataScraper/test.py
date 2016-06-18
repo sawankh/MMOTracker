@@ -14,5 +14,4 @@ j = getContent(r)
 d = stringToJSON(j)
 #print type(flattenJSON(d[0], "__"))
 for item in d:
-	x = flattenJSON(item, "__")
-	#print flattenJSON(item, "__")
+	x = flattenJSON(item)
