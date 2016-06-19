@@ -54,3 +54,12 @@ def checkSize(jsonObjectList):
         if sizeFirst != len(item.keys()):
             return False
     return True
+
+# Returns a list with all the different headers that the JSON object contains
+def getHeaders(jsonObjectList):
+    headersList = []
+    for json in jsonObjectList:
+        for key in json.keys():
+            if key not in headersList:
+                headersList.append(key)
+    return headersList
