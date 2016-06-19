@@ -29,6 +29,7 @@ def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
 	fileWriter.writerow(headers)
 	
 	for data in content:
+		#print data
 		fileWriter.writerow(data)
 	
 	fileOpen.close()
