@@ -22,7 +22,7 @@ import json
 # Constants
 DEFAULT_IDENTATION = 4
 DEFAULT_DELIMITATOR = '__'
-BLANK = ''
+BLANK = 'NULL'
 
 # Creates a json object from a string
 def stringToJSON(jsonString):
@@ -55,6 +55,29 @@ def checkSize(jsonObjectList):
         if sizeFirst != len(item.keys()):
             return False
     return True
+
+# Converts to string
+def toString(s):
+    try:
+        return str(s)
+    except:
+        return s.encode('utf-8')
+
+# Reduces elements
+def reduceElement(key, value):
+    global reducedElement
+    
+    if type(value) is list:
+        i = 0
+        for subElement in value:
+            reduceElement(key + '_' + toString(i), subElement)
+            i = i + 1
+    elif type(value) is dict:
+        subKeys = value.keys()
+        for subKey in subKeys:
+            reduceElement(key + '_' + toString(subKey), value[subKey])
+    else:
+        reducedElement[toString(key)] = toString(value)
 
 # Returns a list with all the different headers that the JSON object contains
 def getHeaders(jsonObjectList):

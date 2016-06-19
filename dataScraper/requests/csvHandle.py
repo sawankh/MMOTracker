@@ -24,12 +24,8 @@ DEFAULT_PATH = ''
 
 # Writes content to a csv file
 def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
-	fileOpen = open(path + fileName, 'w')
-	fileWriter = csv.writer(fileOpen)
-	fileWriter.writerow(headers)
-	
-	for data in content:
-		#print data
-		fileWriter.writerow(data)
-	
-	fileOpen.close()
+	with open(path + fileName, 'wb+') as f:
+		writer = csv.DictWriter(f, headers, quoting=csv.QUOTE_ALL)
+		writer.writeheader()
+		for row in content:
+			writer.writerow(row)
