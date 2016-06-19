@@ -23,8 +23,12 @@ import csv
 DEFAULT_PATH = ''
 
 # Writes content to a csv file
-def writeCSV(fileName, content, path = DEFAULT_PATH):
+def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
 	fileOpen = open(path + fileName, 'w')
 	fileWriter = csv.writer(fileOpen)
-	fileWriter.writerows(content)
+	fileWriter.writerow(headers)
+	
+	for data in content:
+		fileWriter.writerow(data)
+	
 	fileOpen.close()
