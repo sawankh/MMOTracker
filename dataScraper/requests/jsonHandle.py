@@ -22,6 +22,7 @@ import json
 # Constants
 DEFAULT_IDENTATION = 4
 DEFAULT_DELIMITATOR = '__'
+BLANK = ''
 
 # Creates a json object from a string
 def stringToJSON(jsonString):
@@ -63,3 +64,19 @@ def getHeaders(jsonObjectList):
             if key not in headersList:
                 headersList.append(key)
     return headersList
+
+# Returns a list with the content ready to write in CSV
+def getData(jsonObjectList, headerList):
+    dataList = []
+    for json in jsonObjectList:
+        row = []
+        for header in headerList:
+            if header in json.keys():
+                row.append(json[header])
+            else:
+                row.append(BLANK)
+        dataList.append(row)
+    return dataList
+        # for key, value in json.iteritems():
+        #      print("key: {} | value: {}".format(key, value))
+            # print content.key()
