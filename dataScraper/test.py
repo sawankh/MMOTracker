@@ -6,7 +6,7 @@ from requestHandle import *
 from jsonHandle import *
 from csvHandle import *
 
-r = getRequest("http://jsonplaceholder.typicode.com/posts")
+r = getRequest("https://api.github.com/events")
 printCode(r)
 printURL(r)
 
@@ -18,5 +18,6 @@ dlist = []
 for item in d:
 	x = flattenJSON(item)
 	dlist.append(x)
-print checkSize(dlist)
+dlist = getHeaders(dlist)
+print len(dlist)
 #writeCSV("test.csv", dlist)
