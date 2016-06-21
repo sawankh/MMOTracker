@@ -84,21 +84,16 @@ def getProcessedData(content, node):
 # Reduces elements
 def reduce_item(key, value):
     global reducedElement
-    
-    #Reduction Condition 1
-    if type(value) is list:
-        i=0
-        for sub_item in value:
-            reduce_item(key+'_'+toString(i), sub_item)
-            i=i+1
 
-    #Reduction Condition 2
+    if type(value) is list:
+        i = 0
+        for sub_item in value:
+            reduce_item(key + '_' + toString(i), sub_item)
+            i += 1
     elif type(value) is dict:
         sub_keys = value.keys()
         for sub_key in sub_keys:
-            reduce_item(key+'_'+toString(sub_key), value[sub_key])
-    
-    #Base Condition
+            reduce_item(key + '_' + toString(sub_key), value[sub_key])
     else:
         reducedElement[toString(key)] = toString(value)
 
