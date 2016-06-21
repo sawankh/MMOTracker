@@ -87,6 +87,9 @@ def getProcessedData(content, node):
     headerList.sort()
     return headerList, processedData
 
+def clearDictionary():
+    reducedElement.clear()
+
 # Reduces elements
 def reduce_item(key, value):
     global reducedElement
