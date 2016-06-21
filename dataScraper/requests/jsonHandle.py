@@ -19,6 +19,8 @@
 
 import json
 
+from types import *
+
 # Constants
 DEFAULT_IDENTATION = 4
 DEFAULT_DELIMITATOR = '__'
@@ -95,7 +97,11 @@ def getData(jsonObjectList, headerList):
         row = []
         for header in headerList:
             if header in json.keys():
-                row.append(json[header])
+                value = json.get(header, '')
+                if type(value) is StringTypes:
+                    row.append(value.encode('utf-8'))
+                else:
+                    row.append(value)
             else:
                 row.append(BLANK)
         dataList.append(row)

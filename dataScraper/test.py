@@ -5,8 +5,9 @@ sys.path.insert(0, 'requests/')
 from requestHandle import *
 from jsonHandle import *
 from csvHandle import *
-# r = getRequest("http://jsonplaceholder.typicode.com/posts")
-r = getRequest("https://api.github.com/events")
+r = getRequest("http://jsonplaceholder.typicode.com/photos")
+# r = getRequest("https://api.github.com/events")
+# r = getRequest("http://www.json-generator.com/api/json/get/cfXfjCmEuq?indent=2")
 printCode(r)
 printURL(r)
 
@@ -19,9 +20,10 @@ for item in d:
 	x = flattenJSON(item)
 	dlist.append(x)
 dlistt = getHeaders(dlist)
-print len(dlistt)
+# print dlistt
 p = []
 c = getData(dlist, dlistt)
+#print c
 writeCSV("test.csv", dlistt, c)
 
 
@@ -30,10 +32,10 @@ writeCSV("test.csv", dlistt, c)
 # processed_data = []
 # header = []
 # for item in d:
-#     reduced_item = {}
-#     reduce_item(node, item)
-#     header += reduced_item.keys()
-#     processed_data.append(reduced_item)
+#     reducedElement = {}
+#     reduceElement(node, item)
+#     header += reducedElement.keys()
+#     processed_data.append(reducedElement)
 
 # header = list(set(header))
 # header.sort()
