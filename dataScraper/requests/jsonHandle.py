@@ -38,6 +38,12 @@ def jsonToString(jsonObject):
 def printJSON(jsonObject, indentationValue = DEFAULT_IDENTATION):
 	print json.dumps(jsonObject, indent = indentationValue, sort_keys = True)
 
+# Reads JSON from an existing file
+def readJSONFile(fileName):
+    fileOpen = open(fileName, 'r')
+    content = fileOpen.read()
+    return json.loads(content)
+
 # Removes levels of the json object, returning a flat object
 def flattenJSON(jsonObject, delim = DEFAULT_DELIMITATOR):
     result = {}
