@@ -65,39 +65,60 @@ def toString(s):
     except:
         return s.encode('utf-8')
 
+reducedElement = {}
+# Returns data processed and ready to write in CSV
+def getProcessedData(content, node):
+    processedData = []
+    headerList = []
+    for item in content:
+        reduce_item(node, item)
+
+        headerList += reducedElement.keys()
+
+        processedData.append(reducedElement)
+
+    headerList = list(set(headerList))
+    headerList.sort()
+    return headerList, processedData
+
 # Reduces elements
-def reduceElement(key, value):
+def reduce_item(key, value):
     global reducedElement
     
+    #Reduction Condition 1
     if type(value) is list:
-        i = 0
-        for subElement in value:
-            reduceElement(key + '_' + toString(i), subElement)
-            i = i + 1
+        i=0
+        for sub_item in value:
+            reduce_item(key+'_'+toString(i), sub_item)
+            i=i+1
+
+    #Reduction Condition 2
     elif type(value) is dict:
-        subKeys = value.keys()
-        for subKey in subKeys:
-            reduceElement(key + '_' + toString(subKey), value[subKey])
+        sub_keys = value.keys()
+        for sub_key in sub_keys:
+            reduce_item(key+'_'+toString(sub_key), value[sub_key])
+    
+    #Base Condition
     else:
         reducedElement[toString(key)] = toString(value)
 
-# Returns a list with all the different headers that the JSON object contains
-def getHeaders(jsonObjectList):
-    headersList = []
+# Returns a list with all the different headerLists that the JSON object contains
+def getheaderLists(jsonObjectList):
+    headerListsList = []
     for json in jsonObjectList:
         for key in json.keys():
-            if key not in headersList:
-                headersList.append(key)
-    return headersList
+            if key not in headerListsList:
+                headerListsList.append(key)
+    return headerListsList
 
 # Returns a list with the content ready to write in CSV
-def getData(jsonObjectList, headerList):
+def getData(jsonObjectList, headerListList):
     dataList = []
     for json in jsonObjectList:
         row = []
-        for header in headerList:
-            if header in json.keys():
-                value = json.get(header, '')
+        for headerList in headerListList:
+            if headerList in json.keys():
+                value = json.get(headerList, '')
                 if type(value) is StringTypes:
                     row.append(value.encode('utf-8'))
                 else:

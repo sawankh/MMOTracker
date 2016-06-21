@@ -36,3 +36,16 @@ def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
 	bar.finish()
 
 	fileOpen.close()
+
+# Writes a dictionary to CSV, better for JSON objects
+def writeDictCSV(fileName, headers, content, path = DEFAULT_PATH):
+	with open(path + fileName, 'wb+') as f:
+	    writer = csv.DictWriter(f, headers)
+	    writer.writeheader()
+	    
+	    bar = progressbar.ProgressBar(maxval = len(content), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
+	    
+	    bar.start()
+	    for row in content:
+	        writer.writerow(row)
+	    bar.finish()
