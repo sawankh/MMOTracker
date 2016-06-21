@@ -17,6 +17,8 @@ json_value = fp.read()
 raw_data = json.loads(json_value)
 x = getProcessedData(raw_data['items'], 'items')
 
+print len(x[0])
+
 writeDictCSV("test.csv", x[0], x[1])
 # processed_data = []
 # header = []
