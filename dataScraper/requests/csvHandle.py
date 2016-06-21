@@ -17,7 +17,7 @@
 # If not, seehttp://www.gnu.org/licenses/.
 #==============================================================================
 
-import csv
+import csv, progressbar, time
 
 # Constants
 DEFAULT_PATH = ''
@@ -28,8 +28,11 @@ def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
 	fileWriter = csv.writer(fileOpen)
 	fileWriter.writerow(headers)
 	
+	bar = progressbar.ProgressBar(maxval = len(content), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
+
+	bar.start()
 	for data in content:
-		#print data
 		fileWriter.writerow(data)
-	
+	bar.finish()
+
 	fileOpen.close()
