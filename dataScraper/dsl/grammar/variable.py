@@ -25,3 +25,4 @@ UNDERSCORE = '_'
 # Rules
 assignment =  identifier + arrow + (identifier | number)
 identifier = Word(alphas, alphanums + UNDERSCORE)
+number = Word(nums + '.')
