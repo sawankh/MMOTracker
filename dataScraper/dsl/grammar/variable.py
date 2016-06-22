@@ -23,6 +23,9 @@ from pyparsing import *
 UNDERSCORE = '_'
 
 # Rules
-assignment =  identifier + arrow + (identifier | number)
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
+arrow = '->'
+assignment =  identifier + arrow + (identifier | number)
+
+print assignment.parseString('a -> 2')
