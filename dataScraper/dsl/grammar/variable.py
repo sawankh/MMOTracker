@@ -25,7 +25,7 @@ UNDERSCORE = '_'
 # Rules
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
-arrow = '->'
-assignment =  identifier + arrow + (identifier | number)
-
-print assignment.parseString('a -> 2')
+arrow = Suppress('->')
+assignment =  identifier.setResultsName("varName") + arrow + (identifier | number).setResultsName("varValue")
+var = assignment.parseString('x -> 2')
+print var.varValue
