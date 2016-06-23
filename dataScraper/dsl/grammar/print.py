@@ -31,14 +31,6 @@ variableID = identifier
 plus = Suppress(Literal("+"))
 printExpr = printReservedWord + leftBracket + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)) + Optional(ZeroOrMore(plus + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)))) + rightBracket
 
-stack = []
-v = assignment.parseString("a -> 2")
-stack.append(v)
-v = assignment.parseString("c -> 3")
-stack.append(v)
-x = printExpr.parseString("printConsole(a + \" sdwws \"+ c)")
-print x.dump()
-
 # Prints console parsed object
 def printConsole(parsedObject, varStack):
 	stringToPrint = ''
@@ -52,4 +44,12 @@ def printConsole(parsedObject, varStack):
 
 	print stringToPrint
 
-printConsole(x, stack)
+printExpr.setParseAction(printConsole)
+
+stack = []
+v = assignment.parseString("a -> 2")
+stack.append(v)
+v = assignment.parseString("c -> 3")
+stack.append(v)
+x = printExpr.parseString("printConsole(a + \" sdwws \"+ c)")
+print x.dump()
