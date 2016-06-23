@@ -17,4 +17,12 @@
 # If not, seehttp://www.gnu.org/licenses/.
 #==============================================================================
 
+from pyparsing import *
+
+# Rules
+sleepReservedWord = Suppress(Literal("sleep"))
+leftBracket = Suppress(Literal("("))
+rightBracket = Suppress(Literal(")"))
+number = Word(nums + '.')
+sleepExpr = sleepReservedWord + leftBracket + number + rightBracket
 
