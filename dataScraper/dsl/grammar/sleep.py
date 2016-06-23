@@ -24,5 +24,11 @@ sleepReservedWord = Suppress(Literal("sleep"))
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 number = Word(nums + '.')
-sleepExpr = sleepReservedWord + leftBracket + number + rightBracket
-
+sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + rightBracket
+x = []
+x.append(sleepExpr.parseString("sleep(3)").value)
+x.append(sleepExpr.parseString("sleep(2)").value)
+x.append(sleepExpr.parseString("sleep(1)").value)
+x.append(sleepExpr.parseString("sleep(4)").value)
+x.append(sleepExpr.parseString("sleep(7)").value)
+print x
