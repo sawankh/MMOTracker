@@ -27,6 +27,7 @@ leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 number = Word(nums)
 sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + rightBracket
+sleepExpr.ParseAction = sleepAgent(sleepExpr.value)
 
 # Sleeps the agent for the value especified of seconds
 def sleepAgent(value):
