@@ -31,7 +31,7 @@ sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + r
 # Sleeps the agent for the value especified of seconds
 def sleepAgent(value):
 	value = stringToInt(value)
-	bar = progressbar.ProgressBar(maxval = len(value), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
+	bar = progressbar.ProgressBar(maxval = value, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
 
 	bar.start()
 	for i in range(0, value):
