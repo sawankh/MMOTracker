@@ -35,7 +35,8 @@ def sleepAgent(value):
 
 	bar.start()
 	for i in range(0, value):
-		sleep(1)
+		time.sleep(1)
+		bar.update()
 	bar.finish()
 
 # Converts string to int
