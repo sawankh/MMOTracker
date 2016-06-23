@@ -27,3 +27,10 @@ identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
 arrow = Suppress('->')
 assignment =  identifier.setResultsName("varName") + arrow + (identifier | number).setResultsName("varValue")
+
+varStack = []
+
+def addStack(tokens):
+	varStack.append(tokens)
+
+assignment.setParseAction(addStack)

@@ -44,13 +44,9 @@ def printConsole(parsedObject, varStack):
 
 	print stringToPrint
 
-stack = []
-
-printExpr.setParseAction(lambda tokens: printConsole(tokens, stack))
+printExpr.setParseAction(lambda tokens: printConsole(tokens, varStack))
 
 
 v = assignment.parseString("a -> 2")
-stack.append(v)
 v = assignment.parseString("c -> 3")
-stack.append(v)
 x = printExpr.parseString("printConsole(a + \" sdwws \"+ c)")
