@@ -19,16 +19,35 @@
 
 from pyparsing import *
 
+import progressbar, time
+
 # Rules
 sleepReservedWord = Suppress(Literal("sleep"))
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
-number = Word(nums + '.')
+number = Word(nums)
 sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + rightBracket
+
+# Sleeps the agent for the value especified of seconds
+def sleepAgent(value):
+	value = stringToInt(value)
+	bar = progressbar.ProgressBar(maxval = len(value), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
+
+	bar.start()
+	for i in range(0, value):
+		sleep(1)
+	bar.finish()
+
+# Converts string to int
+def stringToInt(strNumber):
+	return int(strNumber)
+
+
 x = []
 x.append(sleepExpr.parseString("sleep(3)").value)
 x.append(sleepExpr.parseString("sleep(2)").value)
 x.append(sleepExpr.parseString("sleep(1)").value)
 x.append(sleepExpr.parseString("sleep(4)").value)
 x.append(sleepExpr.parseString("sleep(7)").value)
-print x
+print x[0]
+sleepAgent(x[0])
