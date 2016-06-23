@@ -27,12 +27,11 @@ leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 number = Word(nums)
 sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + rightBracket
-sleepExpr.ParseAction = sleepAgent(sleepExpr.value)
 
 # Sleeps the agent for the value especified of seconds
-def sleepAgent(value):
-	print "Agent is going to sleep for " + value + " seconds"
-	value = stringToInt(value)
+def sleepAgent(tokens):
+	value = stringToInt(tokens.value)
+	print "Agent is going to sleep for " + str(value) + " seconds"
 	bar = progressbar.ProgressBar(maxval = value, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
 
 	bar.start()
@@ -44,3 +43,5 @@ def sleepAgent(value):
 # Converts string to int
 def stringToInt(strNumber):
 	return int(strNumber)
+
+sleepExpr.setParseAction(sleepAgent)
