@@ -31,6 +31,22 @@ assignment =  identifier.setResultsName("varName") + arrow + (identifier | numbe
 varStack = []
 
 def addStack(tokens):
-	varStack.append(tokens)
+	if inList(varStack, tokens.varName):
+		del varStack[getIndex(varStack, tokens.varName)]
+		varStack.append(tokens)
+	else:
+		varStack.append(tokens)
+
+def inList(data, search):
+    for sublist in data:
+    	if sublist[0] == search:
+			return True            
+
+def getIndex(data, search):
+	iterator = 0
+	for sublist in data:
+		if sublist[0] == search:
+			return iterator   
+		iterator += 1       
 
 assignment.setParseAction(addStack)

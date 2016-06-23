@@ -32,7 +32,7 @@ plus = Suppress(Literal("+"))
 printExpr = printReservedWord + leftBracket + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)) + Optional(ZeroOrMore(plus + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)))) + rightBracket
 
 # Prints console parsed object
-def printConsole(parsedObject, varStack):
+def printConsole(parsedObject):
 	stringToPrint = ''
 	for element in parsedObject:
 		if element in parsedObject.varID.asList():
@@ -44,9 +44,12 @@ def printConsole(parsedObject, varStack):
 
 	print stringToPrint
 
-printExpr.setParseAction(lambda tokens: printConsole(tokens, varStack))
+printExpr.setParseAction(lambda tokens: printConsole(tokens))
 
 
 v = assignment.parseString("a -> 2")
-v = assignment.parseString("c -> 3")
-x = printExpr.parseString("printConsole(a + \" sdwws \"+ c)")
+printExpr.parseString("printConsole(\"The value of a is \" + a)")
+v = assignment.parseString("a -> 3")
+printExpr.parseString("printConsole(\"The value of a is \" + a)")
+v = assignment.parseString("a -> 62")
+printExpr.parseString("printConsole(\"The value of a is \" + a)")
