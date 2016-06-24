@@ -35,10 +35,10 @@ newLine = Suppress(White("\n"))
 loopExpr = loopReservedWord + identifier + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + OneOrMore(newLine) + Optional(ZeroOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine)) + endReservedWord 
 
 # Loop method
-def loop(parsedObject):
+def loop(parsedObject, statementCheck):
 	for i in range(int(parsedObject.fromVar), int(parsedObject.toVar) + 1):
 		print i
 
-loopExpr.setParseAction(lambda tokens: loop(tokens))
+loopExpr.setParseAction(lambda tokens: loop(tokens, None))
 
 print loopExpr.parseString("repeat i -> 1 to 10 \n pepito \n pepito2 \n pepito3 \n pepito4 \n end").asDict()
