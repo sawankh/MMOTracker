@@ -45,11 +45,3 @@ def printConsole(parsedObject):
 	print stringToPrint
 
 printExpr.setParseAction(lambda tokens: printConsole(tokens))
-
-
-v = assignment.parseString("a -> 2")
-printExpr.parseString("printConsole(\"The value of a is \" + a)")
-v = assignment.parseString("a -> 3")
-printExpr.parseString("printConsole(\"The value of a is \" + a)")
-v = assignment.parseString("a -> 62")
-printExpr.parseString("printConsole(\"The value of a is \" + a)")
