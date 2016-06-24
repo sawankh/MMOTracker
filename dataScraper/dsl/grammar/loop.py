@@ -33,4 +33,12 @@ endReservedWord = Suppress(Literal("end"))
 statement = Word(printables)
 newLine = Suppress(White("\n"))
 loopExpr = loopReservedWord + identifier + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + OneOrMore(newLine) + Optional(ZeroOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine)) + endReservedWord 
-print loopExpr.parseString("repeat i -> 1 to 10 \n pepito \n end").asDict()
+
+# Loop method
+def loop(parsedObject):
+	for i in range(int(parsedObject.fromVar), int(parsedObject.toVar)):
+		print i
+
+loopExpr.setParseAction(lambda tokens: loop(tokens))
+
+print loopExpr.parseString("repeat i -> 1 to 10 \n pepito \n pepito2 \n pepito3 \n pepito4 \n end").asDict()
