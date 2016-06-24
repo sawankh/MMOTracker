@@ -32,5 +32,5 @@ toReservedWord = Suppress(Literal("to"))
 endReservedWord = Suppress(Literal("end"))
 statement = Word(printables)
 newLine = Suppress(White("\n"))
-loopExpr = loopReservedWord + identifier + arrow + fromVar + toReservedWord + toVar + OneOrMore(newLine)
-print loopExpr.parseString("repeat i -> 1 to 10 \n")
+loopExpr = loopReservedWord + identifier + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + OneOrMore(newLine) + Optional(ZeroOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine)) + endReservedWord 
+print loopExpr.parseString("repeat i -> 1 to 10 \n pepito \n end").asDict()
