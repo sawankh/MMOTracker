@@ -31,6 +31,6 @@ toVar = Word(nums) | identifier
 toReservedWord = Suppress(Literal("to"))
 endReservedWord = Suppress(Literal("end"))
 statement = Word(printables)
-newLine = Suppress(Literal("\n"))
+newLine = Suppress(White("\n"))
 loopExpr = loopReservedWord + identifier + arrow + fromVar + toReservedWord + toVar + OneOrMore(newLine)
-print loopExpr.parseString("repeat i -> 1 to 10")
+print loopExpr.parseString("repeat i -> 1 to 10 \n")
