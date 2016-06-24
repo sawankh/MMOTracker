@@ -32,5 +32,5 @@ toReservedWord = Suppress(Literal("to"))
 endReservedWord = Suppress(Literal("end"))
 statement = Word(printables)
 newLine = Suppress(Literal("\n"))
-loopExpr = loopReservedWord + identifier + arrow + fromVar + toReservedWord + toVar 
+loopExpr = loopReservedWord + identifier + arrow + fromVar + toReservedWord + toVar + OneOrMore(newLine)
 print loopExpr.parseString("repeat i -> 1 to 10")
