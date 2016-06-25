@@ -43,7 +43,9 @@ def printConsole(parsedObject):
 		if len(parsedObject.message) > 0:
 			if element in parsedObject.message.asList():
 				stringToPrint += element
-
-	print stringToPrint
+	if len(stringToPrint) > 0:
+		print stringToPrint
+	else:
+		print "Something went wrong!!"
 
 printExpr.setParseAction(lambda tokens: printConsole(tokens))
