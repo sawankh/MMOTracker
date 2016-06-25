@@ -35,6 +35,9 @@ def addStack(tokens):
 	if inList(varStack, tokens.varName):
 		del varStack[getIndex(varStack, tokens.varName)]
 		varStack.append(tokens[:])
+	elif isInteger(tokens.varValue) is False:
+		tokens[1] = getValue(tokens.varValue)
+		varStack.append(tokens[:])
 	else:
 		varStack.append(tokens[:])
 
@@ -67,6 +70,6 @@ def getValue(string):
 	elif inList(varStack, string):
 		return varStack[getIndex(varStack, string)][1]
 	else:
-		raise Exception("Something went wrong while trying to parse your loop!!")
+		raise Exception("Something went wrong while trying to parse your code!! Somewhere around " + string)
 
 assignment.setParseAction(addStack)
