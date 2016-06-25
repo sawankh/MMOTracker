@@ -20,6 +20,4 @@
 from pyparsing import *
 
 # Rules
-dollarSign = StringStart() + Suppress(Literal("$"))
-comments = Suppress(Word(printables))
-commentsExpr = dollarSign + Optional(ZeroOrMore(comments))
+commentsExpr = cppStyleComment
