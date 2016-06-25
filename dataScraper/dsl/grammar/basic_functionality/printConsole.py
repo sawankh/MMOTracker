@@ -46,6 +46,6 @@ def printConsole(parsedObject):
 	if len(stringToPrint) > 0:
 		print stringToPrint
 	else:
-		print "Something went wrong while trying to print!!"
+		raise Exception("Something went wrong while trying to print!!")
 
 printExpr.setParseAction(lambda tokens: printConsole(tokens))

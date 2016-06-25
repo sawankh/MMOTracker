@@ -33,6 +33,6 @@ from variable import *
 
 # DSL types of expression
 newLine = Suppress(White("\n"))
-agentDSL = ZeroOrMore((clearExpr | commentsExpr | loopExpr | printExpr | sleepExpr | assignment) + Optional(newLine))
+agentDSL = ZeroOrMore((clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
 agentDSL.parseFile("test.dat")
