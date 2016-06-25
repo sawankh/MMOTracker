@@ -35,4 +35,4 @@ from variable import *
 newLine = Suppress(White("\n"))
 agentDSL = ZeroOrMore((clearExpr | commentsExpr | loopExpr | printExpr | sleepExpr | assignment) + Optional(newLine))
 
-agentDSL.parseString("a -> 2 \n printConsole(a) \n x -> 4 printConsole(x1 + \"dsadas\")")
+agentDSL.parseString("a -> 2 \n printConsole(a) \n x -> 4 printConsole(x1 + \"dsadas\") clearConsole()")
