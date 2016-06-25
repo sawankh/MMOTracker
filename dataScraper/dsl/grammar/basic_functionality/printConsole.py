@@ -33,10 +33,13 @@ printExpr = printReservedWord + leftBracket + (message.setResultsName("message",
 
 # Prints console parsed object
 def printConsole(parsedObject):
+	#print "entra"
 	stringToPrint = ''
 	for element in parsedObject:
 		if element in parsedObject.varID.asList():
 			for item in varStack:
+				#print varStack
+				#print item.varName + element
 				if element == item.varName:
 					stringToPrint += item.varValue
 		elif element in parsedObject.message.asList():

@@ -41,5 +41,3 @@ def loop(parsedObject, statementCheck):
 			print str(i) + " :" + statement
 
 loopExpr.setParseAction(lambda tokens: loop(tokens, None))
-
-print loopExpr.parseString("repeat i -> 1 to 10 \n pepitoo \n pepito2 \n pepito3 \n pepito4 \n end").asDict()

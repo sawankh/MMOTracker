@@ -36,11 +36,13 @@ def addStack(tokens):
 		varStack.append(tokens)
 	else:
 		varStack.append(tokens)
+	print "addStack"
+	print varStack
 
 # Check if an element is in the list
 def inList(data, search):
-    for sublist in data:
-    	if sublist[0] == search:
+	for sublist in data:
+		if sublist[0] == search:
 			return True            
 
 # Get index of the element in the list
