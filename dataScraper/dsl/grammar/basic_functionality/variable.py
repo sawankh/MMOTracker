@@ -52,4 +52,21 @@ def getIndex(data, search):
 			return iterator   
 		iterator += 1       
 
+# Checks if string is integer
+def isInteger(string):
+	try:
+		int(string)
+		return True
+	except ValueError:
+		return False
+
+# Checks if the string is a integer or a variable, if is the last one returns its actual value from the stack
+def getValue(string):
+	if isInteger(string):
+		return string
+	elif inList(varStack, string):
+		return varStack[getIndex(varStack, string)][1]
+	else:
+		raise Exception("Something went wrong while trying to parse your loop!!")
+
 assignment.setParseAction(addStack)
