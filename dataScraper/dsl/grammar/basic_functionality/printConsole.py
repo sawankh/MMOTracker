@@ -43,7 +43,7 @@ def printConsole(parsedObject):
 					#print item.varName + element
 					if element == item.varName:
 						stringToPrint += item.varValue
-		elif len(parsedObject.message) > 0:
+		if len(parsedObject.message) > 0:
 			if element in parsedObject.message.asList():
 				stringToPrint += element
 
