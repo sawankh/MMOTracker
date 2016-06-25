@@ -26,26 +26,47 @@ from variable import *
 UNDERSCORE = '_'
 
 # Rules
-loopReservedWord = Suppress(Literal("repeat"))
-arrow = Suppress(Literal("->"))
+loopReservedWord = Suppress(Keyword("repeat"))
+arrow = Suppress(Keyword("->"))
+leftKey = Suppress(Keyword("{"))
+rightKey = Suppress(Keyword("}"))
 identifier = Word(alphas, alphanums + UNDERSCORE)
 fromVar = Word(nums) | identifier
 toVar = Word(nums) | identifier
-toReservedWord = Suppress(Literal("to"))
-endReservedWord = Suppress(Literal("end"))
-statement = Word(printables)
+toReservedWord = Suppress(Keyword("to"))
+endReservedWord = Suppress(Keyword("end"))
+statement = Word(printables, excludeChars = "}")
 newLine = Suppress(White("\n"))
-loopExpr = loopReservedWord + identifier.setResultsName("iterator") + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + OneOrMore(newLine) + Optional(ZeroOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine)) + endReservedWord 
+loopExpr = (loopReservedWord + identifier.setResultsName("iterator") + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + leftKey + OneOrMore(newLine) + OneOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine) + rightKey)
 
 # Loop method
 def loop(parsedObject, statementCheck):
-	if int(parsedObject.toVar) > int(parsedObject.fromVar):
-		for i in range(int(parsedObject.fromVar), int(parsedObject.toVar) + 1):
+	tVar = getValue(parsedObject.toVar)
+	fVar = getValue(parsedObject.fromVar)
+	if tVar > fVar:
+		for i in range(fVar, tVar + 1):
 			assignment.parseString(parsedObject.iterator + "->" + str(i))
 			for statement in parsedObject.statements:
 				statementCheck.parseString(statement)
 	else:
-		for i in range(int(parsedObject.fromVar), int(parsedObject.toVar) - 1, -1):
+		for i in range(fVar, tvar - 1, -1):
 			assignment.parseString(parsedObject.iterator + "->" + str(i))
 			for statement in parsedObject.statements:
 				statementCheck.parseString(statement)
+
+# Checks if string is integer
+def isInteger(string):
+	try:
+		int(string)
+		return True
+	except ValueError:
+		return False
+
+# Checks if the string is a integer or a variable, if is the last one returns its actual value from the stack
+def getValue(string):
+	if isInteger(string):
+		return int(string)
+	elif inList(varStack, string):
+		return int(varStack[getIndex(varStack, string)][1])
+	else:
+		raise Exception("Something went wrong while trying to parse your loop!!")
