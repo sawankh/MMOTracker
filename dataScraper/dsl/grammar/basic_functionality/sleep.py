@@ -31,15 +31,17 @@ sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + r
 # Sleeps the agent for the value especified of seconds
 def sleepAgent(tokens):
 	value = stringToInt(tokens.value)
-	print "Agent is going to sleep for " + str(value) + " seconds"
-	bar = progressbar.ProgressBar(maxval = value, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
+	if value > 0:
+		print "Agent is going to sleep for " + str(value) + " seconds"
+		bar = progressbar.ProgressBar(maxval = value, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
 
-	bar.start()
-	for i in range(0, value):
-		time.sleep(1)
-		bar.update(i + 1)
-	bar.finish()
-
+		bar.start()
+		for i in range(0, value):
+			time.sleep(1)
+			bar.update(i + 1)
+		bar.finish()
+	else:
+		raise Exception("Sleep time cannot be 0")	
 # Converts string to int
 def stringToInt(strNumber):
 	return int(strNumber)
