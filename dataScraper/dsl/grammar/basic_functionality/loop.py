@@ -36,8 +36,13 @@ loopExpr = loopReservedWord + identifier + arrow + fromVar.setResultsName("fromV
 
 # Loop method
 def loop(parsedObject, statementCheck):
-	for i in range(int(parsedObject.fromVar), int(parsedObject.toVar) + 1):
-		for statement in parsedObject.statements:
-			print str(i) + " :" + statement
+	if int(parsedObject.toVar) > int(parsedObject.fromVar):
+		for i in range(int(parsedObject.fromVar), int(parsedObject.toVar) + 1):
+			for statement in parsedObject.statements:
+				print str(i) + " :" + statement
+	else:
+		for i in range(int(parsedObject.fromVar), int(parsedObject.toVar) - 1, -1):
+			for statement in parsedObject.statements:
+				print str(i) + " :" + statement
 
 loopExpr.setParseAction(lambda tokens: loop(tokens, None))
