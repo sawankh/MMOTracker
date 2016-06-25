@@ -33,11 +33,9 @@ varStack = []
 def addStack(tokens):
 	if inList(varStack, tokens.varName):
 		del varStack[getIndex(varStack, tokens.varName)]
-		varStack.append(tokens)
+		varStack.append(tokens[:])
 	else:
-		varStack.append(tokens)
-	print "addStack"
-	print varStack
+		varStack.append(tokens[:])
 
 # Check if an element is in the list
 def inList(data, search):
