@@ -36,14 +36,16 @@ def printConsole(parsedObject):
 	#print "entra"
 	stringToPrint = ''
 	for element in parsedObject:
-		if element in parsedObject.varID.asList():
-			for item in varStack:
-				#print varStack
-				#print item.varName + element
-				if element == item.varName:
-					stringToPrint += item.varValue
-		elif element in parsedObject.message.asList():
-			stringToPrint += element
+		if len(parsedObject.varID) > 0:
+			if element in parsedObject.varID.asList():
+				for item in varStack:
+					#print varStack
+					#print item.varName + element
+					if element == item.varName:
+						stringToPrint += item.varValue
+		elif len(parsedObject.message) > 0:
+			if element in parsedObject.message.asList():
+				stringToPrint += element
 
 	print stringToPrint
 
