@@ -26,7 +26,7 @@ printReservedWord = Suppress(Literal("printConsole"))
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 number = Word(nums)
-message = QuotedString('"')
+message = QuotedString('"', escChar = '\\')
 variableID = identifier
 plus = Suppress(Literal("+"))
 printExpr = printReservedWord + leftBracket + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)) + Optional(ZeroOrMore(plus + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)))) + rightBracket
