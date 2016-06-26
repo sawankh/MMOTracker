@@ -25,9 +25,8 @@ UNDERSCORE = '_'
 # Rules
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
-string = QuotedString('"')
 arrow = Suppress('->')
-assignment =  identifier.setResultsName("varName") + arrow + (identifier | number | string).setResultsName("varValue")
+assignment =  identifier.setResultsName("varName") + arrow + (identifier | number).setResultsName("varValue")
 
 varStack = []
 

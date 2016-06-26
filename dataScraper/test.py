@@ -18,10 +18,12 @@ raw_data = json.loads(json_value)
 x = getProcessedData(raw_data['items'], 'items')
 
 print len(reducedElement)
-clearDictionary()
 print len(reducedElement)
 
 writeDictCSV("test.csv", x[0], x[1])
+clearDictionary()
+p = getProcessedData(raw_data['items'], 'items')
+writeDictCSV("test.csv", p[0], p[1])
 # processed_data = []
 # header = []
 # for item in raw_data:
