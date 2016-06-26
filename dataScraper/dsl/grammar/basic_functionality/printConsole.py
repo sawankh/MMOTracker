@@ -39,6 +39,8 @@ def printConsole(parsedObject):
 			if element in parsedObject.varID.asList():
 				for item in varStack[:]:
 					if element == item[0]:
+						if "\"" in item[1]:
+							item[1] = item[1].replace('\"','')
 						stringToPrint += item[1]
 		if len(parsedObject.message) > 0:
 			if element in parsedObject.message.asList():

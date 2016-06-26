@@ -25,8 +25,9 @@ UNDERSCORE = '_'
 # Rules
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
+string = QuotedString('"', unquoteResults = False)
 arrow = Suppress('->')
-assignment =  identifier.setResultsName("varName") + arrow + (identifier | number).setResultsName("varValue")
+assignment =  identifier.setResultsName("varName") + arrow + (identifier | number | string).setResultsName("varValue")
 
 varStack = []
 
@@ -35,8 +36,11 @@ def addStack(tokens):
 		del varStack[getIndex(varStack, tokens.varName)]
 		varStack.append(tokens[:])
 	elif isInteger(tokens.varValue) is False:
-		tokens[1] = getValue(tokens.varValue)
-		varStack.append(tokens[:])
+		if inList(varStack, tokens.varValue):
+			tokens[1] = getValue(tokens.varValue)
+			varStack.append(tokens[:])
+		else:
+			varStack.append(tokens[:])
 	else:
 		varStack.append(tokens[:])
 
