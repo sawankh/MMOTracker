@@ -20,7 +20,8 @@
 from pyparsing import *
 
 import sys
-sys.path.insert(0, '../behaviour')
+	
+sys.path.insert(1, '../behaviour')
 
 from readFile import *
 from stringJoin import *
