@@ -1,10 +1,10 @@
 #!/usr/bin/python
-# Title: clearConsole.py
-# Description: Contains the grammar to clear the console
+# Title: stringJoin.py
+# Description: Contains the grammar and methods to join two or more strings
 # Author: Sawan J. Kapai Harpalani
-# Date: 2016-06-24
+# Date: 2016-06-27
 # Version: 0.1
-# Usage: python clearConsole.py
+# Usage: python stringJoin.py
 # Notes: 
 # python_version: 2.6.6
 # License: Copyright 200X Sawan J. Kapai Harpalani 
@@ -19,15 +19,19 @@
 
 from pyparsing import *
 
-import os
-
 # Rules
-clearReservedWorld = Literal("clearConsole")
+comma = Suppress(Literal(","))
+stringJoinReservedWord = Suppress(Keyword("joinString"))
+string = QuotedString('"', escChar = "\\").setResultsName("stringsToJoin", listAllMatches = False)
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
-clearExpr = clearReservedWorld + leftBracket + rightBracket
+joinStringExpr = stringJoinReservedWord + leftBracket + (string + comma + string) + ZeroOrMore(comma + string) + rightBracket
 
-def clearConsole():
-	os.system('cls' if os.name=='nt' else 'clear')
+# Joins strings and returns quoted string
+def joinString(sList):
+	resultString = ''
+	for s in sList:
+		resultString += s
+	return "\"" + resultString + "\""
 
-clearExpr.setParseAction(clearConsole)
+joinStringExpr.setParseAction(lambda tokens: joinString(tokens))
