@@ -23,6 +23,7 @@ import sys
 sys.path.insert(0, '../behaviour')
 
 from readFile import *
+from stringJoin import *
 
 # Constants
 UNDERSCORE = '_'
@@ -32,7 +33,7 @@ identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
 string = QuotedString('"', unquoteResults = False)
 arrow = Suppress('->')
-assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | identifier | number | string).setResultsName("varValue")
+assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | joinStringExpr | identifier | number | string).setResultsName("varValue")
 
 varStack = []
 
