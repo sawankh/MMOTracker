@@ -71,13 +71,15 @@ def toString(s):
     except:
         return s.encode('utf-8')
 
-reducedElement = {}
 # Returns data processed and ready to write in CSV
 def getProcessedData(content, node):
+    xs = 0
     processedData = []
     headerList = []
     for item in content:
-        reduce_item(node, item)
+        xs += 1
+        reducedElement = {}
+        reduce_item(node, item, reducedElement)
 
         headerList += reducedElement.keys()
 
@@ -85,24 +87,25 @@ def getProcessedData(content, node):
 
     headerList = list(set(headerList))
     headerList.sort()
+    
     return headerList, processedData
 
-def clearDictionary():
+def clearDictionary(reducedElement):
     reducedElement.clear()
 
 # Reduces elements
-def reduce_item(key, value):
-    global reducedElement
+def reduce_item(key, value, reducedElement):
+    # global reducedElement
 
     if type(value) is list:
         i = 0
         for sub_item in value:
-            reduce_item(key + '_' + toString(i), sub_item)
+            reduce_item(key + '_' + toString(i), sub_item, reducedElement)
             i += 1
     elif type(value) is dict:
         sub_keys = value.keys()
         for sub_key in sub_keys:
-            reduce_item(key + '_' + toString(sub_key), value[sub_key])
+            reduce_item(key + '_' + toString(sub_key), value[sub_key], reducedElement)
     else:
         reducedElement[toString(key)] = toString(value)
 
