@@ -20,9 +20,7 @@
 
 import sys, getopt, getpass, textwrap
 
-sys.path.insert(0, 'constants/')
-
-from agentConstants import *
+from constants.agentConstants import *
 
 
 def main(argv):
