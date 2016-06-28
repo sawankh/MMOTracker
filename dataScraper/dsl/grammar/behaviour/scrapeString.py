@@ -32,6 +32,7 @@ HEADERS = 0
 CONTENT = 1
 BLANK = ' '
 CSV_EXTENSION = '.csv'
+LOG_EXTENSION = '.log'
 SEPARATOR = "##############################################################################"
 SUCCESS_REQUEST = 200
 
@@ -50,6 +51,11 @@ scrapeStringExpr = scrapeStringReservedWord + leftBracket + string.setResultsNam
 
 # Scrapes an String and returns csv
 def scrapeString(strContent, strNode, strFileName, strPath, log):
+	if log is True:
+		print "Writing log file..."
+		with open(strPath + strFileName + LOG_EXTENSION, "w") as logFile:
+		    logFile.write(strContent)
+		print "Log file written successfully --> " + strPath + strFileName
 	print SEPARATOR
 	jsonObject = stringToJSON(strContent)
 	print SEPARATOR

@@ -32,6 +32,7 @@ HEADERS = 0
 CONTENT = 1
 BLANK = ' '
 CSV_EXTENSION = '.csv'
+LOG_EXTENSION = '.log'
 SEPARATOR = "##############################################################################"
 SUCCESS_REQUEST = 200
 
@@ -59,6 +60,11 @@ def scrapeURL(strUrl, strNode, strFileName, strPath, log):
 	jsonObject = stringToJSON(jsonString)
 	print SEPARATOR
 	if getCode(requestURL) == SUCCESS_REQUEST: 
+		if log is True:
+			print "Writing log file..."
+			with open(strPath + strFileName + LOG_EXTENSION, "w") as logFile:
+				logFile.write(jsonString)
+			print "Log file written successfully --> " + strPath + strFileName
 		print "Your data is being processed..."
 		if strNode is BLANK:
 			processData = getProcessedData(jsonObject, BLANK)	
