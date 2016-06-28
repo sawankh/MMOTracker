@@ -21,9 +21,9 @@ from pyparsing import *
 
 import ast
 
-from requests.requestHandle import *
-from requests.jsonHandle import *
-from requests.csvHandle import *
+from req.requestHandle import *
+from req.jsonHandle import *
+from req.csvHandle import *
 from grammar.basic_functionality.variable import *
 
 # Constants

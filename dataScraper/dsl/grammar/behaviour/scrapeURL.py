@@ -23,9 +23,9 @@ import ast
 
 import os,sys
 
-from requests.requestHandle import *
-from requests.jsonHandle import *
-from requests.csvHandle import *
+from req.requestHandle import *
+from req.jsonHandle import *
+from req.csvHandle import *
 from grammar.basic_functionality.variable import *
 
 # Constants
@@ -69,6 +69,7 @@ def checkStack(element, alternative, stack):
 
 # Scrapes an URL and returns csv
 def scrapeURL(tokens):
+	log = ast.literal_eval(tokens.log)
 	strUrl = checkStack(tokens.varIDU, tokens.url, varStack)
 	strNode = checkStack(tokens.varIDN, tokens.node, varStack)
 	strFileName = checkStack(tokens.varIDF, tokens.fileName, varStack)
