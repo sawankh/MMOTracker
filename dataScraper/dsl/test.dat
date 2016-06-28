@@ -1,4 +1,10 @@
 x -> "http://jsonplaceholder"
 z -> ".typicode.com/photos"
 t -> joinString(x, z)
+fi -> "f"
+space -> " "
+repeat i -> 1 to 10 {
+	fname->joinString(f,i)
+	scrapeURL(t,space,fname,space,true)
+}
 printConsole(t)

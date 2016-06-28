@@ -88,7 +88,7 @@ def scrapeURL(tokens):
 			print "Writing log file..."
 			with open(strPath + strFileName + LOG_EXTENSION, "w") as logFile:
 				logFile.write(jsonString)
-			print "Log file written successfully --> " + strPath + strFileName
+			print "Log file written successfully --> " + strPath + strFileName + LOG_EXTENSION
 		print "Your data is being processed..."
 		if strNode is BLANK:
 			processData = getProcessedData(jsonObject, BLANK)	

@@ -32,4 +32,4 @@ from grammar.behaviour.scrapeString import *
 newLine = Suppress(White("\n"))
 agentDSL = ZeroOrMore((scrapeURLExpr | scrapeStringExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
-print agentDSL.parseFile("test.dat")
+agentDSL.parseFile("test.dat")

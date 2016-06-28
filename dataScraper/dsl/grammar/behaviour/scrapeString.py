@@ -77,7 +77,7 @@ def scrapeString(tokens):
 		print "Writing log file..."
 		with open(strPath + strFileName + LOG_EXTENSION, "w") as logFile:
 		    logFile.write(strContent)
-		print "Log file written successfully --> " + strPath + strFileName
+		print "Log file written successfully --> " + strPath + strFileName + LOG_EXTENSION
 	print SEPARATOR
 	jsonObject = stringToJSON(strContent)
 	print SEPARATOR
