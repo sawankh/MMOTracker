@@ -2,4 +2,4 @@ x -> 2
 printConsole(x)
 y -> readFile("countries.json")
 x -> "http://jsonplaceholder.typicode.com/photos"
-//scrapeURL("http://jsonplaceholder.typicode.com/photos", "items", "test", " ", true)
+scrapeString(y, "items", "test", " ", true)
