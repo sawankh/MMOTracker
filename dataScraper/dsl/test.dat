@@ -1,4 +1,5 @@
 x -> 2
 printConsole(x)
 y -> readFile("countries.json")
-printConsole(y)
+x -> "http://jsonplaceholder.typicode.com/photos"
+//scrapeURL("http://jsonplaceholder.typicode.com/photos", "items", "test", " ", true)

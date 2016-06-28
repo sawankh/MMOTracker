@@ -26,6 +26,7 @@ import os,sys
 from requests.requestHandle import *
 from requests.jsonHandle import *
 from requests.csvHandle import *
+from grammar.basic_functionality.variable import *
 
 # Constants
 HEADERS = 0
@@ -47,10 +48,32 @@ Path = QuotedString('"', escChar = "\\")
 fileName = QuotedString('"', escChar = "\\")
 trueKeyword = CaselessKeyword("True")
 falseKeyword = CaselessKeyword("False")
-scrapeURLExpr = scrapeURLReservedWord + leftBracket + URL.setResultsName("url") + comma + node.setResultsName("node") + comma + fileName.setResultsName("fileName") + comma + Path.setResultsName("path") + comma + (trueKeyword | falseKeyword).setResultsName("log") + rightBracket
+varID = identifier
+scrapeURLExpr = scrapeURLReservedWord + leftBracket + (URL.setResultsName("url") | identifier.setResultsName("varIDU")) + comma + (node.setResultsName("node") | identifier.setResultsName("varIDN")) + comma + (fileName.setResultsName("fileName") | identifier.setResultsName("varIDF")) + comma + (Path.setResultsName("path") | identifier.setResultsName("varIDP")) + comma + (trueKeyword | falseKeyword).setResultsName("log") + rightBracket
+
+# Checks the stack and returns value
+def checkStack(element, alternative, stack):
+	resultString = ''
+	if len(element) > 0:
+		for item in stack[:]:
+			if element == item[0]:
+				if item[1].startswith('"') and item[1].endswith('"'):
+				    item[1] = item[1][1:-1]
+				resultString += item[1]
+				return resultString
+	elif len(alternative) > 0:
+		resultString = alternative
+		return resultString
+	else:
+		resultString = ''
 
 # Scrapes an URL and returns csv
-def scrapeURL(strUrl, strNode, strFileName, strPath, log):
+def scrapeURL(tokens):
+	strUrl = checkStack(tokens.varIDU, tokens.url, varStack)
+	strNode = checkStack(tokens.varIDN, tokens.node, varStack)
+	strFileName = checkStack(tokens.varIDF, tokens.fileName, varStack)
+	strPath = checkStack(tokens.varIDP, tokens.path, varStack)
+	
 	requestURL = getRequest(strUrl)
 	
 	print SEPARATOR
@@ -80,4 +103,4 @@ def scrapeURL(strUrl, strNode, strFileName, strPath, log):
 		print "Shutting down wrong error in request!"
 		sys.exit(2)
 
-scrapeURLExpr.setParseAction(lambda tokens: scrapeURL(tokens.url, tokens.node, tokens.fileName, tokens.path, ast.literal_eval(tokens.log)))
+scrapeURLExpr.setParseAction(lambda tokens: scrapeURL(tokens))

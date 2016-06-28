@@ -24,6 +24,7 @@ import ast
 from requests.requestHandle import *
 from requests.jsonHandle import *
 from requests.csvHandle import *
+from grammar.basic_functionality.variable import *
 
 # Constants
 HEADERS = 0
@@ -45,10 +46,33 @@ Path = QuotedString('"', escChar = "\\")
 fileName = QuotedString('"', escChar = "\\")
 trueKeyword = CaselessKeyword("True")
 falseKeyword = CaselessKeyword("False")
-scrapeStringExpr = scrapeStringReservedWord + leftBracket + string.setResultsName("content") + comma + node.setResultsName("node") + comma + fileName.setResultsName("fileName") + comma + Path.setResultsName("path") + comma + (trueKeyword | falseKeyword).setResultsName("log") + rightBracket
+varID = identifier
+scrapeStringExpr = scrapeStringReservedWord + leftBracket + (string.setResultsName("content") | identifier.setResultsName("varIDC")) + comma + (node.setResultsName("node") | identifier.setResultsName("varIDN")) + comma + (fileName.setResultsName("fileName") | identifier.setResultsName("varIDF")) + comma + (Path.setResultsName("path") | identifier.setResultsName("varIDP")) + comma + (trueKeyword | falseKeyword).setResultsName("log") + rightBracket
+
+# Checks the stack and returns value
+def checkStack(element, alternative, stack):
+	resultString = ''
+	if len(element) > 0:
+		for item in stack[:]:
+			if element == item[0]:
+				if item[1].startswith('"') and item[1].endswith('"'):
+				    item[1] = item[1][1:-1]
+				resultString += item[1]
+				return resultString
+	elif len(alternative) > 0:
+		resultString = alternative
+		return resultString
+	else:
+		resultString = ''
 
 # Scrapes an String and returns csv
-def scrapeString(strContent, strNode, strFileName, strPath, log):
+def scrapeString(tokens):
+	log = ast.literal_eval(tokens.log)
+	strContent = checkStack(tokens.varIDC, tokens.content, varStack)
+	strNode = checkStack(tokens.varIDN, tokens.node, varStack)
+	strFileName = checkStack(tokens.varIDF, tokens.fileName, varStack)
+	strPath = checkStack(tokens.varIDP, tokens.path, varStack)
+
 	if log is True:
 		print "Writing log file..."
 		with open(strPath + strFileName + LOG_EXTENSION, "w") as logFile:
@@ -69,4 +93,4 @@ def scrapeString(strContent, strNode, strFileName, strPath, log):
 	writeDictCSV(strFileName + CSV_EXTENSION, processData[HEADERS], processData[CONTENT], strPath)
 	print "CSV written successfully ---> " + strPath + strFileName + CSV_EXTENSION
 	
-scrapeStringExpr.setParseAction(lambda tokens: scrapeString(tokens.content, tokens.node, tokens.fileName, tokens.path, ast.literal_eval(tokens.log)))
+scrapeStringExpr.setParseAction(lambda tokens: scrapeString(tokens))
