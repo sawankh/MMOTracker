@@ -20,8 +20,9 @@
 import requests
 
 requests.packages.urllib3.disable_warnings()
-TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjQ2ZGNiNTY5LTQ4N2ItNGEyYS04NmMxLTBjODJlMjdlMmZlZiIsImlhdCI6MTQ2NzEzNjg5MSwic3ViIjoiZGV2ZWxvcGVyLzdhMDQwZDY3LTlhYWMtMzBjYS0xMTYyLWUzOWMwMzk3NWU5YiIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjE1Mi43OC45NC4yMTEiXSwidHlwZSI6ImNsaWVudCJ9XX0.CNKheXD5XXiq94gAlvqIM2ylv-KR9_eIWRZqxvkgEPAPQGvBnWl-YKIAxB4BsUAKfIfM608fQS6v8wh_h7Tj8Q"
+TOKEN = ""
 HEADERS = {'Accept': 'application/json', 'authorization': ' Bearer ' + TOKEN}
+
 # Execute a get request 
 def getRequest(request):
 	if not TOKEN:
@@ -66,3 +67,11 @@ def printCode(request):
 # Prints url
 def printURL(request):
 	print "The request's url is: " + request.url
+
+# Sets the token
+def setToken(string):
+	TOKEN = string
+
+# Returns the token
+def getToken():
+	return TOKEN
