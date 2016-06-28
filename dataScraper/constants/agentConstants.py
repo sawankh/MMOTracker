@@ -25,4 +25,4 @@ MAND_ARG_MISSING = 3
 READING_CONF_ERROR = 4
 
 # Instruction Constant
-COMMAND_HELP = ['-c: Configuration file, where all the information about the API and the output is contained', '--username: Username, indicates that username is required for the use of the API', '--password: Password, indicates that password is required for the use of the API', '--outputPath: Output path, sets the path for the output files of the agent']
+COMMAND_HELP = ['-c: Configuration file, where all the information about the API and the output is contained', '--username: Username, indicates that username is required for the use of the API', '--password: Password, indicates that password is required for the use of the API']
