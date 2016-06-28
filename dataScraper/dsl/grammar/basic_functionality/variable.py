@@ -19,8 +19,8 @@
 
 from pyparsing import *
 
-from grammar.behaviour.readFile import *
-from grammar.behaviour.stringJoin import *
+from dsl.grammar.behaviour.readFile import *
+from dsl.grammar.behaviour.stringJoin import *
 
 # Constants
 UNDERSCORE = '_'

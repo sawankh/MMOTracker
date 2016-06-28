@@ -19,14 +19,14 @@
 
 from pyparsing import *
 
-from grammar.basic_functionality.clearConsole import *
-from grammar.basic_functionality.comments import *
-from grammar.basic_functionality.loop import *
-from grammar.basic_functionality.printConsole import *
-from grammar.basic_functionality.sleep import *
-from grammar.basic_functionality.variable import *
-from grammar.behaviour.scrapeURL import *
-from grammar.behaviour.scrapeString import *
+from dsl.grammar.basic_functionality.clearConsole import *
+from dsl.grammar.basic_functionality.comments import *
+from dsl.grammar.basic_functionality.loop import *
+from dsl.grammar.basic_functionality.printConsole import *
+from dsl.grammar.basic_functionality.sleep import *
+from dsl.grammar.basic_functionality.variable import *
+from dsl.grammar.behaviour.scrapeURL import *
+from dsl.grammar.behaviour.scrapeString import *
 
 # DSL types of expression
 newLine = Suppress(White("\n"))

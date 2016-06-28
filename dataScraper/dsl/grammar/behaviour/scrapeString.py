@@ -21,10 +21,10 @@ from pyparsing import *
 
 import ast
 
-from req.requestHandle import *
-from req.jsonHandle import *
-from req.csvHandle import *
-from grammar.basic_functionality.variable import *
+from dsl.req.requestHandle import *
+from dsl.req.jsonHandle import *
+from dsl.req.csvHandle import *
+from dsl.grammar.basic_functionality.variable import *
 
 # Constants
 HEADERS = 0

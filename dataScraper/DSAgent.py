@@ -21,7 +21,7 @@
 import sys, getopt, getpass, textwrap
 
 from constants.agentConstants import *
-
+from dsl.scrapingDsl import *
 
 def main(argv):
 	if len(argv) <= 0:
@@ -46,6 +46,10 @@ def main(argv):
 		else:
 		 	printError(PARAM_ERROR)
 
+	if configFile:
+		dslParseFile(configFile)
+	else:
+		printError(READING_CONF_ERROR)
 
 # Prints errors 
 def printError(errorType):
