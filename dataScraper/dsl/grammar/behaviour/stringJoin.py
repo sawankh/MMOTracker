@@ -22,16 +22,23 @@ from pyparsing import *
 # Rules
 comma = Suppress(Literal(","))
 stringJoinReservedWord = Suppress(Keyword("joinString"))
-string = QuotedString('"', escChar = "\\").setResultsName("stringsToJoin", listAllMatches = False)
+string = QuotedString('"', escChar = "\\").setResultsName("stringsToJoin", listAllMatches = True)
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
-joinStringExpr = stringJoinReservedWord + leftBracket + (string + comma + string) + ZeroOrMore(comma + string) + rightBracket
+varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
+joinStringExpr = stringJoinReservedWord + leftBracket + ((string | varID) + comma + (string | varID)) + ZeroOrMore(comma + (string | varID)) + rightBracket
 
 # Joins strings and returns quoted string
-def joinString(sList):
+def joinString(sList, varStack):
 	resultString = ''
-	for s in sList:
-		resultString += s
+	if len(sList.varID) > 0:
+		for var in sList.varID.asList():
+			for item in varStack[:]:
+				if var == item[0]:
+					if item[1].startswith('"') and item[1].endswith('"'):
+						item[1] = item[1][1:-1]
+					resultString += item[1]
+	if len(sList.stringsToJoin) > 0:
+		for string in sList.stringsToJoin.asList():
+			resultString += string
 	return "\"" + resultString + "\""
-
-joinStringExpr.setParseAction(lambda tokens: joinString(tokens))

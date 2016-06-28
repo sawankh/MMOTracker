@@ -1,5 +1,4 @@
-x -> 2
-printConsole(x)
-y -> readFile("countries.json")
-x -> "http://jsonplaceholder.typicode.com/photos"
-scrapeURL(x, " ", "test", " ", true)
+x -> "http://jsonplaceholder"
+z -> ".typicode.com/photos"
+t -> joinString(x, z)
+printConsole(t)

@@ -24,15 +24,16 @@ from grammar.behaviour.stringJoin import *
 
 # Constants
 UNDERSCORE = '_'
+varStack = []
 
 # Rules
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
 string = QuotedString('"', unquoteResults = False)
 arrow = Suppress('->')
-assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | joinStringExpr | identifier | number | string).setResultsName("varValue")
+assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | joinStringExpr.setParseAction(lambda tokens: joinString(tokens, varStack)) | identifier | number | string).setResultsName("varValue")
 
-varStack = []
+
 
 def addStack(tokens):
 	if inList(varStack, tokens.varName):

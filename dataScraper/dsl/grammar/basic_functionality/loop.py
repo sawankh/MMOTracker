@@ -35,7 +35,7 @@ fromVar = Word(nums) | identifier
 toVar = Word(nums) | identifier
 toReservedWord = Suppress(Keyword("to"))
 endReservedWord = Suppress(Keyword("end"))
-statement = Word(printables, excludeChars = "}")
+statement = Word(printables, excludeChars = "{}")
 newLine = Suppress(White("\n"))
 loopExpr = (loopReservedWord + identifier.setResultsName("iterator") + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + leftKey + OneOrMore(newLine) + OneOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine) + rightKey)
 
