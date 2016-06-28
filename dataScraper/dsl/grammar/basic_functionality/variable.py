@@ -19,12 +19,8 @@
 
 from pyparsing import *
 
-import sys
-	
-sys.path.insert(1, '../behaviour')
-
-from readFile import *
-from stringJoin import *
+from grammar.behaviour.readFile import *
+from grammar.behaviour.stringJoin import *
 
 # Constants
 UNDERSCORE = '_'

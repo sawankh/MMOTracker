@@ -19,7 +19,7 @@
 
 from pyparsing import *
 
-from variable import *
+from grammar.basic_functionality.variable import *
 
 
 # Constants

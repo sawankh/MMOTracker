@@ -1,0 +1,4 @@
+x -> 2
+printConsole(x)
+y -> readFile("countries.json")
+printConsole(y)

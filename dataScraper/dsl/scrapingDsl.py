@@ -19,20 +19,17 @@
 
 from pyparsing import *
 
-import sys
-
-sys.path.insert(0, 'grammar/basic_functionality')
-
-from clearConsole import *
-from comments import *
-from loop import *
-from printConsole import *
-from sleep import *
-from variable import *
-
+from grammar.basic_functionality.clearConsole import *
+from grammar.basic_functionality.comments import *
+from grammar.basic_functionality.loop import *
+from grammar.basic_functionality.printConsole import *
+from grammar.basic_functionality.sleep import *
+from grammar.basic_functionality.variable import *
+from grammar.behaviour.scrapeURL import *
+from grammar.behaviour.scrapeString import *
 
 # DSL types of expression
 newLine = Suppress(White("\n"))
-agentDSL = ZeroOrMore((clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
+agentDSL = ZeroOrMore((clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment | scrapeURLExpr | scrapeStringExpr) + Optional(newLine))
 
 agentDSL.parseFile("test.dat")

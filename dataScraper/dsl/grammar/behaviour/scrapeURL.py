@@ -19,13 +19,13 @@
 
 from pyparsing import *
 
-import ast, sys
+import ast
 
-sys.path.insert(1, '../../../requests/')
+import os,sys
 
-from requestHandle import *
-from jsonHandle import *
-from csvHandle import *
+from requests.requestHandle import *
+from requests.jsonHandle import *
+from requests.csvHandle import *
 
 # Constants
 HEADERS = 0
