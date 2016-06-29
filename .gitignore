@@ -1,2 +1,6 @@
 mmoTracker/
 *.pyc
+*.tok
+*.dat
+*.csv
+*.log
