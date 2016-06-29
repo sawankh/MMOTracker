@@ -17,14 +17,21 @@
 # If not, seehttp://www.gnu.org/licenses/.
 #==============================================================================
 
-import requests
-
+import requests, sys
+ 
 requests.packages.urllib3.disable_warnings()
-TOKEN = ""
-HEADERS = {'Accept': 'application/json', 'authorization': ' Bearer ' + TOKEN}
 
 # Execute a get request 
 def getRequest(request):
+	TOKEN = ""
+	try:
+		mf = open("token.tok")
+		TOKEN = mf.read()
+	except IOError:  
+		print "File not found: {}".format("token.tok")
+		sys.exit(2)
+
+	HEADERS = {'Accept': 'application/json', 'authorization': ' Bearer ' + TOKEN}
 	if not TOKEN:
 		return requests.get(request)
 	elif TOKEN:
@@ -67,11 +74,3 @@ def printCode(request):
 # Prints url
 def printURL(request):
 	print "The request's url is: " + request.url
-
-# Sets the token
-def setToken(string):
-	TOKEN = string
-
-# Returns the token
-def getToken():
-	return TOKEN

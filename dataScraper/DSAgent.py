@@ -22,14 +22,13 @@ import sys, getopt, getpass, textwrap
 
 from constants.agentConstants import *
 from dsl.scrapingDsl import *
-from dsl.req.requestHandle import *
 
 def main(argv):
 	if len(argv) <= 0:
 		printError(NO_ARG)
 
 	try:
-		opts, args = getopt.getopt(argv, 'h:c:u:p:t', ['help', 'configFile=', 'username', 'password', 'token'])
+		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username', 'password'])
 	except getopt.GetoptError:
 		printError(OPTION_ERROR)
 
@@ -44,9 +43,6 @@ def main(argv):
 		 	userName = askUser()
 		elif opt in ('-p', '--password'):
 		 	password = askPassword()
-		elif opt in ('-t', '--token'):
-		 	token = askToken()
-		 	setToken(token)
 		else:
 		 	printError(PARAM_ERROR)
 
@@ -88,10 +84,6 @@ def askUser():
 # Asks user password 
 def askPassword():
 	return getpass.getpass("Enter password: ")
-
-# Ask the token
-def askToken():
-	return raw_input("Insert token: ")
 
 if __name__ == '__main__':
 	main(sys.argv[1:]) 
