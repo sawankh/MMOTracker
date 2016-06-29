@@ -27,10 +27,9 @@ def getRequest(request):
 	try:
 		mf = open("token.tok")
 		TOKEN = mf.read()
-	except IOError:  
-		print "File not found: {}".format("token.tok")
-		sys.exit(2)
-
+	except IOError:
+		print "No token"
+		
 	HEADERS = {'Accept': 'application/json', 'authorization': ' Bearer ' + TOKEN}
 	if not TOKEN:
 		return requests.get(request)
