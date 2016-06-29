@@ -21,6 +21,7 @@ from pyparsing import *
 
 from dsl.grammar.behaviour.readFile import *
 from dsl.grammar.behaviour.stringJoin import *
+from dsl.grammar.behaviour.readLine import *
 
 # Constants
 UNDERSCORE = '_'
@@ -31,7 +32,7 @@ identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
 string = QuotedString('"', unquoteResults = False)
 arrow = Suppress('->')
-assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | joinStringExpr.setParseAction(lambda tokens: joinString(tokens, varStack)) | identifier | number | string).setResultsName("varValue")
+assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | readLineExpr.setParseAction(lambda tokens: readLine(tokens, varStack)) | joinStringExpr.setParseAction(lambda tokens: joinString(tokens, varStack)) | identifier | number | string).setResultsName("varValue")
 
 
 
