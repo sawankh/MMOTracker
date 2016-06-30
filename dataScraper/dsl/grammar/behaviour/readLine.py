@@ -49,5 +49,5 @@ def readLine(sList, varStack):
 	with open(fileN) as fp:
 		for i, line in enumerate(fp):
 			if i == (int(lineNu) - 1):
-				resultString = line
+				resultString = line.replace("\n\r", "")
 				return "\"" + resultString + "\""
