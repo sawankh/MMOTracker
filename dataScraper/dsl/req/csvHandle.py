@@ -42,10 +42,11 @@ def writeDictCSV(fileName, headers, content, path = DEFAULT_PATH):
 	with open(path + fileName, 'wb+') as f:
 	    writer = csv.DictWriter(f, headers, delimiter = ',', quoting = csv.QUOTE_MINIMAL)
 	    writer.writeheader()
-	    
-	    bar = progressbar.ProgressBar(maxval = len(content), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
-	    
-	    bar.start()
-	    for row in content:
-	        writer.writerow(row)
-	    bar.finish()
+
+	    if len(content) > 0:
+	    	bar = progressbar.ProgressBar(maxval = len(content), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
+	    	
+	    	bar.start()
+	    	for row in content:
+	    	    writer.writerow(row)
+	    	bar.finish()
