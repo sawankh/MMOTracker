@@ -20,8 +20,11 @@
 from pyparsing import *
 from dsl.grammar.basic_functionality.variable import *
 
-import progressbar
+import progressbar, datetime
 import pandas as pd
+
+# Constants
+SEPARATOR = "##############################################################################"
 
 # Rules
 comma = Suppress(Literal(","))
@@ -55,12 +58,26 @@ def removeColumns(tokens, varStack):
 		for item in tokens.columns[:]:
 			columns.append(item)
 
-	fileToTransform = pd.read_csv(fileToTransform)
-	print fileToTransform.head()
+	fileToTransformPd = pd.read_csv(fileToTransform)
+	print SEPARATOR
+	print "Removing columns " + columns + " from " + fileToTransform
+	print SEPARATOR
+	
+	bar = progressbar.ProgressBar(maxval = len(columns), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
 
-	print "################################################################"
+	bar.start()
+	progress = 0
 	for column in columns:
-		fileToTransform.drop(column, axis = 1, inplace = True)
-	print fileToTransform.head()
+		fileToTransformPd.drop(column, axis = 1, inplace = True)
+		bar.update(progress + 1)
+		progress += 1
+	bar.finish()
 
+	splitedPath = fileToTransform.split(".csv")
+	currentDate = datetime.datetime.now().strftime("%Y%m%d%H %M")
+	outputFile = splitedPath[0] + currentDate + ".csv"
+
+	fileToTransformPd.to_csv(outputFile)
+	print "Written successfully to " + outputFile
+	
 removeColumnsExpr.setParseAction(lambda tokens: removeColumns(tokens, varStack))
