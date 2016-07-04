@@ -28,7 +28,7 @@ SEPARATOR = "###################################################################
 
 # Rules
 comma = Suppress(Literal(","))
-removeLineReservedWord = Suppress(Keyword("removeColumns"))
+removeLineReservedWord = Suppress(Keyword("removeLines"))
 lines = Word(nums).setResultsName("lines", listAllMatches = True)
 fileToTransform = QuotedString('"', escChar = "\\").setResultsName("fileToTransform")
 leftBracket = Suppress(Literal("("))
