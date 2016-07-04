@@ -79,6 +79,6 @@ def removeColumns(tokens, varStack):
 	outputFile = splitedPath[0] + currentDate + ".csv"
 
 	fileToTransformPd.to_csv(outputFile)
-	print "Written successfully to " + outputFile
+	print "Written successfully to ---> " + outputFile
 
 removeColumnsExpr.setParseAction(lambda tokens: removeColumns(tokens, varStack))

@@ -23,6 +23,9 @@ from dsl.grammar.basic_functionality.variable import *
 import progressbar, datetime, glob
 import pandas as pd
 
+# Constants
+SEPARATOR = "##############################################################################"
+
 # Rules
 comma = Suppress(Literal(","))
 appendAllReservedWord = Suppress(Keyword("appendAll"))
@@ -49,7 +52,9 @@ def appendAll(tokens, varStack):
 	if len(tokens.fileType) > 0:
 		fileType = tokens.fileType
 
+	print SEPARATOR
 	print "Combining all files from --->" + path
+	print SEPARATOR
 
 	headers = True
 	currentFile = None
@@ -76,6 +81,6 @@ def appendAll(tokens, varStack):
 	frame = pd.concat(list_, ignore_index = True)
 	frame.to_csv(currentDate + ".csv", mode='a', index = False)
 	bar.finish()
-	print "Written file successfully --->" + path + currentDate
+	print "Written file successfully ---> " + path + currentDate
 
 appendAllExpr.setParseAction(lambda tokens: appendAll(tokens, varStack))
