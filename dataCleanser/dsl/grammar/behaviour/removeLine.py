@@ -34,7 +34,7 @@ fileToTransform = QuotedString('"', escChar = "\\").setResultsName("fileToTransf
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
-removeLinesExpr = removeLineReservedWord + leftBracket + (fileToTransform | varID) + comma + OneOrMore(lines | varID + Optional(comma)) + rightBracket
+removeLinesExpr = removeLineReservedWord + leftBracket + (fileToTransform | varID) + OneOrMore(comma + (lines | varID)) + rightBracket
 
 # Removes the clomuns desired from the csv file
 def removeLines(tokens, varStack):
@@ -54,12 +54,12 @@ def removeLines(tokens, varStack):
 			iterator += 1
 	if len(tokens.fileToTransform) > 0:
 		fileToTransform += tokens.fileToTransform
-	if len(tokens.columns) > 0:
-		for item in tokens.columns[:]:
+	if len(tokens.lines) > 0:
+		for item in tokens.lines[:]:
 			lines.append(item)
-
+	
 	fileToTransformPd = pd.read_csv(fileToTransform)
-	strLines = ''.join(lines)
+	strLines = " ".join(str(i) for i in lines)
 	print SEPARATOR
 	print "Removing lines " + strLines + " from " + fileToTransform
 	print SEPARATOR
