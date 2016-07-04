@@ -78,7 +78,7 @@ def removeLines(tokens, varStack):
 	currentDate = datetime.datetime.now().strftime("%Y%m%d%H %M")
 	outputFile = splitedPath[0] + currentDate + ".csv"
 
-	fileToTransformPd.to_csv(outputFile)
+	fileToTransformPd.to_csv(outputFile, Filemode='a', index = False)
 	print "Written successfully to ---> " + outputFile
 
 removeLinesExpr.setParseAction(lambda tokens: removeLines(tokens, varStack))
