@@ -59,8 +59,9 @@ def removeColumns(tokens, varStack):
 			columns.append(item)
 
 	fileToTransformPd = pd.read_csv(fileToTransform)
+	strColumns = ''.join(columns)
 	print SEPARATOR
-	print "Removing columns " + columns + " from " + fileToTransform
+	print "Removing columns " + strColumns + " from " + fileToTransform
 	print SEPARATOR
 	
 	bar = progressbar.ProgressBar(maxval = len(columns), widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage(), ' ', progressbar.Timer()])
@@ -79,5 +80,5 @@ def removeColumns(tokens, varStack):
 
 	fileToTransformPd.to_csv(outputFile)
 	print "Written successfully to " + outputFile
-	
+
 removeColumnsExpr.setParseAction(lambda tokens: removeColumns(tokens, varStack))
