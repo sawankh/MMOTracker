@@ -34,7 +34,7 @@ fileToTransform = QuotedString('"', escChar = "\\").setResultsName("fileToTransf
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
-removeColumnsExpr = removeColumnsReservedWord + leftBracket + (fileToTransform | varID) + comma + OneOrMore(columns | varID + Optional(comma)) + rightBracket
+removeColumnsExpr = removeColumnsReservedWord + leftBracket + (fileToTransform | varID) + OneOrMore(comma + (columns | varID)) + rightBracket
 
 # Removes the clomuns desired from the csv file
 def removeColumns(tokens, varStack):
