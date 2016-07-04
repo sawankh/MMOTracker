@@ -58,4 +58,9 @@ def removeColumns(tokens, varStack):
 	fileToTransform = pd.read_csv(fileToTransform)
 	print fileToTransform.head()
 
+	print "################################################################"
+	for column in columns:
+		fileToTransform.drop(column, axis = 1, inplace = True)
+	print fileToTransform.head()
+
 removeColumnsExpr.setParseAction(lambda tokens: removeColumns(tokens, varStack))
