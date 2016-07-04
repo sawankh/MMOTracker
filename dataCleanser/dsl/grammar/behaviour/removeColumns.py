@@ -42,7 +42,7 @@ def removeColumns(tokens, varStack):
 	columns = []
 	if len(tokens.varID) > 0:
 		iterator = 0
-		for var in sList.varID.asList():
+		for var in tokens.varID.asList():
 			for item in varStack[:]:
 				if var == item[0]:
 					if item[1].startswith('"') and item[1].endswith('"'):
