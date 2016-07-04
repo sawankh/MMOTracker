@@ -55,7 +55,7 @@ def removeColumns(tokens, varStack):
 		for item in tokens.columns[:]:
 			columns.append(item)
 
-	fileToTransform = pd.csv_read(fileToTransform)
+	fileToTransform = pd.read_csv(fileToTransform)
 	print fileToTransform.head()
 
 removeColumnsExpr.setParseAction(lambda tokens: removeColumns(tokens, varStack))
