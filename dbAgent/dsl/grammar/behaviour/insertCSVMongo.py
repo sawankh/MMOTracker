@@ -108,3 +108,5 @@ def insertCSVMongo(tokens, varStack):
 	bar.finish()
 	print "Insertion successfull!"
 	print SEPARATOR
+
+insertCSVMongoExpr.setParseAction(lambda tokens: insertCSVMongo(tokens, varStack))
