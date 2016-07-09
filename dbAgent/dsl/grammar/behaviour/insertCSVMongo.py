@@ -95,6 +95,7 @@ def insertCSVMongo(tokens, varStack):
 	row_count = len(fileSize.readlines()) - 1
 
 	print "Inserting to database --> " + dbName + " to collection -->" + collectionName
+	print SEPARATOR
 
 	bar = progressbar.ProgressBar(maxval = row_count, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 	iterator = 0
@@ -106,3 +107,4 @@ def insertCSVMongo(tokens, varStack):
 		iterator += 1
 	bar.finish()
 	print "Insertion successfull!"
+	print SEPARATOR
