@@ -26,12 +26,11 @@ from dsl.grammar.basic_functionality.printConsole import *
 from dsl.grammar.basic_functionality.sleep import *
 from dsl.grammar.basic_functionality.variable import *
 from dsl.grammar.behaviour.appendAll import *
-from dsl.grammar.behaviour.removeColumns import *
-from dsl.grammar.behaviour.removeLine import *
+
 
 # DSL types of expression
 newLine = Suppress(White("\n"))
-agentDSL = ZeroOrMore((removeLinesExpr | removeColumnsExpr | appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
+agentDSL = ZeroOrMore((appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
 # Parses an entire file
 def dslParseFile(fileName):
