@@ -21,7 +21,7 @@
 import sys, getopt, getpass, textwrap
 
 from constants.agentConstants import *
-from dsl.cleaningDsl import *
+from dsl.dbDsl import *
 
 def main(argv):
 	if len(argv) <= 0:
