@@ -1,0 +1,101 @@
+#!/usr/bin/python
+# Title: insertCSVMongo.py
+# Description: Contains the grammar and the methods to insert a csv file to a mongo database
+# Author: Sawan J. Kapai Harpalani
+# Date: 2016-07-09
+# Version: 0.1
+# Usage: python insertCSVMongo.py
+# Notes: 
+# python_version: 2.6.6
+# License: Copyright 200X Sawan J. Kapai Harpalani 
+# This file is part of MMOTracker. MMOTracker is free software: you can redistribute it  and/or modify 
+# it under the terms of the GNU GeneralPublic License as published by the Free Software  Foundation, 
+# either version 3 of the License,  or (at your option) any later version 
+# MMOTracker is distributed in the hope that it willbe useful, but WITHOUT ANY WARRANTY; without 
+# even the implied warranty of MERCHANTABILITY or FITNESSFOR A PARTICULAR PURPOSE. See the GNU General 
+# PubliLicense for more details.You should have received a copy of the GNU GeneralPublic License along with MMOTracker. 
+# If not, seehttp://www.gnu.org/licenses/.
+#==============================================================================
+
+from pyparsing import *
+from pymongo import MongoClient
+from dsl.grammar.basic_functionality.variable import *
+
+import progressbar, datetime
+
+
+# Constants
+SEPARATOR = "##############################################################################"
+HOST = 0
+PORT = 1
+DB_NAME = 2
+COLLECTION_NAME = 3
+FILE = 4
+
+# Rules
+comma = Suppress(Literal(","))
+insertCSVMongoReservedWord = Suppress(Keyword("insertCSVMongo"))
+host = QuotedString('"', escChar = "\\").setResultsName("host", listAllMatches = True)
+port = QuotedString('"', escChar = "\\").setResultsName("port", listAllMatches = True)
+dbName = QuotedString('"', escChar = "\\").setResultsName("dbName", listAllMatches = True)
+collectionName = QuotedString('"', escChar = "\\").setResultsName("collectionName", listAllMatches = True)
+fileToInsert = QuotedString('"', escChar = "\\").setResultsName("fileToInsert")
+leftBracket = Suppress(Literal("("))
+rightBracket = Suppress(Literal(")"))
+varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
+insertCSVMongoExpr = insertCSVMongoReservedWord + leftBracket + (host | varID) + comma + (port | varID) + comma + (dbName | varID) + comma + (collectionName | varID) + comma + (fileToInsert | varID) + rightBracket
+
+# Insert csv file to MongoDB
+def insertCSVMongo(tokens, varStack):
+	host = ''
+	port = ''
+	dbName = ''
+	collectionName = ''
+	fileToInsert = ''
+	if len(tokens.varID) > 0:
+		iterator = 0
+		for var in tokens.varID.asList():
+			for item in varStack[:]:
+				if var == item[0]:
+					if item[1].startswith('"') and item[1].endswith('"'):
+						item[1] = item[1][1:-1]
+					if iterator == HOST:
+						host += item[1]
+					elif iterator == PORT:
+						port += item[1]
+					elif iterator == DB_NAME:
+						dbName += item[1]
+					elif iterator == COLLECTION_NAME:
+						collectionName += item[1]
+					elif iterator == FILE:
+						fileToInsert += item[1]
+			iterator += 1
+	if len(tokens.host) > 0:
+		host += tokens.host
+	if len(tokens.port) > 0:
+		port += tokens.port
+	if len(tokens.dbName) > 0:
+		dbName += tokens.dbName
+	if len(tokens.collectionName) > 0:
+		collectionName += tokens.collectionName
+	if len(tokens.fileToInsert) > 0:
+		fileToInsert += tokens.fileToInsert
+
+	mongoConnection = MongoClient(int(host), int(port))
+	mongoDatabase = mongoConnection[dbName]
+	mongoCollection = mongoDatabase[collectionName]
+
+	csvFile = open(fileToInsert, 'r')
+	fileSize = open(fileToInsert, 'r')
+	csvReader = csv.DictReader(csvFile)
+	row_count = len(fileSize.readlines()) - 1
+
+	bar = progressbar.ProgressBar(maxval = row_count, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
+	iterator = 0
+
+	bar.start()
+	for entry in csvReader:
+		bar.update(iterator + 1)
+		mongoCollection.insert_one(entry)
+		iterator += 1
+	bar.finish()
