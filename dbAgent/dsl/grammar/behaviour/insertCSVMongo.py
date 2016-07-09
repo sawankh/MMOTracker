@@ -81,6 +81,10 @@ def insertCSVMongo(tokens, varStack):
 	if len(tokens.fileToInsert) > 0:
 		fileToInsert += tokens.fileToInsert
 
+	print SEPARATOR
+	print "Inserting " + fileToInsert + " to Mongo database --> " + host + ":" + port
+	print SEPARATOR
+
 	mongoConnection = MongoClient(int(host), int(port))
 	mongoDatabase = mongoConnection[dbName]
 	mongoCollection = mongoDatabase[collectionName]
@@ -89,6 +93,8 @@ def insertCSVMongo(tokens, varStack):
 	fileSize = open(fileToInsert, 'r')
 	csvReader = csv.DictReader(csvFile)
 	row_count = len(fileSize.readlines()) - 1
+
+	print "Inserting to database --> " + dbName + " to collection -->" + collectionName
 
 	bar = progressbar.ProgressBar(maxval = row_count, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 	iterator = 0
@@ -99,3 +105,4 @@ def insertCSVMongo(tokens, varStack):
 		mongoCollection.insert_one(entry)
 		iterator += 1
 	bar.finish()
+	print "Insertion successfull!"
