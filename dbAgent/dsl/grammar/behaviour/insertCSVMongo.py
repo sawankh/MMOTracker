@@ -86,7 +86,7 @@ def insertCSVMongo(tokens, varStack):
 	print "Inserting " + fileToInsertDB + " to Mongo database --> " + hostDB + ":" + portDB
 	print SEPARATOR
 
-	mongoConnection = MongoClient(int(hostDB), int(portDB))
+	mongoConnection = MongoClient(hostDB, int(portDB))
 	mongoDatabase = mongoConnection[dbNameDB]
 	mongoCollection = mongoDatabase[collectionNameDB]
 
