@@ -47,7 +47,6 @@ insertCSVMongoExpr = insertCSVMongoReservedWord + leftBracket + (host | varID) +
 
 # Insert csv file to MongoDB
 def insertCSVMongo(tokens, varStack):
-	print tokens
 	hostDB = ''
 	portDB = ''
 	dbNameDB = ''
