@@ -35,10 +35,10 @@ FILE = 4
 # Rules
 comma = Suppress(Literal(","))
 insertCSVMongoReservedWord = Suppress(Keyword("insertCSVMongo"))
-host = QuotedString('"', escChar = "\\").setResultsName("host", listAllMatches = True)
-port = QuotedString('"', escChar = "\\").setResultsName("port", listAllMatches = True)
-dbName = QuotedString('"', escChar = "\\").setResultsName("dbName", listAllMatches = True)
-collectionName = QuotedString('"', escChar = "\\").setResultsName("collectionName", listAllMatches = True)
+host = QuotedString('"', escChar = "\\").setResultsName("host")
+port = QuotedString('"', escChar = "\\").setResultsName("port")
+dbName = QuotedString('"', escChar = "\\").setResultsName("dbName")
+collectionName = QuotedString('"', escChar = "\\").setResultsName("collectionName")
 fileToInsert = QuotedString('"', escChar = "\\").setResultsName("fileToInsert")
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
@@ -47,11 +47,12 @@ insertCSVMongoExpr = insertCSVMongoReservedWord + leftBracket + (host | varID) +
 
 # Insert csv file to MongoDB
 def insertCSVMongo(tokens, varStack):
-	host = ''
-	port = ''
-	dbName = ''
-	collectionName = ''
-	fileToInsert = ''
+	print tokens
+	hostDB = ''
+	portDB = ''
+	dbNameDB = ''
+	collectionNameDB = ''
+	fileToInsertDB = ''
 	if len(tokens.varID) > 0:
 		iterator = 0
 		for var in tokens.varID.asList():
@@ -60,41 +61,41 @@ def insertCSVMongo(tokens, varStack):
 					if item[1].startswith('"') and item[1].endswith('"'):
 						item[1] = item[1][1:-1]
 					if iterator == HOST:
-						host += item[1]
+						hostDB += item[1]
 					elif iterator == PORT:
-						port += item[1]
+						portDB += item[1]
 					elif iterator == DB_NAME:
-						dbName += item[1]
+						dbNameDB += item[1]
 					elif iterator == COLLECTION_NAME:
-						collectionName += item[1]
+						collectionNameDB += item[1]
 					elif iterator == FILE:
-						fileToInsert += item[1]
+						fileToInsertDB += item[1]
 			iterator += 1
 	if len(tokens.host) > 0:
-		host += tokens.host
+		hostDB += tokens.host
 	if len(tokens.port) > 0:
-		port += tokens.port
+		portDB += tokens.port
 	if len(tokens.dbName) > 0:
-		dbName += tokens.dbName
+		dbNameDB += tokens.dbName
 	if len(tokens.collectionName) > 0:
-		collectionName += tokens.collectionName
+		collectionNameDB += tokens.collectionName
 	if len(tokens.fileToInsert) > 0:
-		fileToInsert += tokens.fileToInsert
+		fileToInsertDB += tokens.fileToInsert
 
 	print SEPARATOR
-	print "Inserting " + fileToInsert + " to Mongo database --> " + host + ":" + port
+	print "Inserting " + fileToInsertDB + " to Mongo database --> " + hostDB + ":" + portDB
 	print SEPARATOR
 
-	mongoConnection = MongoClient(int(host), int(port))
-	mongoDatabase = mongoConnection[dbName]
-	mongoCollection = mongoDatabase[collectionName]
+	mongoConnection = MongoClient(int(hostDB), int(portDB))
+	mongoDatabase = mongoConnection[dbNameDB]
+	mongoCollection = mongoDatabase[collectionNameDB]
 
-	csvFile = open(fileToInsert, 'r')
-	fileSize = open(fileToInsert, 'r')
+	csvFile = open(fileToInsertDB, 'r')
+	fileSize = open(fileToInsertDB, 'r')
 	csvReader = csv.DictReader(csvFile)
 	row_count = len(fileSize.readlines()) - 1
 
-	print "Inserting to database --> " + dbName + " to collection -->" + collectionName
+	print "Inserting to database --> " + dbNameDB + " to collection -->" + collectionNameDB
 	print SEPARATOR
 
 	bar = progressbar.ProgressBar(maxval = row_count, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
