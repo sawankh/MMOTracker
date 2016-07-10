@@ -21,7 +21,7 @@ from pyparsing import *
 from pymongo import MongoClient
 from dsl.grammar.basic_functionality.variable import *
 
-import progressbar, datetime, csv
+import progressbar, csv
 
 
 # Constants

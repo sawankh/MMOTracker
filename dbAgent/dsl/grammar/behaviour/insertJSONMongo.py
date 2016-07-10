@@ -21,7 +21,7 @@ from pyparsing import *
 from pymongo import MongoClient
 from dsl.grammar.basic_functionality.variable import *
 
-import progressbar, datetime
+import json
 
 
 # Constants
@@ -89,23 +89,15 @@ def insertJSONMongo(tokens, varStack):
 	mongoDatabase = mongoConnection[dbName]
 	mongoCollection = mongoDatabase[collectionName]
 
-	csvFile = open(fileToInsert, 'r')
-	fileSize = open(fileToInsert, 'r')
-	csvReader = csv.DictReader(csvFile)
-	row_count = len(fileSize.readlines()) - 1
-
+	jsonFile = open(fileToInsert, 'r')
+	jsonContent = jsonFile.read()
+	jsonObject = json.loads(jsonContent)
+	
 	print "Inserting to database --> " + dbName + " to collection -->" + collectionName
 	print SEPARATOR
 
-	bar = progressbar.ProgressBar(maxval = row_count, widgets = [progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
-	iterator = 0
-
-	bar.start()
-	for entry in csvReader:
-		bar.update(iterator + 1)
-		mongoCollection.insert_one(entry)
-		iterator += 1
-	bar.finish()
+	mongoCollection.insert_one(jsonObject)
+	
 	print "Insertion successfull!"
 	print SEPARATOR
 
