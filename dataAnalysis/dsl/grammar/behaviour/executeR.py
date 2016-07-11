@@ -20,7 +20,7 @@
 from pyparsing import *
 from dsl.grammar.basic_functionality.variable import *
 
-import rpy2
+import rpy2.robjects as robjects
 
 # Constants
 FILE_NAME = 0
@@ -57,6 +57,6 @@ def executeR(tokens, varStack):
 		for item in tokens.arguments[:]:
 			args.append(item)
 	
-	r['source'](fileName)
+	robjects.r.source(fileName)
 
 executeRExpr.setParseAction(lambda tokens: executeR(tokens, varStack))
