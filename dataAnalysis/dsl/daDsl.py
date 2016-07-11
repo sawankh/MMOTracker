@@ -31,7 +31,7 @@ from dsl.grammar.behaviour.pipInstall import *
 
 # DSL types of expression
 newLine = Suppress(White("\n"))
-agentDSL = ZeroOrMore((executePythonExpr | pipInstallExpr | appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
+agentDSL = ZeroOrMore((executePythonExpr | executePipExpr | appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
 # Parses an entire file
 def dslParseFile(fileName):
