@@ -19,6 +19,11 @@
 
 from pyparsing import *
 
+import subprocess
+
+# Constants
+FILE_NAME = 0
+PYTHON = "python"
 
 # Rules
 comma = Suppress(Literal(","))
@@ -29,3 +34,30 @@ leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
 executePythonExpr = executePythonReservedWord + leftBracket + (fileName | varID) + ZeroOrMore(comma + (arguments | varID)) + rightBracket
+
+# Executes Python script
+def executePython(tokens, varStack):
+	fileName = ''
+	args = []
+	if len(tokens.varID) > 0:
+		iterator = 0
+		for var in tokens.varID.asList():
+			for item in varStack[:]:
+				if var == item[0]:
+					if item[1].startswith('"') and item[1].endswith('"'):
+						item[1] = item[1][1:-1]
+					if iterator == FILE_NAME:
+						fileName += item[1]
+					else:
+						args.append(item[1])
+			iterator += 1
+	if len(tokens.fileName) > 0:
+		fileName += tokens.fileName
+	if len(tokens.arguments) > 0:
+		for item in tokens.arguments[:]:
+			args.append(item)
+
+	subProcess = PYTHON + " " + fileName
+	strArgs = ' '.join(args)
+	subProcess += strArgs
+	print subProcess
