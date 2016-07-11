@@ -58,8 +58,9 @@ def executePython(tokens, varStack):
 			args.append(item)
 
 	subProcess = PYTHON + " " + fileName
-	strArgs = ' '.join(args)
-	subProcess += strArgs
+	if len(args) > 0:
+		strArgs = ' '.join(args)
+		subProcess += strArgs
 	print subProcess
 
 executePythonExpr.setParseAction(lambda tokens: executePython(tokens, varStack))
