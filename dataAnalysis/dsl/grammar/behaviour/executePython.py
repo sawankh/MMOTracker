@@ -58,7 +58,7 @@ def executePython(tokens, varStack):
 		for item in tokens.arguments[:]:
 			args.append(item)
 
-	subProcess = PYTHON + " " + fileName
+	subProcess = PYTHON + " " + fileName + " "
 	if len(args) > 0:
 		strArgs = ' '.join(args)
 		subProcess += strArgs
