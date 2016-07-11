@@ -45,4 +45,6 @@ def pipInstall(tokens, varStack):
 		for item in tokens.packages[:]:
 			packagesList.append(item)
 
+	print packagesList
+
 executePipExpr.setParseAction(lambda tokens: pipInstall(tokens, varStack))

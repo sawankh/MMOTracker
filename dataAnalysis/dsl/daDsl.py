@@ -27,10 +27,11 @@ from dsl.grammar.basic_functionality.sleep import *
 from dsl.grammar.basic_functionality.variable import *
 from dsl.grammar.behaviour.appendAll import *
 from dsl.grammar.behaviour.executePython import *
+from dsl.grammar.behaviour.pipInstall import *
 
 # DSL types of expression
 newLine = Suppress(White("\n"))
-agentDSL = ZeroOrMore((executePythonExpr | appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
+agentDSL = ZeroOrMore((executePythonExpr | pipInstallExpr | appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
 # Parses an entire file
 def dslParseFile(fileName):
