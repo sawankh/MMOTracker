@@ -18,6 +18,7 @@
 #==============================================================================
 
 from pyparsing import *
+from dsl.grammar.basic_functionality.variable import *
 
 import subprocess
 
