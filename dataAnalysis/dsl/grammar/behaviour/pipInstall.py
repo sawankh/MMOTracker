@@ -20,6 +20,8 @@
 from pyparsing import *
 from dsl.grammar.basic_functionality.variable import *
 
+import pip
+
 # Rules
 comma = Suppress(Literal(","))
 executePipReservedWord = Suppress(Keyword("pipInstall"))
@@ -45,6 +47,7 @@ def pipInstall(tokens, varStack):
 		for item in tokens.packages[:]:
 			packagesList.append(item)
 
-	print packagesList
+	for package in packagesList:
+		pip.main(['install', package])
 
 executePipExpr.setParseAction(lambda tokens: pipInstall(tokens, varStack))
