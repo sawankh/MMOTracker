@@ -17,4 +17,43 @@
 # If not, seehttp://www.gnu.org/licenses/.
 #==============================================================================
 
+from pyparsing import *
+from dsl.grammar.basic_functionality.variable import *
 
+# Constants
+FILE_NAME = 0
+
+# Rules
+comma = Suppress(Literal(","))
+executeMatlabReservedWord = Suppress(Keyword("executeMatlab"))
+fileName =  QuotedString('"', escChar = "\\").setResultsName("fileName")
+arguments = QuotedString('"', escChar = "\\").setResultsName("arguments", listAllMatches = True)
+leftBracket = Suppress(Literal("("))
+rightBracket = Suppress(Literal(")"))
+varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
+executeMatlabExpr = executeMatlabReservedWord + leftBracket + (fileName | varID) + ZeroOrMore(comma + (arguments | varID)) + rightBracket
+
+# Executes R script
+def executeMatlab(tokens, varStack):
+	fileName = ''
+	args = []
+	if len(tokens.varID) > 0:
+		iterator = 0
+		for var in tokens.varID.asList():
+			for item in varStack[:]:
+				if var == item[0]:
+					if item[1].startswith('"') and item[1].endswith('"'):
+						item[1] = item[1][1:-1]
+					if iterator == FILE_NAME:
+						fileName += item[1]
+					else:
+						args.append(item[1])
+			iterator += 1
+	if len(tokens.fileName) > 0:
+		fileName += tokens.fileName
+	if len(tokens.arguments) > 0:
+		for item in tokens.arguments[:]:
+			args.append(item)
+
+
+executeMatlabExpr.setParseAction(lambda tokens: executeMatlab(tokens, varStack))
