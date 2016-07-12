@@ -58,11 +58,13 @@ def executeMatlab(tokens, varStack):
 		for item in tokens.arguments[:]:
 			args.append(item)
 
-	subProcess = MATLAB + " " + fileName + " "
+	matlabScript = fileName.split(".")
+	subProcess = MATLAB + " -r " + "\"" + matlabScript[0] + "\""  + " "
 	if len(args) > 0:
 		strArgs = ' '.join(args)
 		subProcess += strArgs
-	
+
 	subprocess.call(subProcess, shell = True)
+
 
 executeMatlabExpr.setParseAction(lambda tokens: executeMatlab(tokens, varStack))
