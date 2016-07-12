@@ -18,12 +18,15 @@
 #==============================================================================
 
 from Tkinter import *
+from collections import OrderedDict
+
 import Pmw
 
 # Constants
 WINDOW_W = 800
 WINDOW_H = 600
 TITLE = "PowerKnowledge"
+TABS = OrderedDict([("DS", "Data Collector"), ("DC", "Data Cleanser"), ("DB", "Database Agent"), ("DA", "Data Analysis")])
 
 # Main method
 def main():
@@ -35,15 +38,21 @@ def main():
 	# Size of the Window by default
 	root.geometry(str(WINDOW_W) + "x" + str(WINDOW_H))
 	
+	# Main widgets of the app
 	createNotebook(root)
 
 	# Run app
 	root.mainloop()
 
 
+# Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Pmw.NoteBook(parent)
 	notebook.pack(fill = 'both', expand = 1, padx = 10, pady = 10)
+
+	for key, value in TABS.items():
+		notebook.add(value)
+
 
 if __name__ == '__main__':
 	main() 
