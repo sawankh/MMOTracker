@@ -54,7 +54,6 @@ def executeMatlab(tokens, varStack):
 	if len(tokens.arguments) > 0:
 		for item in tokens.arguments[:]:
 			args.append(item)
-	print fileName
-	print args
+
 
 executeMatlabExpr.setParseAction(lambda tokens: executeMatlab(tokens, varStack))
