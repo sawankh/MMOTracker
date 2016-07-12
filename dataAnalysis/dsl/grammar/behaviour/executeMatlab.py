@@ -20,6 +20,8 @@
 from pyparsing import *
 from dsl.grammar.basic_functionality.variable import *
 
+import pymatlab
+
 # Constants
 FILE_NAME = 0
 
@@ -55,5 +57,8 @@ def executeMatlab(tokens, varStack):
 		for item in tokens.arguments[:]:
 			args.append(item)
 
+	session = pymatlab.session_factory()
+	session.putvalue(fileName, fileName)
+	session.run('eval(fileName)')
 
 executeMatlabExpr.setParseAction(lambda tokens: executeMatlab(tokens, varStack))
