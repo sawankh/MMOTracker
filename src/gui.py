@@ -19,9 +19,18 @@
 
 from Tkinter import *
 
+# Constants
+WINDOW_W = 800
+WINDOW_H = 600
+
 # Main method
 def main():
 	root = Tk()
+
+	# Size of the Window by default
+	root.geometry(str(WINDOW_W) + "x" + str(WINDOW_H))
+	
+	# Run app
 	root.mainloop()
 
 if __name__ == '__main__':
