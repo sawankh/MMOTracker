@@ -1,0 +1,12 @@
+Pillow==3.3.0
+argparse==1.2.1
+numpy==1.11.1
+pandas==0.18.1
+progressbar==2.3
+pycrypto==2.6.1
+pyparsing==2.1.5
+python-dateutil==2.5.3
+pytz==2016.4
+rpy2==2.3.8
+six==1.10.0
+wsgiref==0.1.2
