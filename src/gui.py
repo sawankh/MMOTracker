@@ -27,6 +27,7 @@ WINDOW_W = 800
 WINDOW_H = 600
 TITLE = "PowerKnowledge"
 TABS = OrderedDict([("DS", "Data Collector"), ("DC", "Data Cleanser"), ("DB", "Database Agent"), ("DA", "Data Analysis")])
+FOCUSED_TAB = "DS"
 
 # Main method
 def main():
@@ -53,6 +54,7 @@ def createNotebook(parent):
 	for key, value in TABS.items():
 		notebook.add(value)
 
+	notebook.tab(TABS.get(FOCUSED_TAB)).focus_set()
 
 if __name__ == '__main__':
 	main() 
