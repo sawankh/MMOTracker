@@ -17,4 +17,12 @@
 # If not, seehttp://www.gnu.org/licenses/.
 #==============================================================================
 
+from Tkinter import *
 
+# Main method
+def main():
+	root = Tk()
+	root.mainloop()
+
+if __name__ == '__main__':
+	main() 
