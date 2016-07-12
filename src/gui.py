@@ -22,10 +22,14 @@ from Tkinter import *
 # Constants
 WINDOW_W = 800
 WINDOW_H = 600
+TITLE = "PowerKnowledge"
 
 # Main method
 def main():
 	root = Tk()
+
+	# Name of the Window
+	root.title(TITLE)
 
 	# Size of the Window by default
 	root.geometry(str(WINDOW_W) + "x" + str(WINDOW_H))
