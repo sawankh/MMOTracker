@@ -18,7 +18,7 @@
 #==============================================================================
 
 from Tkinter import *
-from Pmw import *
+import Pmw
 
 # Constants
 WINDOW_W = 800
@@ -35,8 +35,15 @@ def main():
 	# Size of the Window by default
 	root.geometry(str(WINDOW_W) + "x" + str(WINDOW_H))
 	
+	createNotebook(root)
+
 	# Run app
 	root.mainloop()
+
+
+def createNotebook(parent):
+	notebook = Pmw.NoteBook(parent)
+	notebook.pack(fill = 'both', expand = 1, padx = 10, pady = 10)
 
 if __name__ == '__main__':
 	main() 
