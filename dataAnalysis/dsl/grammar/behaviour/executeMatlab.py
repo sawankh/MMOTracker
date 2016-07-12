@@ -20,10 +20,11 @@
 from pyparsing import *
 from dsl.grammar.basic_functionality.variable import *
 
-from pymatbridge import Matlab
+import subprocess
 
 # Constants
 FILE_NAME = 0
+MATLAB = "matlab"
 
 # Rules
 comma = Suppress(Literal(","))
@@ -57,10 +58,11 @@ def executeMatlab(tokens, varStack):
 		for item in tokens.arguments[:]:
 			args.append(item)
 
-	mlab = Matlab()
-	mlab.start()
-	res = mlab.run_func(fileName)
-	print re['result']
-	mlab.stop()
+	subProcess = MATLAB + " " + fileName + " "
+	if len(args) > 0:
+		strArgs = ' '.join(args)
+		subProcess += strArgs
+	
+	subprocess.call(subProcess, shell = True)
 
 executeMatlabExpr.setParseAction(lambda tokens: executeMatlab(tokens, varStack))
