@@ -18,6 +18,7 @@
 #==============================================================================
 
 from Tkinter import *
+from Pmw import *
 
 # Constants
 WINDOW_W = 800
