@@ -57,11 +57,12 @@ def createNotebook(parent):
 
 	for key, value in TABS.items():
 		frames[key] = notebook.add(value)
+		frames[key].update()
 		
 	notebook.tab(TABS.get(FOCUSED_TAB)).focus_set()
 
 	for key, frame in frames.items():
-		GuiEditor(frame).pack(side = "top", padx=(100, 10), fill = "both", expand = True)
+		GuiEditor(frame).pack(side = "top", padx = ((frame.winfo_width() * 0.01), (frame.winfo_width() * 0.3)), pady = ((frame.winfo_height() * 0.01), (frame.winfo_height() * 0.4)), fill = "both", expand = True)
 
 if __name__ == '__main__':
 	main() 
