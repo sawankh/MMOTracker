@@ -22,6 +22,7 @@ from ttk import *
 from collections import OrderedDict
 from gui.guiEditor import *
 
+import os
 
 # Constants
 WINDOW_W = 1024
@@ -57,6 +58,7 @@ def createNotebook(parent):
 
 	frames = {}
 	editors = {}
+	terminals = {}
 
 	for key, value in TABS.items():
 		frames[key] = Frame(parent)
@@ -64,8 +66,8 @@ def createNotebook(parent):
 	
 	for key, frame in frames.items():
 		editors[key] = GuiEditor(frame).pack(side = "top", padx = ((notebook.winfo_width() * 0.01), (notebook.winfo_width() * 0.3)), pady = ((notebook.winfo_height() * 0.01), (notebook.winfo_height() * 0.4)), fill = "both", expand = True)
-
-	
-
+		terminals[key] = Text(frame, state = "disabled")
+		terminals[key].pack(side = "top", fill = "x", expand = True)
+		
 if __name__ == '__main__':
 	main() 
