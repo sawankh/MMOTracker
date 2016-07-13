@@ -19,6 +19,7 @@
 
 from Tkinter import *
 from collections import OrderedDict
+from gui.guiEditor import *
 
 import Pmw
 
