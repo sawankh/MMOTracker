@@ -42,7 +42,7 @@ def main():
 	
 	# Main widgets of the app
 	createNotebook(root)
-
+	GuiEditor(root).pack(side="top", fill="both", expand=True)
 	# Run app
 	root.mainloop()
 

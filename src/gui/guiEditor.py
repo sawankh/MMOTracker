@@ -18,8 +18,10 @@
 #==============================================================================
 
 import Tkinter as tk
+from gui.editorWidget import *
+from gui.textLineNumbers import *
 
-class guiEditor(tk.Frame):
+class GuiEditor(tk.Frame):
     def __init__(self, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
         self.text = CustomText(self)
@@ -35,10 +37,6 @@ class guiEditor(tk.Frame):
 
         self.text.bind("<<Change>>", self._on_change)
         self.text.bind("<Configure>", self._on_change)
-
-        self.text.insert("end", "one\ntwo\nthree\n")
-        self.text.insert("end", "four\n",("bigfont",))
-        self.text.insert("end", "five\n")
 
     def _on_change(self, event):
         self.linenumbers.redraw()
