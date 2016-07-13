@@ -42,7 +42,7 @@ def main():
 	
 	# Main widgets of the app
 	createNotebook(root)
-	GuiEditor(root).pack(side="top", fill="both", expand=True)
+	#GuiEditor(root).pack(side="top", fill="both", expand=True)
 	# Run app
 	root.mainloop()
 
@@ -52,10 +52,15 @@ def createNotebook(parent):
 	notebook = Pmw.NoteBook(parent)
 	notebook.pack(fill = 'both', expand = 1, padx = 10, pady = 10)
 
-	for key, value in TABS.items():
-		notebook.add(value)
+	frames = {}
 
+	for key, value in TABS.items():
+		frames[key] = notebook.add(value)
+		
 	notebook.tab(TABS.get(FOCUSED_TAB)).focus_set()
+
+	for key, frame in frames.items():
+		GuiEditor(frame).pack(side = "top", fill = "both", expand = True)
 
 if __name__ == '__main__':
 	main() 
