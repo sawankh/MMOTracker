@@ -18,10 +18,10 @@
 #==============================================================================
 
 from Tkinter import *
+from ttk import *
 from collections import OrderedDict
 from gui.guiEditor import *
 
-import Pmw
 
 # Constants
 WINDOW_W = 1024
@@ -50,19 +50,22 @@ def main():
 
 # Creates a Notebook and adds
 def createNotebook(parent):
-	notebook = Pmw.NoteBook(parent)
+	notebook = Notebook(parent)
 	notebook.pack(fill = 'both', expand = 1, padx = (parent.winfo_width() * 0.02), pady = (parent.winfo_height() * 0.02))
 
+	parent.update()
+
 	frames = {}
+	editors = {}
 
 	for key, value in TABS.items():
-		frames[key] = notebook.add(value)
-		frames[key].update()
-		
-	notebook.tab(TABS.get(FOCUSED_TAB)).focus_set()
-
+		frames[key] = Frame(parent)
+		notebook.add(frames[key], text = value)
+	
 	for key, frame in frames.items():
-		GuiEditor(frame).pack(side = "top", padx = ((frame.winfo_width() * 0.01), (frame.winfo_width() * 0.3)), pady = ((frame.winfo_height() * 0.01), (frame.winfo_height() * 0.4)), fill = "both", expand = True)
+		editors[key] = GuiEditor(frame).pack(side = "top", padx = ((notebook.winfo_width() * 0.01), (notebook.winfo_width() * 0.3)), pady = ((notebook.winfo_height() * 0.01), (notebook.winfo_height() * 0.4)), fill = "both", expand = True)
+
+	
 
 if __name__ == '__main__':
 	main() 
