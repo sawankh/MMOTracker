@@ -33,9 +33,9 @@ class TextLineNumbers(tk.Canvas):
 
         i = self.textwidget.index("@0,0")
         while True :
-            dline= self.textwidget.dlineinfo(i)
+            dline = self.textwidget.dlineinfo(i)
             if dline is None: break
             y = dline[1]
             linenum = str(i).split(".")[0]
-            self.create_text(2,y,anchor="nw", text=linenum)
+            self.create_text(2 , y, anchor = "nw", text = linenum)
             i = self.textwidget.index("%s+1line" % i)
