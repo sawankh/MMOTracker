@@ -25,10 +25,10 @@ class GuiEditor(tk.Frame):
     def __init__(self, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
         self.text = CustomText(self)
-        self.vsb = tk.Scrollbar(orient = "vertical", command = self.text.yview)
+        self.vsb = tk.Scrollbar(self, orient = "vertical", command = self.text.yview)
         self.text.configure(yscrollcommand = self.vsb.set)
         self.text.tag_configure("bigfont", font = ("Console", "24", "bold"))
-        self.linenumbers = TextLineNumbers(self, width = 13)
+        self.linenumbers = TextLineNumbers(self, width = 28)
         self.linenumbers.attach(self.text)
 
         self.vsb.pack(side = "right", fill = "y")
