@@ -24,8 +24,8 @@ from gui.guiEditor import *
 import Pmw
 
 # Constants
-WINDOW_W = 800
-WINDOW_H = 600
+WINDOW_W = 1024
+WINDOW_H = 768
 TITLE = "PowerKnowledge"
 TABS = OrderedDict([("DS", "Data Collector"), ("DC", "Data Cleanser"), ("DB", "Database Agent"), ("DA", "Data Analysis")])
 FOCUSED_TAB = "DS"
@@ -39,7 +39,8 @@ def main():
 
 	# Size of the Window by default
 	root.geometry(str(WINDOW_W) + "x" + str(WINDOW_H))
-	
+	root.update()
+
 	# Main widgets of the app
 	createNotebook(root)
 	#GuiEditor(root).pack(side="top", fill="both", expand=True)
@@ -50,7 +51,7 @@ def main():
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Pmw.NoteBook(parent)
-	notebook.pack(fill = 'both', expand = 1, padx = 10, pady = 10)
+	notebook.pack(fill = 'both', expand = 1, padx = (parent.winfo_width() * 0.02), pady = (parent.winfo_height() * 0.02))
 
 	frames = {}
 
@@ -60,7 +61,7 @@ def createNotebook(parent):
 	notebook.tab(TABS.get(FOCUSED_TAB)).focus_set()
 
 	for key, frame in frames.items():
-		GuiEditor(frame).pack(side = "top", fill = "both", expand = True)
+		GuiEditor(frame).pack(side = "top", padx=(100, 10), fill = "both", expand = True)
 
 if __name__ == '__main__':
 	main() 
