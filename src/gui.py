@@ -21,6 +21,7 @@ from Tkinter import *
 from ttk import *
 from collections import OrderedDict
 from gui.guiEditor import *
+from ScrolledText import ScrolledText
 
 import os
 
@@ -67,7 +68,7 @@ def createNotebook(parent):
 	
 	for key, frame in frames.items():
 		editors[key] = GuiEditor(frame).place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
-		terminals[key] = Text(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+		terminals[key] = ScrolledText(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
 		
 if __name__ == '__main__':
 	main() 
