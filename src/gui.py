@@ -31,6 +31,9 @@ WINDOW_H = 600
 TITLE = "PowerKnowledge"
 TABS = OrderedDict([("DS", "Data Collector"), ("DC", "Data Cleanser"), ("DB", "Database Agent"), ("DA", "Data Analysis")])
 FOCUSED_TAB = "DS"
+RUN_EDITOR = "Run editor"
+SAVE_EDITOR = "Save editor"
+RUN_EXTERNAL = "Run script"
 
 # Main method
 def main():
@@ -46,7 +49,7 @@ def main():
 
 	# Main widgets of the app
 	createNotebook(root)
-	#GuiEditor(root).pack(side="top", fill="both", expand=True)
+	
 	# Run app
 	root.mainloop()
 
@@ -61,6 +64,9 @@ def createNotebook(parent):
 	frames = {}
 	editors = {}
 	terminals = {}
+	buttonRunEditor = {}
+	buttonSaveScript = {}
+	buttonRunExternal = {}
 
 	for key, value in TABS.items():
 		frames[key] = Frame(parent)
@@ -69,6 +75,9 @@ def createNotebook(parent):
 	for key, frame in frames.items():
 		editors[key] = GuiEditor(frame).place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 		terminals[key] = ScrolledText(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-		
+		buttonRunEditor[key] = Button(frame, text = RUN_EDITOR).place(relx = 0.81, rely = 0.37)
+		buttonSaveScript[key] = Button(frame, text = SAVE_EDITOR).place(relx = 0.81, rely = 0.43)
+		buttonRunExternal[key] = Button(frame, text = RUN_EXTERNAL).place(relx = 0.81, rely = 0.49)
+
 if __name__ == '__main__':
 	main() 
