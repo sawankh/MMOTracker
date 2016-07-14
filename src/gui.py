@@ -54,7 +54,7 @@ def main():
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Notebook(parent)
-	notebook.pack(fill = 'both', expand = 1, padx = (parent.winfo_width() * 0.02), pady = (parent.winfo_height() * 0.02))
+	notebook.place(relwidth = 0.98, relheight = 0.98, relx = 0.01, rely = 0.01)
 
 	parent.update()
 
