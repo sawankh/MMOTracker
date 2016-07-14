@@ -22,6 +22,7 @@ from ttk import *
 from collections import OrderedDict
 from gui.guiEditor import *
 from ScrolledText import ScrolledText
+from tkFileDialog import *
 
 import os
 
@@ -29,7 +30,7 @@ import os
 WINDOW_W = 800
 WINDOW_H = 600
 TITLE = "PowerKnowledge"
-TABS = OrderedDict([("DS", "Data Collector"), ("DC", "Data Cleanser"), ("DB", "Database Agent"), ("DA", "Data Analysis")])
+TABS = OrderedDict([("ds", "Data Collector"), ("dc", "Data Cleanser"), ("db", "Database Agent"), ("da", "Data Analysis")])
 FOCUSED_TAB = "DS"
 RUN_EDITOR = "Run editor"
 SAVE_EDITOR = "Save editor"
@@ -37,13 +38,13 @@ RUN_EXTERNAL = "Run script"
 CLEAR_CONSOLE = "Clear"
 
 # Elements dictionaries
-frames = {}
-editors = {}
-terminals = {}
-buttonRunEditor = {}
-buttonSaveScript = {}
-buttonRunExternal = {}
-buttonClearTerminal = {}
+frames = []
+editors = []
+terminals = []
+buttonRunEditor = []
+buttonSaveScript = []
+buttonRunExternal = []
+buttonClearTerminal = []
 
 # Main method
 def main():
@@ -63,13 +64,16 @@ def main():
 	# Run app
 	root.mainloop()
 
+def test(frame):
+	print frame.children["editor"].linenumbers
 
 # Saves Script to a folder
-def saveScript(key):
-	fileOpen = tkFileDialog.asksaveasfile(mode='w', defaultextension=".dat")
+def saveScript(fr):
+	print fr.children["editor"].editorText
+	fileOpen = asksaveasfile(mode='w', defaultextension=".dat")
 	if fileOpen is None:
 	    return
-	textToSave = str(text.get(1.0, END))
+	textToSave = fr.nametowidget("editor").editorText
 	fileOpen.write(textToSave)
 	fileOpen.close() 
 
@@ -88,17 +92,19 @@ def createNotebook(parent):
 	global buttonRunExternal
 	global buttonClearTerminal
 
+	iterator = 0
 	for key, value in TABS.items():
-		frames[key] = Frame(parent)
-		notebook.add(frames[key], text = value)
+		frames.append(Frame(parent, name = key))
+		notebook.add(frames[iterator], text = value)
+		iterator += 1
 	
-	for key, frame in frames.items():
-		editors[key] = GuiEditor(frame).place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
-		terminals[key] = ScrolledText(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-		buttonClearTerminal[key] = Button(frame, text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
-		buttonRunEditor[key] = Button(frame, text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-		buttonSaveScript[key] = Button(frame, text = SAVE_EDITOR, command = lambda: saveScript(key)).place(relx = 0.86, rely = 0.43)
-		buttonRunExternal[key] = Button(frame, text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)		
-
+	for frame in frames:
+		editors.append(GuiEditor(frame, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7))
+		terminals.append(ScrolledText(frame, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92))
+		buttonClearTerminal.append(Button(frame, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49))
+		buttonRunEditor.append(Button(frame, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43))
+		buttonSaveScript.append(Button(frame, name = "bSaveScript", text = SAVE_EDITOR, command = lambda: test("self")).place(relx = 0.86, rely = 0.43))
+		buttonRunExternal.append(Button(frame, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49))	
+		print(list(frame.children.keys())[list(frame.children.values()).index(buttonSaveScript[0])])
 if __name__ == '__main__':
 	main() 

@@ -30,13 +30,15 @@ class GuiEditor(tk.Frame):
         self.text.tag_configure("bigfont", font = ("Console", "24", "bold"))
         self.linenumbers = TextLineNumbers(self, width = 28)
         self.linenumbers.attach(self.text)
+        self.editorText = ""
 
         self.vsb.pack(side = "right", fill = "y")
         self.linenumbers.pack(side = "left", fill = "y")
         self.text.pack(side = "right", fill = "both", expand = True)
-
+        
         self.text.bind("<<Change>>", self._on_change)
         self.text.bind("<Configure>", self._on_change)
 
     def _on_change(self, event):
         self.linenumbers.redraw()
+        self.editorText = self.text.get("1.0", "end")
