@@ -34,6 +34,7 @@ FOCUSED_TAB = "DS"
 RUN_EDITOR = "Run editor"
 SAVE_EDITOR = "Save editor"
 RUN_EXTERNAL = "Run script"
+CLEAR_CONSOLE = "Clear"
 
 # Main method
 def main():
@@ -67,6 +68,7 @@ def createNotebook(parent):
 	buttonRunEditor = {}
 	buttonSaveScript = {}
 	buttonRunExternal = {}
+	buttonClearTerminal = {}
 
 	for key, value in TABS.items():
 		frames[key] = Frame(parent)
@@ -75,9 +77,10 @@ def createNotebook(parent):
 	for key, frame in frames.items():
 		editors[key] = GuiEditor(frame).place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 		terminals[key] = ScrolledText(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-		buttonRunEditor[key] = Button(frame, text = RUN_EDITOR).place(relx = 0.81, rely = 0.37)
-		buttonSaveScript[key] = Button(frame, text = SAVE_EDITOR).place(relx = 0.81, rely = 0.43)
-		buttonRunExternal[key] = Button(frame, text = RUN_EXTERNAL).place(relx = 0.81, rely = 0.49)
+		buttonClearTerminal[key] = Button(frame, text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
+		buttonRunEditor[key] = Button(frame, text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
+		buttonSaveScript[key] = Button(frame, text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+		buttonRunExternal[key] = Button(frame, text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)		
 
 if __name__ == '__main__':
 	main() 
