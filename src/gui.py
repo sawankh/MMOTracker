@@ -25,8 +25,8 @@ from gui.guiEditor import *
 import os
 
 # Constants
-WINDOW_W = 1024
-WINDOW_H = 768
+WINDOW_W = 800
+WINDOW_H = 600
 TITLE = "PowerKnowledge"
 TABS = OrderedDict([("DS", "Data Collector"), ("DC", "Data Cleanser"), ("DB", "Database Agent"), ("DA", "Data Analysis")])
 FOCUSED_TAB = "DS"
@@ -34,6 +34,7 @@ FOCUSED_TAB = "DS"
 # Main method
 def main():
 	root = Tk()
+	root.state('zoomed')
 
 	# Name of the Window
 	root.title(TITLE)
@@ -65,9 +66,8 @@ def createNotebook(parent):
 		notebook.add(frames[key], text = value)
 	
 	for key, frame in frames.items():
-		editors[key] = GuiEditor(frame).pack(side = "top", padx = ((notebook.winfo_width() * 0.01), (notebook.winfo_width() * 0.3)), pady = ((notebook.winfo_height() * 0.01), (notebook.winfo_height() * 0.4)), fill = "both", expand = True)
-		terminals[key] = Text(frame, state = "disabled")
-		terminals[key].pack(side = "top", fill = "x", expand = True)
+		editors[key] = GuiEditor(frame).place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+		terminals[key] = Text(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
 		
 if __name__ == '__main__':
 	main() 
