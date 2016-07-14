@@ -36,6 +36,15 @@ SAVE_EDITOR = "Save editor"
 RUN_EXTERNAL = "Run script"
 CLEAR_CONSOLE = "Clear"
 
+# Elements dictionaries
+frames = {}
+editors = {}
+terminals = {}
+buttonRunEditor = {}
+buttonSaveScript = {}
+buttonRunExternal = {}
+buttonClearTerminal = {}
+
 # Main method
 def main():
 	root = Tk()
@@ -55,6 +64,15 @@ def main():
 	root.mainloop()
 
 
+# Saves Script to a folder
+def saveScript(key):
+	fileOpen = tkFileDialog.asksaveasfile(mode='w', defaultextension=".dat")
+	if fileOpen is None:
+	    return
+	textToSave = str(text.get(1.0, END))
+	fileOpen.write(textToSave)
+	fileOpen.close() 
+
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Notebook(parent)
@@ -62,13 +80,13 @@ def createNotebook(parent):
 
 	parent.update()
 
-	frames = {}
-	editors = {}
-	terminals = {}
-	buttonRunEditor = {}
-	buttonSaveScript = {}
-	buttonRunExternal = {}
-	buttonClearTerminal = {}
+	global frames
+	global editors
+	global terminals
+	global buttonRunEditor
+	global buttonSaveScript
+	global buttonRunExternal
+	global buttonClearTerminal
 
 	for key, value in TABS.items():
 		frames[key] = Frame(parent)
@@ -79,7 +97,7 @@ def createNotebook(parent):
 		terminals[key] = ScrolledText(frame, state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
 		buttonClearTerminal[key] = Button(frame, text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
 		buttonRunEditor[key] = Button(frame, text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-		buttonSaveScript[key] = Button(frame, text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+		buttonSaveScript[key] = Button(frame, text = SAVE_EDITOR, command = lambda: saveScript(key)).place(relx = 0.86, rely = 0.43)
 		buttonRunExternal[key] = Button(frame, text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)		
 
 if __name__ == '__main__':
