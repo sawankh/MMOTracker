@@ -65,7 +65,7 @@ def main():
 	root.mainloop()
 
 def test(frame):
-	print frame.children["editor"].linenumbers
+	print frame.children.keys()
 
 # Saves Script to a folder
 def saveScript(fr):
@@ -103,8 +103,14 @@ def createNotebook(parent):
 		terminals.append(ScrolledText(frame, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92))
 		buttonClearTerminal.append(Button(frame, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49))
 		buttonRunEditor.append(Button(frame, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43))
-		buttonSaveScript.append(Button(frame, name = "bSaveScript", text = SAVE_EDITOR, command = lambda: test("self")).place(relx = 0.86, rely = 0.43))
+		buttonSaveScript.append(Button(frame, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43))
 		buttonRunExternal.append(Button(frame, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49))	
-		print(list(frame.children.keys())[list(frame.children.values()).index(buttonSaveScript[0])])
+
+	for key, value in parent.children.items():
+		if key in TABS:
+			for btonName, button in value.children.items():
+				if btonName == "bSaveScript":
+					button.config(command = lambda: test(value))
+
 if __name__ == '__main__':
 	main() 
