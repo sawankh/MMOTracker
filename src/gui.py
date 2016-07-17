@@ -31,7 +31,14 @@ WINDOW_W = 800
 WINDOW_H = 600
 TITLE = "PowerKnowledge"
 TABS = OrderedDict([("ds", "Data Collector"), ("dc", "Data Cleanser"), ("db", "Database Agent"), ("da", "Data Analysis")])
-FOCUSED_TAB = "DS"
+DATA_SCRAPER = "ds"
+DATA_SCRAPER_NAME = "Data Collector"
+DATA_CLEANSER = "dc"
+DATA_CLEANSER_NAME = "Data Cleanser"
+DATA_BASE = "db"
+DATA_BASE_NAME = "Database Agent"
+DATA_ANALAYSIS = "da"
+DATA_ANALAYSIS_NAME = "Data Analysis"
 RUN_EDITOR = "Run editor"
 SAVE_EDITOR = "Save editor"
 RUN_EXTERNAL = "Run script"
@@ -65,7 +72,8 @@ def main():
 	root.mainloop()
 
 def test(frame):
-	print frame.children.keys()
+	print frame
+	print frame.children["editor"]
 
 # Saves Script to a folder
 def saveScript(fr):
@@ -92,25 +100,64 @@ def createNotebook(parent):
 	global buttonRunExternal
 	global buttonClearTerminal
 
-	iterator = 0
-	for key, value in TABS.items():
-		frames.append(Frame(parent, name = key))
-		notebook.add(frames[iterator], text = value)
-		iterator += 1
+	frameDS = Frame(parent, name = DATA_SCRAPER)
+	frameDC = Frame(parent, name = DATA_CLEANSER)
+	frameDB = Frame(parent, name = DATA_BASE)
+	frameDA = Frame(parent, name = DATA_ANALAYSIS)
 	
-	for frame in frames:
-		editors.append(GuiEditor(frame, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7))
-		terminals.append(ScrolledText(frame, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92))
-		buttonClearTerminal.append(Button(frame, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49))
-		buttonRunEditor.append(Button(frame, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43))
-		buttonSaveScript.append(Button(frame, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43))
-		buttonRunExternal.append(Button(frame, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49))	
+	notebook.add(frameDS, text = DATA_SCRAPER_NAME)
+	notebook.add(frameDC, text = DATA_CLEANSER_NAME)
+	notebook.add(frameDB, text = DATA_BASE_NAME)
+	notebook.add(frameDA, text = DATA_ANALAYSIS_NAME)
 
-	for key, value in parent.children.items():
-		if key in TABS:
-			for btonName, button in value.children.items():
-				if btonName == "bSaveScript":
-					button.config(command = lambda: test(value))
+	guiDS = GuiEditor(frameDS, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
+	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
+	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
+
+	guiDC = GuiEditor(frameDC, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDC = ScrolledText(frameDC, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDC = Button(frameDC, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
+	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
+	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
+
+	guiDB = GuiEditor(frameDB, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDB = ScrolledText(frameDB, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDB = Button(frameDB, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
+	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
+	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
+
+	guiDA = GuiEditor(frameDA, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDA = ScrolledText(frameDA, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDA = Button(frameDA, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
+	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
+	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
+
+	# iterator = 0
+	# for key, value in TABS.items():
+	# 	frames.append(Frame(parent, name = key))
+	# 	notebook.add(frames[iterator], text = value)
+	# 	iterator += 1
+	
+	# for frame in frames:
+	# 	editors.append(GuiEditor(frame, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7))
+	# 	terminals.append(ScrolledText(frame, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92))
+	# 	buttonClearTerminal.append(Button(frame, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49))
+	# 	buttonRunEditor.append(Button(frame, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43))
+	# 	buttonSaveScript.append(Button(frame, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43))
+	# 	buttonRunExternal.append(Button(frame, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49))	
+
+	# for key, value in parent.children.items():
+	# 	if key in TABS:
+	# 		for btonName, button in value.children.items():
+	# 			if btonName == "bSaveScript":
+	# 				print value
+	# 				button.config(command = lambda: test(value))
 
 if __name__ == '__main__':
 	main() 
