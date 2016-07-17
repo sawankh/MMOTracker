@@ -163,8 +163,5 @@ def createNotebook(parent):
 	saveScriptDA.place(relx = 0.86, rely = 0.43)
 	runExternalDA.place(relx = 0.79, rely = 0.49)
 
-def test(editor):
-	print editor
-
 if __name__ == '__main__':
 	main() 
