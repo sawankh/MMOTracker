@@ -28,7 +28,7 @@ def main(argv):
 		printError(NO_ARG)
 
 	try:
-		opts, args = getopt.getopt(argv, 'h:c:u:p:s', ['help', 'configFile=', 'username', 'password', 'string'])
+		opts, args = getopt.getopt(argv, 'h:c:u:p:s', ['help', 'configFile=', 'username', 'password', 'string='])
 	except getopt.GetoptError:
 		printError(OPTION_ERROR)
 
@@ -45,7 +45,7 @@ def main(argv):
 		elif opt in ('-p', '--password'):
 		 	password = askPassword()
 		elif opt in ('-s', '--string'):
-			stringParse = opt
+			stringParse = arg.decode('string_escape')
 		else:
 		 	printError(PARAM_ERROR)
 
