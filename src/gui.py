@@ -117,6 +117,33 @@ def clearTerminal(terminal):
 	t = threading.Thread(target = task)
 	t.start()
 
+def runExternal(typeAgent, terminal):
+	def task():
+		fileName = askopenfilename(filetypes = (("PowerKnowledge files", "*.dat"), ("All files", "*.*")))
+		process = None
+		if typeAgent == DATA_SCRAPER: 
+			subProcess = "python dataScraper/DSAgent.py -c " + fileName
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		elif typeAgent == DATA_CLEANSER:
+			subProcess = "python dataCleanser/DCAgent.py -c " + fileName
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		elif typeAgent == DATA_BASE:
+			subProcess = "python dbAgent/DBAgent.py -c " + fileName
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		elif typeAgent == DATA_ANALAYSIS:
+			subProcess = "python dataAnalysis/DAAgent.py -c " + fileName
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		terminal.config(state = "normal")
+		terminal.insert(INSERT, output)
+		terminal.config(state = "disabled")
+		os.remove(typeAgent + ".dat")
+	t = threading.Thread(target = task)
+	t.start()
+
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Notebook(parent)
@@ -139,7 +166,7 @@ def createNotebook(parent):
 	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDS)))
 	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDS.editorText, DATA_SCRAPER, terminalDS)))
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
-	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL)	
+	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_SCRAPER, terminalDS)))	
 	
 	guiDS.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDS.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -153,7 +180,7 @@ def createNotebook(parent):
 	clearDC = Button(frameDC, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDC)))
 	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDC.editorText, DATA_CLEANSER, terminalDC)))
 	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR,  command = (lambda: saveScript(guiDC.editorText)))
-	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL)
+	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_CLEANSER, terminalDC)))
 
 	guiDC.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDC.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -167,7 +194,7 @@ def createNotebook(parent):
 	clearDB = Button(frameDB, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDB)))
 	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDB.editorText, DATA_BASE, terminalDB)))
 	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDB.editorText)))
-	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL)
+	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_BASE, terminalDB)))
 
 	guiDB.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDB.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -181,7 +208,7 @@ def createNotebook(parent):
 	clearDA = Button(frameDA, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDA)))
 	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDA.editorText, DATA_ANALAYSIS, terminalDA)))
 	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDA.editorText)))
-	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL)	
+	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_ANALAYSIS, terminalDA)))	
 
 	guiDA.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDA.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
