@@ -82,14 +82,24 @@ def saveScript(fr):
 	fileOpen.write(textToSave)
 	fileOpen.close() 
 
+# Runs the editor
 def runEditor(string, typeAgent):
-	if typeAgent == DATA_SCRAPER:
-		f = open('temp.dat','w')
-		f.write(string) # python will convert \n to os.linesep
-		f.close() # you can omit in most cases as the destructor will call it
-		subProcess = "python dataScraper/DSAgent.py -c temp.dat" 
+	f = open(typeAgent + ".dat",'w')
+	f.write(string)
+	f.close()
+	if typeAgent == DATA_SCRAPER: 
+		subProcess = "python dataScraper/DSAgent.py -c " + typeAgent + ".dat"
 		subprocess.call(subProcess, shell = True)
-		os.remove("temp.dat")
+	elif typeAgent == DATA_CLEANSER:
+		subProcess = "python dataCleanser/DCAgent.py -c " + typeAgent + ".dat"
+		subprocess.call(subProcess, shell = True)
+	elif typeAgent == DATA_BASE:
+		subProcess = "python dbAgent/DBAgent.py -c " + typeAgent + ".dat"
+		subprocess.call(subProcess, shell = True)
+	elif typeAgent == DATA_ANALAYSIS:
+		subProcess = "python dataAnalysis/DAAgent.py " + typeAgent + ".dat"
+		subprocess.call(subProcess, shell = True)
+	os.remove(typeAgent + ".dat")
 
 # Creates a Notebook and adds
 def createNotebook(parent):
