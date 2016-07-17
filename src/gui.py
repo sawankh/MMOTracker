@@ -117,6 +117,7 @@ def clearTerminal(terminal):
 	t = threading.Thread(target = task)
 	t.start()
 
+# Runs external Script
 def runExternal(typeAgent, terminal):
 	def task():
 		fileName = askopenfilename(filetypes = (("PowerKnowledge files", "*.dat"), ("All files", "*.*")))
