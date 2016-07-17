@@ -71,9 +71,8 @@ def main():
 	# Run app
 	root.mainloop()
 
-def test(frame):
-	print frame
-	print frame.children["editor"]
+def test(editor):
+	print editor.editorText
 
 # Saves Script to a folder
 def saveScript(fr):
@@ -114,7 +113,7 @@ def createNotebook(parent):
 	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
 	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
 	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
+	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: test(guiDS))).place(relx = 0.86, rely = 0.43)
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
 
 	guiDC = GuiEditor(frameDC, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
