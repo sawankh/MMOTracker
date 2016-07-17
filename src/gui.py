@@ -71,16 +71,14 @@ def main():
 	# Run app
 	root.mainloop()
 
-def test(editor):
-	print editor.editorText
+
 
 # Saves Script to a folder
 def saveScript(fr):
-	print fr.children["editor"].editorText
 	fileOpen = asksaveasfile(mode='w', defaultextension=".dat")
 	if fileOpen is None:
 	    return
-	textToSave = fr.nametowidget("editor").editorText
+	textToSave = fr
 	fileOpen.write(textToSave)
 	fileOpen.close() 
 
@@ -109,54 +107,64 @@ def createNotebook(parent):
 	notebook.add(frameDB, text = DATA_BASE_NAME)
 	notebook.add(frameDA, text = DATA_ANALAYSIS_NAME)
 
-	guiDS = GuiEditor(frameDS, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
-	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
-	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: test(guiDS))).place(relx = 0.86, rely = 0.43)
-	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
-
-	guiDC = GuiEditor(frameDC, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
-	terminalDC = ScrolledText(frameDC, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-	clearDC = Button(frameDC, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
-	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
-	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
-
-	guiDB = GuiEditor(frameDB, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
-	terminalDB = ScrolledText(frameDB, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-	clearDB = Button(frameDB, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
-	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
-	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
-
-	guiDA = GuiEditor(frameDA, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
-	terminalDA = ScrolledText(frameDA, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
-	clearDA = Button(frameDA, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49)
-	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43)
-	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43)
-	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49)	
-
-	# iterator = 0
-	# for key, value in TABS.items():
-	# 	frames.append(Frame(parent, name = key))
-	# 	notebook.add(frames[iterator], text = value)
-	# 	iterator += 1
+	guiDS = GuiEditor(frameDS, name = "editor")
+	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled")
+	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE)
+	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR)
+	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
+	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL)	
 	
-	# for frame in frames:
-	# 	editors.append(GuiEditor(frame, name = "editor").place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7))
-	# 	terminals.append(ScrolledText(frame, name = "terminal", state = "disabled").place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92))
-	# 	buttonClearTerminal.append(Button(frame, name = "bClearTerm", text = CLEAR_CONSOLE).place(relx = 0.86, rely = 0.49))
-	# 	buttonRunEditor.append(Button(frame, name = "bRunEditor", text = RUN_EDITOR).place(relx = 0.79, rely = 0.43))
-	# 	buttonSaveScript.append(Button(frame, name = "bSaveScript", text = SAVE_EDITOR).place(relx = 0.86, rely = 0.43))
-	# 	buttonRunExternal.append(Button(frame, name = "bRunExtern", text = RUN_EXTERNAL).place(relx = 0.79, rely = 0.49))	
+	guiDS.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDS.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDS.place(relx = 0.86, rely = 0.49)
+	runEditorDS.place(relx = 0.79, rely = 0.43)
+	saveScriptDS.place(relx = 0.86, rely = 0.43)
+	runExternalDS.place(relx = 0.79, rely = 0.49)
 
-	# for key, value in parent.children.items():
-	# 	if key in TABS:
-	# 		for btonName, button in value.children.items():
-	# 			if btonName == "bSaveScript":
-	# 				print value
-	# 				button.config(command = lambda: test(value))
+	guiDC = GuiEditor(frameDC, name = "editor")
+	terminalDC = ScrolledText(frameDC, name = "terminal", state = "disabled")
+	clearDC = Button(frameDC, name = "bClearTerm", text = CLEAR_CONSOLE)
+	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR)
+	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR,  command = (lambda: saveScript(guiDC.editorText)))
+	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL)
+
+	guiDC.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDC.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDC.place(relx = 0.86, rely = 0.49)
+	runEditorDC.place(relx = 0.79, rely = 0.43)
+	saveScriptDC.place(relx = 0.86, rely = 0.43)
+	runExternalDC.place(relx = 0.79, rely = 0.49)
+
+	guiDB = GuiEditor(frameDB, name = "editor")
+	terminalDB = ScrolledText(frameDB, name = "terminal", state = "disabled")
+	clearDB = Button(frameDB, name = "bClearTerm", text = CLEAR_CONSOLE)
+	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR)
+	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDB.editorText)))
+	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL)
+
+	guiDB.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDB.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDB.place(relx = 0.86, rely = 0.49)
+	runEditorDB.place(relx = 0.79, rely = 0.43)
+	saveScriptDB.place(relx = 0.86, rely = 0.43)
+	runExternalDB.place(relx = 0.79, rely = 0.49)
+
+	guiDA = GuiEditor(frameDA, name = "editor")
+	terminalDA = ScrolledText(frameDA, name = "terminal", state = "disabled")
+	clearDA = Button(frameDA, name = "bClearTerm", text = CLEAR_CONSOLE)
+	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR)
+	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDA.editorText)))
+	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL)	
+
+	guiDA.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
+	terminalDA.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
+	clearDA.place(relx = 0.86, rely = 0.49)
+	runEditorDA.place(relx = 0.79, rely = 0.43)
+	saveScriptDA.place(relx = 0.86, rely = 0.43)
+	runExternalDA.place(relx = 0.79, rely = 0.49)
+
+def test(editor):
+	print editor
 
 if __name__ == '__main__':
 	main() 
