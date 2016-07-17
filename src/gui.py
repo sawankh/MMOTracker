@@ -45,15 +45,6 @@ SAVE_EDITOR = "Save editor"
 RUN_EXTERNAL = "Run script"
 CLEAR_CONSOLE = "Clear"
 
-# Elements dictionaries
-frames = []
-editors = []
-terminals = []
-buttonRunEditor = []
-buttonSaveScript = []
-buttonRunExternal = []
-buttonClearTerminal = []
-
 # Main method
 def main():
 	root = Tk()
@@ -113,14 +104,6 @@ def createNotebook(parent):
 	notebook.place(relwidth = 0.98, relheight = 0.98, relx = 0.01, rely = 0.01)
 
 	parent.update()
-
-	global frames
-	global editors
-	global terminals
-	global buttonRunEditor
-	global buttonSaveScript
-	global buttonRunExternal
-	global buttonClearTerminal
 
 	frameDS = Frame(parent, name = DATA_SCRAPER)
 	frameDC = Frame(parent, name = DATA_CLEANSER)
