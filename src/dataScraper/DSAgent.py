@@ -28,11 +28,12 @@ def main(argv):
 		printError(NO_ARG)
 
 	try:
-		opts, args = getopt.getopt(argv, 'h:c:u:p', ['help', 'configFile=', 'username', 'password'])
+		opts, args = getopt.getopt(argv, 'h:c:u:p:s', ['help', 'configFile=', 'username', 'password', 'string'])
 	except getopt.GetoptError:
 		printError(OPTION_ERROR)
 
 	configFile = ''
+	stringParse = ''
 	
 	for opt, arg in opts:
 		if opt in ('-h', '--help'):
@@ -43,11 +44,15 @@ def main(argv):
 		 	userName = askUser()
 		elif opt in ('-p', '--password'):
 		 	password = askPassword()
+		elif opt in ('-s', '--string'):
+			stringParse = opt
 		else:
 		 	printError(PARAM_ERROR)
 
 	if configFile:
 		dslParseFile(configFile)
+	elif stringParse:
+		dslParseString(stringParse)
 	else:
 		printError(READING_CONF_ERROR)
 
