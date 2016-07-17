@@ -25,7 +25,7 @@ from ScrolledText import ScrolledText
 from tkFileDialog import *
 from StringIO import StringIO
 
-import os, subprocess
+import os, subprocess, threading
 
 # Constants
 WINDOW_W = 800
@@ -67,36 +67,55 @@ def main():
 
 # Saves Script to a folder
 def saveScript(fr):
-	fileOpen = asksaveasfile(mode='w', defaultextension=".dat")
-	if fileOpen is None:
-	    return
-	textToSave = fr
-	fileOpen.write(textToSave)
-	fileOpen.close() 
+	def task():
+		fileOpen = asksaveasfile(mode='w', defaultextension=".dat")
+		if fileOpen is None:
+		    return
+		textToSave = fr
+		fileOpen.write(textToSave)
+		fileOpen.close() 
+	t = threading.Thread(target = task)
+	t.start()
 
 # Runs the editor
 def runEditor(string, typeAgent, terminal):
-	f = open(typeAgent + ".dat",'w')
-	f.write(string)
-	f.close()
-	process = None
-	if typeAgent == DATA_SCRAPER: 
-		subProcess = "python dataScraper/DSAgent.py -c " + typeAgent + ".dat"
-		process = subprocess.Popen(subProcess, shell = True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-		output, errors = process.communicate()
-	elif typeAgent == DATA_CLEANSER:
-		subProcess = "python dataCleanser/DCAgent.py -c " + typeAgent + ".dat"
-		process = subprocess.call(subProcess, shell = True)
-	elif typeAgent == DATA_BASE:
-		subProcess = "python dbAgent/DBAgent.py -c " + typeAgent + ".dat"
-		process = subprocess.call(subProcess, shell = True)
-	elif typeAgent == DATA_ANALAYSIS:
-		subProcess = "python dataAnalysis/DAAgent.py -c " + typeAgent + ".dat"
-		process = subprocess.call(subProcess, shell = True)
-	terminal.config(state = "normal")
-	terminal.insert(INSERT, output)
-	terminal.config(state = "disabled")
-	os.remove(typeAgent + ".dat")
+	def task():
+		f = open(typeAgent + ".dat",'w')
+		f.write(string)
+		f.close()
+		process = None
+		if typeAgent == DATA_SCRAPER: 
+			subProcess = "python dataScraper/DSAgent.py -c " + typeAgent + ".dat"
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		elif typeAgent == DATA_CLEANSER:
+			subProcess = "python dataCleanser/DCAgent.py -c " + typeAgent + ".dat"
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		elif typeAgent == DATA_BASE:
+			subProcess = "python dbAgent/DBAgent.py -c " + typeAgent + ".dat"
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		elif typeAgent == DATA_ANALAYSIS:
+			subProcess = "python dataAnalysis/DAAgent.py -c " + typeAgent + ".dat"
+			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
+			output, errors = process.communicate()
+		terminal.config(state = "normal")
+		terminal.insert(INSERT, output)
+		terminal.config(state = "disabled")
+		os.remove(typeAgent + ".dat")
+	t = threading.Thread(target = task)
+	t.start()
+
+
+# Clears the terminal
+def clearTerminal(terminal):
+	def task():
+		terminal.config(state = "normal")
+		terminal.delete('1.0', END)
+		terminal.config(state = "disabled")
+	t = threading.Thread(target = task)
+	t.start()
 
 # Creates a Notebook and adds
 def createNotebook(parent):
@@ -117,7 +136,7 @@ def createNotebook(parent):
 
 	guiDS = GuiEditor(frameDS, name = "editor")
 	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled")
-	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE)
+	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDS)))
 	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDS.editorText, DATA_SCRAPER, terminalDS)))
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL)	
@@ -131,8 +150,8 @@ def createNotebook(parent):
 
 	guiDC = GuiEditor(frameDC, name = "editor")
 	terminalDC = ScrolledText(frameDC, name = "terminal", state = "disabled")
-	clearDC = Button(frameDC, name = "bClearTerm", text = CLEAR_CONSOLE)
-	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDC.editorText, DATA_CLEANSER)))
+	clearDC = Button(frameDC, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDC)))
+	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDC.editorText, DATA_CLEANSER, terminalDC)))
 	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR,  command = (lambda: saveScript(guiDC.editorText)))
 	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL)
 
@@ -145,8 +164,8 @@ def createNotebook(parent):
 
 	guiDB = GuiEditor(frameDB, name = "editor")
 	terminalDB = ScrolledText(frameDB, name = "terminal", state = "disabled")
-	clearDB = Button(frameDB, name = "bClearTerm", text = CLEAR_CONSOLE)
-	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDB.editorText, DATA_BASE)))
+	clearDB = Button(frameDB, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDB)))
+	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDB.editorText, DATA_BASE, terminalDB)))
 	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDB.editorText)))
 	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL)
 
@@ -159,8 +178,8 @@ def createNotebook(parent):
 
 	guiDA = GuiEditor(frameDA, name = "editor")
 	terminalDA = ScrolledText(frameDA, name = "terminal", state = "disabled")
-	clearDA = Button(frameDA, name = "bClearTerm", text = CLEAR_CONSOLE)
-	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDA.editorText, DATA_ANALAYSIS)))
+	clearDA = Button(frameDA, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDA)))
+	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDA.editorText, DATA_ANALAYSIS, terminalDA)))
 	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDA.editorText)))
 	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL)	
 
