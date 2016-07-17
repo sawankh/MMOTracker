@@ -23,6 +23,7 @@ from collections import OrderedDict
 from gui.guiEditor import *
 from ScrolledText import ScrolledText
 from tkFileDialog import *
+from dataScraper.dsl.scrapingDsl import *
 
 import os
 
@@ -82,6 +83,10 @@ def saveScript(fr):
 	fileOpen.write(textToSave)
 	fileOpen.close() 
 
+def runEditor(string, typeAgent):
+	if typeAgent == DATA_SCRAPER:
+		dslParseString(string)
+
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Notebook(parent)
@@ -110,7 +115,7 @@ def createNotebook(parent):
 	guiDS = GuiEditor(frameDS, name = "editor")
 	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled")
 	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE)
-	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR)
+	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDS.editorText)))
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL)	
 	
