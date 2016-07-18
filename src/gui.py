@@ -137,6 +137,7 @@ def clearTerminal(terminal):
 # Runs external Script
 def runExternal(typeAgent, terminal):
 	def task():
+		fileName = askopenfilename(filetypes = (("PowerKnowledge files", "*.dat"), ("All files", "*.*")))
 		terminal.config(state = "normal")
 		terminal.insert(INSERT, SEPARATOR)
 		startT = time.time()
@@ -144,7 +145,6 @@ def runExternal(typeAgent, terminal):
 		terminal.insert(INSERT, "Execution started at ---> " + time.asctime(startTime) + "\n")
 		terminal.insert(INSERT, SEPARATOR)
 		terminal.config(state = "disabled")
-		fileName = askopenfilename(filetypes = (("PowerKnowledge files", "*.dat"), ("All files", "*.*")))
 		process = None
 		if typeAgent == DATA_SCRAPER: 
 			subProcess = "python dataScraper/DSAgent.py -c " + fileName
