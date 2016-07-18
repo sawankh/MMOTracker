@@ -192,10 +192,12 @@ def createNotebook(parent):
 	notebook.add(frameDB, text = DATA_BASE_NAME)
 	notebook.add(frameDA, text = DATA_ANALAYSIS_NAME)
 
-	# iOpen = Image.open("resources/pwlogo.png")
-	# img = ImageTk.PhotoImage(iOpen)
-	# panel = Label(parent, image = img)
-	# panel.image = img
+	iOpen = Image.open("resources/pwlogo.png").resize((247, 192), Image.ANTIALIAS)
+	img = ImageTk.PhotoImage(iOpen)
+	panel = Label(parent, image = img)
+	panel.image = img
+	panel.place(relx = 0.76, rely = 0.05, relheight = 0.25, relwidth = 0.182)
+
 	guiDS = GuiEditor(frameDS, name = "editor")
 	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled")
 	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDS)))
@@ -203,8 +205,7 @@ def createNotebook(parent):
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_SCRAPER, terminalDS)))	
 	
-	# panel.pack()
-	#panel.place(relx = 0, rely = 0, relheight = 0.1, relwidth = 0.1)
+	
 	guiDS.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDS.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
 	clearDS.place(relx = 0.86, rely = 0.49)
