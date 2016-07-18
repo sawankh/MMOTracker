@@ -29,8 +29,8 @@ from PIL import ImageTk, Image
 import os, subprocess, threading
 
 # Constants
-WINDOW_W = 800
-WINDOW_H = 600
+WINDOW_W = 1366
+WINDOW_H = 768
 TITLE = "PowerKnowledge"
 TABS = OrderedDict([("ds", "Data Collector"), ("dc", "Data Cleanser"), ("db", "Database Agent"), ("da", "Data Analysis")])
 DATA_SCRAPER = "ds"
@@ -49,7 +49,7 @@ CLEAR_CONSOLE = "Clear"
 # Main method
 def main():
 	root = Tk()
-	root.state('zoomed')
+	root.state('normal')
 
 	# Name of the Window
 	root.title(TITLE)
@@ -57,7 +57,8 @@ def main():
 	# Size of the Window by default
 	root.geometry(str(WINDOW_W) + "x" + str(WINDOW_H))
 	root.update()
-
+	root.resizable(0,0)
+	
 	# Main widgets of the app
 	createNotebook(root)
 	
@@ -163,10 +164,10 @@ def createNotebook(parent):
 	notebook.add(frameDB, text = DATA_BASE_NAME)
 	notebook.add(frameDA, text = DATA_ANALAYSIS_NAME)
 
-	iOpen = Image.open("resources/pwlogo.png")
-	img = ImageTk.PhotoImage(iOpen)
-	panel = Label(parent, image = img)
-	panel.image = img
+	# iOpen = Image.open("resources/pwlogo.png")
+	# img = ImageTk.PhotoImage(iOpen)
+	# panel = Label(parent, image = img)
+	# panel.image = img
 	guiDS = GuiEditor(frameDS, name = "editor")
 	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled")
 	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDS)))
@@ -174,7 +175,7 @@ def createNotebook(parent):
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_SCRAPER, terminalDS)))	
 	
-	panel.pack()
+	# panel.pack()
 	#panel.place(relx = 0, rely = 0, relheight = 0.1, relwidth = 0.1)
 	guiDS.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDS.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
