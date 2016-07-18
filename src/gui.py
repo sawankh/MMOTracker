@@ -24,6 +24,7 @@ from gui.guiEditor import *
 from ScrolledText import ScrolledText
 from tkFileDialog import *
 from StringIO import StringIO
+from PIL import ImageTk, Image
 
 import os, subprocess, threading
 
@@ -162,6 +163,9 @@ def createNotebook(parent):
 	notebook.add(frameDB, text = DATA_BASE_NAME)
 	notebook.add(frameDA, text = DATA_ANALAYSIS_NAME)
 
+	img = ImageTk.PhotoImage(Image.open("resources/pwlogo.png").resize((25, 25), Image.ANTIALIAS))
+	panel = Label(parent, image = img)
+	panel.image = img
 	guiDS = GuiEditor(frameDS, name = "editor")
 	terminalDS = ScrolledText(frameDS, name = "terminal", state = "disabled")
 	clearDS = Button(frameDS, name = "bClearTerm", text = CLEAR_CONSOLE, command = (lambda: clearTerminal(terminalDS)))
@@ -169,6 +173,7 @@ def createNotebook(parent):
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_SCRAPER, terminalDS)))	
 	
+	panel.place(relx = 0, rely = 0, relheight = 0.1, relwidth = 0.1)
 	guiDS.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDS.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
 	clearDS.place(relx = 0.86, rely = 0.49)
