@@ -26,7 +26,7 @@ from tkFileDialog import *
 from StringIO import StringIO
 from PIL import ImageTk, Image
 
-import os, subprocess, threading
+import os, subprocess, threading, time
 
 # Constants
 WINDOW_W = 1366
@@ -45,6 +45,7 @@ RUN_EDITOR = "Run editor"
 SAVE_EDITOR = "Save editor"
 RUN_EXTERNAL = "Run script"
 CLEAR_CONSOLE = "Clear"
+SEPARATOR = "==============================================================================\n"
 
 # Main method
 def main():
@@ -82,6 +83,13 @@ def saveScript(fr):
 # Runs the editor
 def runEditor(string, typeAgent, terminal):
 	def task():
+		terminal.config(state = "normal")
+		terminal.insert(INSERT, SEPARATOR)
+		startT = time.time()
+		startTime = time.localtime(startT)
+		terminal.insert(INSERT, "Execution started at ---> " + time.asctime(startTime) + "\n")
+		terminal.insert(INSERT, SEPARATOR)
+		terminal.config(state = "disabled")
 		f = open(typeAgent + ".dat",'w')
 		f.write(string)
 		f.close()
@@ -104,6 +112,13 @@ def runEditor(string, typeAgent, terminal):
 			output, errors = process.communicate()
 		terminal.config(state = "normal")
 		terminal.insert(INSERT, output)
+		terminal.insert(INSERT, SEPARATOR)
+		endT = time.time()
+		endTime = time.localtime(endT)
+		terminal.insert(INSERT, "Execution finished at ---> " + time.asctime(endTime) + "\n")
+		elapsed = endT - startT
+		terminal.insert(INSERT, "Time elapsed ---> " + time.strftime("%H hours %M minutes and %S seconds", time.gmtime(elapsed)) + "\n")
+		terminal.insert(INSERT, SEPARATOR)
 		terminal.config(state = "disabled")
 		os.remove(typeAgent + ".dat")
 	t = threading.Thread(target = task)
@@ -122,6 +137,13 @@ def clearTerminal(terminal):
 # Runs external Script
 def runExternal(typeAgent, terminal):
 	def task():
+		terminal.config(state = "normal")
+		terminal.insert(INSERT, SEPARATOR)
+		startT = time.time()
+		startTime = time.localtime(startT)
+		terminal.insert(INSERT, "Execution started at ---> " + time.asctime(startTime) + "\n")
+		terminal.insert(INSERT, SEPARATOR)
+		terminal.config(state = "disabled")
 		fileName = askopenfilename(filetypes = (("PowerKnowledge files", "*.dat"), ("All files", "*.*")))
 		process = None
 		if typeAgent == DATA_SCRAPER: 
@@ -142,8 +164,14 @@ def runExternal(typeAgent, terminal):
 			output, errors = process.communicate()
 		terminal.config(state = "normal")
 		terminal.insert(INSERT, output)
+		terminal.insert(INSERT, SEPARATOR)
+		endT = time.time()
+		endTime = time.localtime(endT)
+		terminal.insert(INSERT, "Execution finished at ---> " + time.asctime(endTime) + "\n")
+		elapsed = endT - startT
+		terminal.insert(INSERT, "Time elapsed ---> " + time.strftime("%H hours %M minutes and %S seconds", time.gmtime(elapsed)) + "\n")
+		terminal.insert(INSERT, SEPARATOR)
 		terminal.config(state = "disabled")
-		os.remove(typeAgent + ".dat")
 	t = threading.Thread(target = task)
 	t.start()
 
