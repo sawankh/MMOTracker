@@ -110,6 +110,8 @@ def runEditor(string, typeAgent, terminal):
 			subProcess = "python dataAnalysis/DAAgent.py -c " + typeAgent + ".dat"
 			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 			output, errors = process.communicate()
+		if not output:
+			output = "There might be an error in your syntax, please check it carefully.\n"
 		terminal.config(state = "normal")
 		terminal.insert(INSERT, output)
 		terminal.insert(INSERT, SEPARATOR)
@@ -162,8 +164,11 @@ def runExternal(typeAgent, terminal):
 			subProcess = "python dataAnalysis/DAAgent.py -c " + fileName
 			process = subprocess.Popen(subProcess, shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 			output, errors = process.communicate()
+		if not output:
+			output = "There might be an error in your syntax, please check it carefully."
 		terminal.config(state = "normal")
 		terminal.insert(INSERT, output)
+		terminal.insert(INSERT, errors)
 		terminal.insert(INSERT, SEPARATOR)
 		endT = time.time()
 		endTime = time.localtime(endT)
