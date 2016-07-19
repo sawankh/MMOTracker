@@ -52,6 +52,9 @@ REMOVE_LINE = "Remove Lines"
 APPEND_FILE = "Append Files"
 INSERT_CSV = "Insert CSV"
 INSERT_JSON = "Insert JSON"
+EXECUTE_PYTHON = "Execute Python"
+EXECUTE_R = "Execute R"
+EXECUTE_MATLAB = "Execute Matlab"
 SEPARATOR = "==============================================================================\n"
 
 # Main method
@@ -272,6 +275,9 @@ def createNotebook(parent):
 	runEditorDA = Button(frameDA, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDA.editorText, DATA_ANALAYSIS, terminalDA)))
 	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDA.editorText)))
 	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_ANALAYSIS, terminalDA)))	
+	executePython = Button(frameDA, name = "bExecPy", text = EXECUTE_PYTHON)	
+	executeR = Button(frameDA, name = "bExecR", text = EXECUTE_R)
+	executeMatlab = Button(frameDA, name = "bExecMat", text = EXECUTE_MATLAB)
 
 	guiDA.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDA.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -279,6 +285,9 @@ def createNotebook(parent):
 	runEditorDA.place(relx = 0.79, rely = 0.43)
 	saveScriptDA.place(relx = 0.86, rely = 0.43)
 	runExternalDA.place(relx = 0.79, rely = 0.49)
+	executePython.place(relx = 0.78, rely = 0.3)
+	executeR.place(relx = 0.86, rely = 0.3)
+	executeMatlab.place(relx = 0.78, rely = 0.36)
 
 if __name__ == '__main__':
 	main() 
