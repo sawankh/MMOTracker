@@ -1,0 +1,117 @@
+\indexentry{dataAnalysis.constants.agentConstants (module)|hyperpage}{3}
+\indexentry{dataAnalysis.constants (module)|hyperpage}{3}
+\indexentry{dataAnalysis.dsl.grammar.basic\_functionality.clearConsole (module)|hyperpage}{3}
+\indexentry{clearConsole() (in module dataAnalysis.dsl.grammar.basic\_functionality.clearConsole)|hyperpage}{3}
+\indexentry{dataAnalysis.dsl.grammar.basic\_functionality.comments (module)|hyperpage}{4}
+\indexentry{dataAnalysis.dsl.grammar.basic\_functionality.sleep (module)|hyperpage}{4}
+\indexentry{sleepAgent() (in module dataAnalysis.dsl.grammar.basic\_functionality.sleep)|hyperpage}{4}
+\indexentry{stringToInt() (in module dataAnalysis.dsl.grammar.basic\_functionality.sleep)|hyperpage}{4}
+\indexentry{dataAnalysis.dsl.grammar.basic\_functionality (module)|hyperpage}{4}
+\indexentry{dataAnalysis.dsl.grammar.behaviour.readFile (module)|hyperpage}{4}
+\indexentry{readFile() (in module dataAnalysis.dsl.grammar.behaviour.readFile)|hyperpage}{4}
+\indexentry{dataAnalysis.dsl.grammar.behaviour.readLine (module)|hyperpage}{4}
+\indexentry{readLine() (in module dataAnalysis.dsl.grammar.behaviour.readLine)|hyperpage}{4}
+\indexentry{dataAnalysis.dsl.grammar.behaviour.stringJoin (module)|hyperpage}{4}
+\indexentry{joinString() (in module dataAnalysis.dsl.grammar.behaviour.stringJoin)|hyperpage}{4}
+\indexentry{dataAnalysis.dsl.grammar.behaviour (module)|hyperpage}{5}
+\indexentry{dataAnalysis.dsl.grammar (module)|hyperpage}{5}
+\indexentry{dataAnalysis.dsl.req.csvHandle (module)|hyperpage}{5}
+\indexentry{writeCSV() (in module dataAnalysis.dsl.req.csvHandle)|hyperpage}{5}
+\indexentry{writeDictCSV() (in module dataAnalysis.dsl.req.csvHandle)|hyperpage}{5}
+\indexentry{dataAnalysis.dsl.req (module)|hyperpage}{5}
+\indexentry{dataAnalysis.dsl (module)|hyperpage}{5}
+\indexentry{dataAnalysis (module)|hyperpage}{5}
+\indexentry{dataCleanser.constants.agentConstants (module)|hyperpage}{7}
+\indexentry{dataCleanser.constants (module)|hyperpage}{7}
+\indexentry{dataCleanser.dsl.grammar.basic\_functionality.clearConsole (module)|hyperpage}{7}
+\indexentry{clearConsole() (in module dataCleanser.dsl.grammar.basic\_functionality.clearConsole)|hyperpage}{7}
+\indexentry{dataCleanser.dsl.grammar.basic\_functionality.comments (module)|hyperpage}{8}
+\indexentry{dataCleanser.dsl.grammar.basic\_functionality.sleep (module)|hyperpage}{8}
+\indexentry{sleepAgent() (in module dataCleanser.dsl.grammar.basic\_functionality.sleep)|hyperpage}{8}
+\indexentry{stringToInt() (in module dataCleanser.dsl.grammar.basic\_functionality.sleep)|hyperpage}{8}
+\indexentry{dataCleanser.dsl.grammar.basic\_functionality (module)|hyperpage}{8}
+\indexentry{dataCleanser.dsl.grammar.behaviour.readFile (module)|hyperpage}{8}
+\indexentry{readFile() (in module dataCleanser.dsl.grammar.behaviour.readFile)|hyperpage}{8}
+\indexentry{dataCleanser.dsl.grammar.behaviour.readLine (module)|hyperpage}{8}
+\indexentry{readLine() (in module dataCleanser.dsl.grammar.behaviour.readLine)|hyperpage}{8}
+\indexentry{dataCleanser.dsl.grammar.behaviour.stringJoin (module)|hyperpage}{8}
+\indexentry{joinString() (in module dataCleanser.dsl.grammar.behaviour.stringJoin)|hyperpage}{8}
+\indexentry{dataCleanser.dsl.grammar.behaviour (module)|hyperpage}{9}
+\indexentry{dataCleanser.dsl.grammar (module)|hyperpage}{9}
+\indexentry{dataCleanser.dsl.req.csvHandle (module)|hyperpage}{9}
+\indexentry{writeCSV() (in module dataCleanser.dsl.req.csvHandle)|hyperpage}{9}
+\indexentry{writeDictCSV() (in module dataCleanser.dsl.req.csvHandle)|hyperpage}{9}
+\indexentry{dataCleanser.dsl.req (module)|hyperpage}{9}
+\indexentry{dataCleanser.dsl (module)|hyperpage}{9}
+\indexentry{dataCleanser (module)|hyperpage}{9}
+\indexentry{dataScraper.constants.agentConstants (module)|hyperpage}{11}
+\indexentry{dataScraper.constants (module)|hyperpage}{11}
+\indexentry{dataScraper.dsl.grammar.basic\_functionality.clearConsole (module)|hyperpage}{11}
+\indexentry{clearConsole() (in module dataScraper.dsl.grammar.basic\_functionality.clearConsole)|hyperpage}{11}
+\indexentry{dataScraper.dsl.grammar.basic\_functionality.comments (module)|hyperpage}{12}
+\indexentry{dataScraper.dsl.grammar.basic\_functionality.sleep (module)|hyperpage}{12}
+\indexentry{sleepAgent() (in module dataScraper.dsl.grammar.basic\_functionality.sleep)|hyperpage}{12}
+\indexentry{stringToInt() (in module dataScraper.dsl.grammar.basic\_functionality.sleep)|hyperpage}{12}
+\indexentry{dataScraper.dsl.grammar.basic\_functionality (module)|hyperpage}{12}
+\indexentry{dataScraper.dsl.grammar.behaviour.readFile (module)|hyperpage}{12}
+\indexentry{readFile() (in module dataScraper.dsl.grammar.behaviour.readFile)|hyperpage}{12}
+\indexentry{dataScraper.dsl.grammar.behaviour.readLine (module)|hyperpage}{12}
+\indexentry{readLine() (in module dataScraper.dsl.grammar.behaviour.readLine)|hyperpage}{12}
+\indexentry{dataScraper.dsl.grammar.behaviour.stringJoin (module)|hyperpage}{12}
+\indexentry{joinString() (in module dataScraper.dsl.grammar.behaviour.stringJoin)|hyperpage}{12}
+\indexentry{dataScraper.dsl.grammar.behaviour (module)|hyperpage}{13}
+\indexentry{dataScraper.dsl.grammar (module)|hyperpage}{13}
+\indexentry{dataScraper.dsl.req.csvHandle (module)|hyperpage}{13}
+\indexentry{writeCSV() (in module dataScraper.dsl.req.csvHandle)|hyperpage}{13}
+\indexentry{writeDictCSV() (in module dataScraper.dsl.req.csvHandle)|hyperpage}{13}
+\indexentry{dataScraper.dsl.req.jsonHandle (module)|hyperpage}{13}
+\indexentry{checkSize() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{clearDictionary() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{flattenJSON() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{getData() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{getProcessedData() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{getheaderLists() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{jsonToString() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{printJSON() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{readJSONFile() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{reduce\_item() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{stringToJSON() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{toString() (in module dataScraper.dsl.req.jsonHandle)|hyperpage}{13}
+\indexentry{dataScraper.dsl.req.requestHandle (module)|hyperpage}{13}
+\indexentry{getCode() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{getContent() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{getJSON() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{getRaw() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{getRequest() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{getRequestPayload() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{getURL() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{postRequest() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{printCode() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{printURL() (in module dataScraper.dsl.req.requestHandle)|hyperpage}{13}
+\indexentry{dataScraper.dsl.req (module)|hyperpage}{14}
+\indexentry{dataScraper.dsl (module)|hyperpage}{14}
+\indexentry{dataScraper (module)|hyperpage}{14}
+\indexentry{dbAgent.constants.agentConstants (module)|hyperpage}{15}
+\indexentry{dbAgent.constants (module)|hyperpage}{15}
+\indexentry{dbAgent.dsl.grammar.basic\_functionality.clearConsole (module)|hyperpage}{15}
+\indexentry{clearConsole() (in module dbAgent.dsl.grammar.basic\_functionality.clearConsole)|hyperpage}{15}
+\indexentry{dbAgent.dsl.grammar.basic\_functionality.comments (module)|hyperpage}{16}
+\indexentry{dbAgent.dsl.grammar.basic\_functionality.sleep (module)|hyperpage}{16}
+\indexentry{sleepAgent() (in module dbAgent.dsl.grammar.basic\_functionality.sleep)|hyperpage}{16}
+\indexentry{stringToInt() (in module dbAgent.dsl.grammar.basic\_functionality.sleep)|hyperpage}{16}
+\indexentry{dbAgent.dsl.grammar.basic\_functionality (module)|hyperpage}{16}
+\indexentry{dbAgent.dsl.grammar.behaviour.readFile (module)|hyperpage}{16}
+\indexentry{readFile() (in module dbAgent.dsl.grammar.behaviour.readFile)|hyperpage}{16}
+\indexentry{dbAgent.dsl.grammar.behaviour.readLine (module)|hyperpage}{16}
+\indexentry{readLine() (in module dbAgent.dsl.grammar.behaviour.readLine)|hyperpage}{16}
+\indexentry{dbAgent.dsl.grammar.behaviour.stringJoin (module)|hyperpage}{16}
+\indexentry{joinString() (in module dbAgent.dsl.grammar.behaviour.stringJoin)|hyperpage}{16}
+\indexentry{dbAgent.dsl.grammar.behaviour (module)|hyperpage}{17}
+\indexentry{dbAgent.dsl.grammar (module)|hyperpage}{17}
+\indexentry{dbAgent.dsl.req.csvHandle (module)|hyperpage}{17}
+\indexentry{writeCSV() (in module dbAgent.dsl.req.csvHandle)|hyperpage}{17}
+\indexentry{writeDictCSV() (in module dbAgent.dsl.req.csvHandle)|hyperpage}{17}
+\indexentry{dbAgent.dsl.req (module)|hyperpage}{17}
+\indexentry{dbAgent.dsl (module)|hyperpage}{17}
+\indexentry{dbAgent (module)|hyperpage}{17}
+\indexentry{gui (module)|hyperpage}{19}

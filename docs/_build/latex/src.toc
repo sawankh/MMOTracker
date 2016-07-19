@@ -1,0 +1,163 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}dataAnalysis package}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Subpackages}{3}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}dataAnalysis.constants package}{3}{subsection.1.1.1}
+\contentsline {subsubsection}{Submodules}{3}{subsubsection*.3}
+\contentsline {subsubsection}{dataAnalysis.constants.agentConstants module}{3}{subsubsection*.4}
+\contentsline {subsubsection}{Module contents}{3}{subsubsection*.5}
+\contentsline {subsection}{\numberline {1.1.2}dataAnalysis.dsl package}{3}{subsection.1.1.2}
+\contentsline {subsubsection}{Subpackages}{3}{subsubsection*.6}
+\contentsline {paragraph}{dataAnalysis.dsl.grammar package}{3}{paragraph*.7}
+\contentsline {subparagraph}{Subpackages}{3}{subparagraph*.8}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality package}{3}{subparagraph*.9}
+\contentsline {subparagraph}{Submodules}{3}{subparagraph*.10}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality.clearConsole module}{3}{subparagraph*.11}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality.comments module}{4}{subparagraph*.13}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality.loop module}{4}{subparagraph*.14}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality.printConsole module}{4}{subparagraph*.15}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality.sleep module}{4}{subparagraph*.16}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.basic\_functionality.variable module}{4}{subparagraph*.19}
+\contentsline {subparagraph}{Module contents}{4}{subparagraph*.20}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour package}{4}{subparagraph*.21}
+\contentsline {subparagraph}{Submodules}{4}{subparagraph*.22}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.appendAll module}{4}{subparagraph*.23}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.executeMatlab module}{4}{subparagraph*.24}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.executePython module}{4}{subparagraph*.25}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.executeR module}{4}{subparagraph*.26}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.pipInstall module}{4}{subparagraph*.27}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.readFile module}{4}{subparagraph*.28}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.readLine module}{4}{subparagraph*.30}
+\contentsline {subparagraph}{dataAnalysis.dsl.grammar.behaviour.stringJoin module}{4}{subparagraph*.32}
+\contentsline {subparagraph}{Module contents}{5}{subparagraph*.34}
+\contentsline {subparagraph}{Module contents}{5}{subparagraph*.35}
+\contentsline {paragraph}{dataAnalysis.dsl.req package}{5}{paragraph*.36}
+\contentsline {subparagraph}{Submodules}{5}{subparagraph*.37}
+\contentsline {subparagraph}{dataAnalysis.dsl.req.csvHandle module}{5}{subparagraph*.38}
+\contentsline {subparagraph}{Module contents}{5}{subparagraph*.41}
+\contentsline {subsubsection}{Submodules}{5}{subsubsection*.42}
+\contentsline {subsubsection}{dataAnalysis.dsl.daDsl module}{5}{subsubsection*.43}
+\contentsline {subsubsection}{Module contents}{5}{subsubsection*.44}
+\contentsline {section}{\numberline {1.2}Submodules}{5}{section.1.2}
+\contentsline {section}{\numberline {1.3}dataAnalysis.DAAgent module}{5}{section.1.3}
+\contentsline {section}{\numberline {1.4}Module contents}{5}{section.1.4}
+\contentsline {chapter}{\numberline {2}dataCleanser package}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Subpackages}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}dataCleanser.constants package}{7}{subsection.2.1.1}
+\contentsline {subsubsection}{Submodules}{7}{subsubsection*.45}
+\contentsline {subsubsection}{dataCleanser.constants.agentConstants module}{7}{subsubsection*.46}
+\contentsline {subsubsection}{Module contents}{7}{subsubsection*.47}
+\contentsline {subsection}{\numberline {2.1.2}dataCleanser.dsl package}{7}{subsection.2.1.2}
+\contentsline {subsubsection}{Subpackages}{7}{subsubsection*.48}
+\contentsline {paragraph}{dataCleanser.dsl.grammar package}{7}{paragraph*.49}
+\contentsline {subparagraph}{Subpackages}{7}{subparagraph*.50}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality package}{7}{subparagraph*.51}
+\contentsline {subparagraph}{Submodules}{7}{subparagraph*.52}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality.clearConsole module}{7}{subparagraph*.53}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality.comments module}{8}{subparagraph*.55}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality.loop module}{8}{subparagraph*.56}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality.printConsole module}{8}{subparagraph*.57}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality.sleep module}{8}{subparagraph*.58}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.basic\_functionality.variable module}{8}{subparagraph*.61}
+\contentsline {subparagraph}{Module contents}{8}{subparagraph*.62}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour package}{8}{subparagraph*.63}
+\contentsline {subparagraph}{Submodules}{8}{subparagraph*.64}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour.appendAll module}{8}{subparagraph*.65}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour.readFile module}{8}{subparagraph*.66}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour.readLine module}{8}{subparagraph*.68}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour.removeColumns module}{8}{subparagraph*.70}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour.removeLine module}{8}{subparagraph*.71}
+\contentsline {subparagraph}{dataCleanser.dsl.grammar.behaviour.stringJoin module}{8}{subparagraph*.72}
+\contentsline {subparagraph}{Module contents}{9}{subparagraph*.74}
+\contentsline {subparagraph}{Module contents}{9}{subparagraph*.75}
+\contentsline {paragraph}{dataCleanser.dsl.req package}{9}{paragraph*.76}
+\contentsline {subparagraph}{Submodules}{9}{subparagraph*.77}
+\contentsline {subparagraph}{dataCleanser.dsl.req.csvHandle module}{9}{subparagraph*.78}
+\contentsline {subparagraph}{Module contents}{9}{subparagraph*.81}
+\contentsline {subsubsection}{Submodules}{9}{subsubsection*.82}
+\contentsline {subsubsection}{dataCleanser.dsl.cleaningDsl module}{9}{subsubsection*.83}
+\contentsline {subsubsection}{Module contents}{9}{subsubsection*.84}
+\contentsline {section}{\numberline {2.2}Submodules}{9}{section.2.2}
+\contentsline {section}{\numberline {2.3}dataCleanser.DCAgent module}{9}{section.2.3}
+\contentsline {section}{\numberline {2.4}Module contents}{9}{section.2.4}
+\contentsline {chapter}{\numberline {3}dataScraper package}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Subpackages}{11}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}dataScraper.constants package}{11}{subsection.3.1.1}
+\contentsline {subsubsection}{Submodules}{11}{subsubsection*.85}
+\contentsline {subsubsection}{dataScraper.constants.agentConstants module}{11}{subsubsection*.86}
+\contentsline {subsubsection}{Module contents}{11}{subsubsection*.87}
+\contentsline {subsection}{\numberline {3.1.2}dataScraper.dsl package}{11}{subsection.3.1.2}
+\contentsline {subsubsection}{Subpackages}{11}{subsubsection*.88}
+\contentsline {paragraph}{dataScraper.dsl.grammar package}{11}{paragraph*.89}
+\contentsline {subparagraph}{Subpackages}{11}{subparagraph*.90}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality package}{11}{subparagraph*.91}
+\contentsline {subparagraph}{Submodules}{11}{subparagraph*.92}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality.clearConsole module}{11}{subparagraph*.93}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality.comments module}{12}{subparagraph*.95}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality.loop module}{12}{subparagraph*.96}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality.printConsole module}{12}{subparagraph*.97}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality.sleep module}{12}{subparagraph*.98}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.basic\_functionality.variable module}{12}{subparagraph*.101}
+\contentsline {subparagraph}{Module contents}{12}{subparagraph*.102}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.behaviour package}{12}{subparagraph*.103}
+\contentsline {subparagraph}{Submodules}{12}{subparagraph*.104}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.behaviour.readFile module}{12}{subparagraph*.105}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.behaviour.readLine module}{12}{subparagraph*.107}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.behaviour.scrapeString module}{12}{subparagraph*.109}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.behaviour.scrapeURL module}{12}{subparagraph*.110}
+\contentsline {subparagraph}{dataScraper.dsl.grammar.behaviour.stringJoin module}{12}{subparagraph*.111}
+\contentsline {subparagraph}{Module contents}{13}{subparagraph*.113}
+\contentsline {subparagraph}{Module contents}{13}{subparagraph*.114}
+\contentsline {paragraph}{dataScraper.dsl.req package}{13}{paragraph*.115}
+\contentsline {subparagraph}{Submodules}{13}{subparagraph*.116}
+\contentsline {subparagraph}{dataScraper.dsl.req.csvHandle module}{13}{subparagraph*.117}
+\contentsline {subparagraph}{dataScraper.dsl.req.jsonHandle module}{13}{subparagraph*.120}
+\contentsline {subparagraph}{dataScraper.dsl.req.requestHandle module}{13}{subparagraph*.133}
+\contentsline {subparagraph}{Module contents}{14}{subparagraph*.144}
+\contentsline {subsubsection}{Submodules}{14}{subsubsection*.145}
+\contentsline {subsubsection}{dataScraper.dsl.scrapingDsl module}{14}{subsubsection*.146}
+\contentsline {subsubsection}{Module contents}{14}{subsubsection*.147}
+\contentsline {section}{\numberline {3.2}Submodules}{14}{section.3.2}
+\contentsline {section}{\numberline {3.3}dataScraper.DSAgent module}{14}{section.3.3}
+\contentsline {section}{\numberline {3.4}Module contents}{14}{section.3.4}
+\contentsline {chapter}{\numberline {4}dbAgent package}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Subpackages}{15}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}dbAgent.constants package}{15}{subsection.4.1.1}
+\contentsline {subsubsection}{Submodules}{15}{subsubsection*.148}
+\contentsline {subsubsection}{dbAgent.constants.agentConstants module}{15}{subsubsection*.149}
+\contentsline {subsubsection}{Module contents}{15}{subsubsection*.150}
+\contentsline {subsection}{\numberline {4.1.2}dbAgent.dsl package}{15}{subsection.4.1.2}
+\contentsline {subsubsection}{Subpackages}{15}{subsubsection*.151}
+\contentsline {paragraph}{dbAgent.dsl.grammar package}{15}{paragraph*.152}
+\contentsline {subparagraph}{Subpackages}{15}{subparagraph*.153}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality package}{15}{subparagraph*.154}
+\contentsline {subparagraph}{Submodules}{15}{subparagraph*.155}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality.clearConsole module}{15}{subparagraph*.156}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality.comments module}{16}{subparagraph*.158}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality.loop module}{16}{subparagraph*.159}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality.printConsole module}{16}{subparagraph*.160}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality.sleep module}{16}{subparagraph*.161}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.basic\_functionality.variable module}{16}{subparagraph*.164}
+\contentsline {subparagraph}{Module contents}{16}{subparagraph*.165}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour package}{16}{subparagraph*.166}
+\contentsline {subparagraph}{Submodules}{16}{subparagraph*.167}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour.appendAll module}{16}{subparagraph*.168}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour.insertCSVMongo module}{16}{subparagraph*.169}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour.insertJSONMongo module}{16}{subparagraph*.170}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour.readFile module}{16}{subparagraph*.171}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour.readLine module}{16}{subparagraph*.173}
+\contentsline {subparagraph}{dbAgent.dsl.grammar.behaviour.stringJoin module}{16}{subparagraph*.175}
+\contentsline {subparagraph}{Module contents}{17}{subparagraph*.177}
+\contentsline {subparagraph}{Module contents}{17}{subparagraph*.178}
+\contentsline {paragraph}{dbAgent.dsl.req package}{17}{paragraph*.179}
+\contentsline {subparagraph}{Submodules}{17}{subparagraph*.180}
+\contentsline {subparagraph}{dbAgent.dsl.req.csvHandle module}{17}{subparagraph*.181}
+\contentsline {subparagraph}{Module contents}{17}{subparagraph*.184}
+\contentsline {subsubsection}{Submodules}{17}{subsubsection*.185}
+\contentsline {subsubsection}{dbAgent.dsl.dbDsl module}{17}{subsubsection*.186}
+\contentsline {subsubsection}{Module contents}{17}{subsubsection*.187}
+\contentsline {section}{\numberline {4.2}Submodules}{17}{section.4.2}
+\contentsline {section}{\numberline {4.3}dbAgent.DBAgent module}{17}{section.4.3}
+\contentsline {section}{\numberline {4.4}Module contents}{17}{section.4.4}
+\contentsline {chapter}{\numberline {5}gui module}{19}{chapter.5}
+\contentsline {chapter}{\numberline {6}Indices and tables}{21}{chapter.6}
+\contentsline {chapter}{Python Module Index}{23}{section*.188}
