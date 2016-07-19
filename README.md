@@ -5,7 +5,7 @@ PowerKnowledge is a system designed to obtain raw data as input and convert it i
 
 * version: 1.0
 * MSc project, MSc in Computer Science, University of Southampton.
-* Official ![documentation](https://sawankh.github.io/PowerKnowledge/) of PowerKnowledge
+* Official [documentation](https://sawankh.github.io/PowerKnowledge/) of PowerKnowledge
 
 ## [Colaborators](https://github.com/sawankh/PowerKnowledge/graphs/contributors)
 * Sawan Jagdish Kapai Harpalani. Contact: <sawankapai@gmail.com>
