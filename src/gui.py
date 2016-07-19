@@ -56,6 +56,16 @@ INSERT_JSON = "Insert JSON"
 EXECUTE_PYTHON = "Execute Python"
 EXECUTE_R = "Execute R"
 EXECUTE_MATLAB = "Execute Matlab"
+BTON_SCRAPE_URL = "bScrapeURL"
+BTON_SCRAPE_STRING = "bScrapeString"
+BTON_REMOVE_COLUMNS = "bRemoveColumns"
+BTON_REMOVE_LINES = "bRemoveLine"
+BTON_APPEND_FILES = "bAppendFiles"
+BTON_INSERT_CSV = "bInsertCSV"
+BTON_INSERT_JSON = "bInsertJSON"
+BTON_EXECUTE_PYTHON = "bExecPy "
+BTON_EXECUTE_R = "bExecR"
+BTON_EXECUTE_MATLAB = "bExecMat"
 SEPARATOR = "==============================================================================\n"
 
 # Main method
@@ -195,6 +205,29 @@ def runExternal(typeAgent, terminal):
 def showInfo(event):
 	tkMessageBox.showinfo(title = 'Information', message = '- Author: Sawan J. Kapai Harpalani\n- Version: 1.0\n')
 
+# Adds Template of specific function to the editor
+def templateFunction(typeFunction, editor):
+	if typeFunction == BTON_SCRAPE_URL:
+		editor.insert(INSERT, "scrapeURL(URL, node, outputFileName, outputFilePath, logBool)")
+	elif typeFunction == BTON_SCRAPE_STRING:
+		editor.insert(INSERT, "scrapeString(string, node, outputFileName, outputFilePath, logBool)")
+	elif typeFunction == BTON_REMOVE_COLUMNS:
+		editor.insert(INSERT, "removeColumns(file, columns*)")
+	elif typeFunction == BTON_REMOVE_LINES:
+		editor.insert(INSERT, "removeColumns(file, lines*)")
+	elif typeFunction == BTON_APPEND_FILES:
+		editor.insert(INSERT, "appendFile(filesPath, fileExtension)")
+	elif typeFunction == BTON_INSERT_CSV:
+		editor.insert(INSERT, "insertCSVMongo(host, port, databaseName, collectionName, csvFile)\n")
+	elif typeFunction == BTON_INSERT_JSON:
+		editor.insert(INSERT, "insertCSVMongo(host, port, databaseName, collectionName, jsonFile)\n")
+	elif typeFunction == BTON_EXECUTE_MATLAB:
+		editor.insert(INSERT, "executeMatlab(file, arguments*)")
+	elif typeFunction == BTON_EXECUTE_PYTHON:
+		editor.insert(INSERT, "executePython(file, arguments*)")
+	elif typeFunction == BTON_EXECUTE_R:
+		editor.insert(INSERT, "executeR(file, arguments*)")
+
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Notebook(parent)
@@ -229,8 +262,8 @@ def createNotebook(parent):
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_SCRAPER, terminalDS)))	
 	labelFrameDS = LabelFrame(frameDS, name = "labelFrameDS", text = " Specific Functions ")
-	scrapeURL = Button(frameDS, name = "bScrapeURL", text = SCRAPE_URL)	
-	scrapeString = Button(frameDS, name = "bScrapeString", text = SCRAPE_STRING)	
+	scrapeURL = Button(frameDS, name = "bScrapeURL", text = SCRAPE_URL, command = (lambda: templateFunction(BTON_SCRAPE_URL, guiDS.text)))	
+	scrapeString = Button(frameDS, name = "bScrapeString", text = SCRAPE_STRING, command = (lambda: templateFunction(BTON_SCRAPE_STRING, guiDS.text)))	
 	
 	guiDS.place(relx = 0.01, rely = 0.03, relheight = 0.55, relwidth = 0.7)
 	terminalDS.place(relx = 0.035, rely = 0.63, relheight = 0.36, relwidth = 0.92)
@@ -255,9 +288,9 @@ def createNotebook(parent):
 	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR,  command = (lambda: saveScript(guiDC.editorText)))
 	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_CLEANSER, terminalDC)))
 	labelFrameDC = LabelFrame(frameDC, name = "labelFrameDC", text = " Specific Functions ")
-	removeColumns = Button(frameDC, name = "bRemoveColumns", text = REMOVE_COLUMNS)
-	removeLine = Button(frameDC, name = "bRemoveLine", text = REMOVE_LINE)
-	appendFiles = Button(frameDC, name = "bAppendFiles", text = APPEND_FILE)
+	removeColumns = Button(frameDC, name = "bRemoveColumns", text = REMOVE_COLUMNS, command = (lambda: templateFunction(BTON_REMOVE_COLUMNS, guiDC.text)))
+	removeLine = Button(frameDC, name = "bRemoveLine", text = REMOVE_LINE, command = (lambda: templateFunction(BTON_REMOVE_LINES, guiDC.text)))
+	appendFiles = Button(frameDC, name = "bAppendFiles", text = APPEND_FILE, command = (lambda: templateFunction(BTON_APPEND_FILES, guiDC.text)))
 
 	guiDC.place(relx = 0.01, rely = 0.03, relheight = 0.55, relwidth = 0.7)
 	terminalDC.place(relx = 0.035, rely = 0.63, relheight = 0.36, relwidth = 0.92)
@@ -283,8 +316,8 @@ def createNotebook(parent):
 	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDB.editorText)))
 	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_BASE, terminalDB)))
 	labelFrameDB = LabelFrame(frameDB, name = "labelFrameDB", text = " Specific Functions ")
-	insertCSV = Button(frameDB, name = "bInsertCSV", text = INSERT_CSV)
-	insertJSON = Button(frameDB, name = "bInsertJSON", text = INSERT_JSON)
+	insertCSV = Button(frameDB, name = "bInsertCSV", text = INSERT_CSV, command = (lambda: templateFunction(BTON_INSERT_CSV, guiDB.text)))
+	insertJSON = Button(frameDB, name = "bInsertJSON", text = INSERT_JSON, command = (lambda: templateFunction(BTON_INSERT_JSON, guiDB.text)))
 
 	guiDB.place(relx = 0.01, rely = 0.03, relheight = 0.55, relwidth = 0.7)
 	terminalDB.place(relx = 0.035, rely = 0.63, relheight = 0.36, relwidth = 0.92)
@@ -309,9 +342,9 @@ def createNotebook(parent):
 	saveScriptDA = Button(frameDA, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDA.editorText)))
 	runExternalDA = Button(frameDA, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_ANALAYSIS, terminalDA)))	
 	labelFrameDA = LabelFrame(frameDA, name = "labelFrameDA", text = " Specific Functions ")
-	executePython = Button(frameDA, name = "bExecPy", text = EXECUTE_PYTHON)	
-	executeR = Button(frameDA, name = "bExecR", text = EXECUTE_R)
-	executeMatlab = Button(frameDA, name = "bExecMat", text = EXECUTE_MATLAB)
+	executePython = Button(frameDA, name = "bExecPy", text = EXECUTE_PYTHON, command = (lambda: templateFunction(BTON_EXECUTE_PYTHON, guiDA.text)))	
+	executeR = Button(frameDA, name = "bExecR", text = EXECUTE_R, command = (lambda: templateFunction(BTON_EXECUTE_R, guiDA.text)))
+	executeMatlab = Button(frameDA, name = "bExecMat", text = EXECUTE_MATLAB, command = (lambda: templateFunction(BTON_EXECUTE_MATLAB, guiDA.text)))
 
 	guiDA.place(relx = 0.01, rely = 0.03, relheight = 0.55, relwidth = 0.7)
 	terminalDA.place(relx = 0.035, rely = 0.63, relheight = 0.36, relwidth = 0.92)
