@@ -47,6 +47,9 @@ RUN_EXTERNAL = "Run script"
 CLEAR_CONSOLE = "Clear"
 SCRAPE_URL = "Scrape URL"
 SCRAPE_STRING = "Scrape String"
+REMOVE_COLUMNS = "Remove Columns"
+REMOVE_LINE = "Remove Lines"
+APPEND_FILE = "Append Files"
 SEPARATOR = "==============================================================================\n"
 
 # Main method
@@ -229,6 +232,9 @@ def createNotebook(parent):
 	runEditorDC = Button(frameDC, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDC.editorText, DATA_CLEANSER, terminalDC)))
 	saveScriptDC = Button(frameDC, name = "bSaveScript", text = SAVE_EDITOR,  command = (lambda: saveScript(guiDC.editorText)))
 	runExternalDC = Button(frameDC, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_CLEANSER, terminalDC)))
+	removeColumns = Button(frameDC, name = "bRemoveColumns", text = REMOVE_COLUMNS)
+	removeLine = Button(frameDC, name = "bRemoveLine", text = REMOVE_LINE)
+	appendFiles = Button(frameDC, name = "bAppendFiles", text = APPEND_FILE)
 
 	guiDC.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDC.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -236,6 +242,9 @@ def createNotebook(parent):
 	runEditorDC.place(relx = 0.79, rely = 0.43)
 	saveScriptDC.place(relx = 0.86, rely = 0.43)
 	runExternalDC.place(relx = 0.79, rely = 0.49)
+	removeColumns.place(relx = 0.77, rely = 0.3)
+	removeLine.place(relx = 0.86, rely = 0.3)
+	appendFiles.place(relx = 0.77, rely = 0.36)
 
 	guiDB = GuiEditor(frameDB, name = "editor")
 	terminalDB = ScrolledText(frameDB, name = "terminal", state = "disabled")
