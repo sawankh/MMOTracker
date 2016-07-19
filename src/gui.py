@@ -214,7 +214,7 @@ def createNotebook(parent):
 
 	iOpen = Image.open("resources/pwlogo.png").resize((247, 192), Image.ANTIALIAS)
 	img = ImageTk.PhotoImage(iOpen)
-	panel = Label(parent, image = img)
+	panel = Label(parent, image = img, cursor = "hand1")
 	panel.bind('<Button-1>', showInfo)
 	panel.image = img
 	panel.place(relx = 0.76, rely = 0.05, relheight = 0.25, relwidth = 0.182)
