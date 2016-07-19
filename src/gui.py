@@ -50,6 +50,8 @@ SCRAPE_STRING = "Scrape String"
 REMOVE_COLUMNS = "Remove Columns"
 REMOVE_LINE = "Remove Lines"
 APPEND_FILE = "Append Files"
+INSERT_CSV = "Insert CSV"
+INSERT_JSON = "Insert JSON"
 SEPARATOR = "==============================================================================\n"
 
 # Main method
@@ -252,6 +254,8 @@ def createNotebook(parent):
 	runEditorDB = Button(frameDB, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDB.editorText, DATA_BASE, terminalDB)))
 	saveScriptDB = Button(frameDB, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDB.editorText)))
 	runExternalDB = Button(frameDB, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_BASE, terminalDB)))
+	insertCSV = Button(frameDB, name = "bInsertCSV", text = INSERT_CSV)
+	insertJSON = Button(frameDB, name = "bInsertJSON", text = INSERT_JSON)
 
 	guiDB.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDB.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -259,6 +263,8 @@ def createNotebook(parent):
 	runEditorDB.place(relx = 0.79, rely = 0.43)
 	saveScriptDB.place(relx = 0.86, rely = 0.43)
 	runExternalDB.place(relx = 0.79, rely = 0.49)
+	insertCSV.place(relx = 0.79, rely = 0.3)
+	insertJSON.place(relx = 0.86, rely = 0.3)
 
 	guiDA = GuiEditor(frameDA, name = "editor")
 	terminalDA = ScrolledText(frameDA, name = "terminal", state = "disabled")
