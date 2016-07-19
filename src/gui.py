@@ -193,7 +193,7 @@ def runExternal(typeAgent, terminal):
 
 # Shows basic information about the application
 def showInfo(event):
-	tkMessageBox.showinfo(title = 'Information', message = ' Button pressed! ')
+	tkMessageBox.showinfo(title = 'Information', message = '- Author: Sawan J. Kapai Harpalani\n- Version: 1.0\n')
 
 # Creates a Notebook and adds
 def createNotebook(parent):
