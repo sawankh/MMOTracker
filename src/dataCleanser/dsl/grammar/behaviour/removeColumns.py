@@ -23,10 +23,10 @@ from dsl.grammar.basic_functionality.variable import *
 import progressbar, datetime
 import pandas as pd
 
-# Constants
+"""Constants"""
 SEPARATOR = "##############################################################################"
 
-# Rules
+"""Rules"""
 comma = Suppress(Literal(","))
 removeColumnsReservedWord = Suppress(Keyword("removeColumns"))
 columns = QuotedString('"', escChar = "\\").setResultsName("columns", listAllMatches = True)
@@ -36,8 +36,8 @@ rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
 removeColumnsExpr = removeColumnsReservedWord + leftBracket + (fileToTransform | varID) + OneOrMore(comma + (columns | varID)) + rightBracket
 
-# Removes the clomuns desired from the csv file
 def removeColumns(tokens, varStack):
+	"""Removes the clomuns desired from the csv file"""
 	fileToTransform = ''
 	columns = []
 	if len(tokens.varID) > 0:

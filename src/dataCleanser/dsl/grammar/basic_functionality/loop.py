@@ -22,10 +22,10 @@ from pyparsing import *
 from dsl.grammar.basic_functionality.variable import *
 
 
-# Constants
+"""Constants"""
 UNDERSCORE = '_'
 
-# Rules
+"""Rules"""
 loopReservedWord = Suppress(Keyword("repeat"))
 arrow = Suppress(Keyword("->"))
 leftKey = Suppress(Keyword("{"))
@@ -39,8 +39,8 @@ statement = Word(printables, excludeChars = "{}")
 newLine = Suppress(White("\n"))
 loopExpr = (loopReservedWord + identifier.setResultsName("iterator") + arrow + fromVar.setResultsName("fromVar") + toReservedWord + toVar.setResultsName("toVar") + leftKey + OneOrMore(newLine) + OneOrMore(statement.setResultsName("statements", listAllMatches=True) + newLine) + rightKey)
 
-# Loop method
 def loop(parsedObject, statementCheck):
+	"""Loop method"""
 	tVar = int(getValue(parsedObject.toVar))
 	fVar = int(getValue(parsedObject.fromVar))
 	if tVar > fVar:

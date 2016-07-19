@@ -19,7 +19,7 @@
 
 from pyparsing import *
 
-# Rules
+"""Rules"""
 comma = Suppress(Literal(","))
 readLineReservedWord = Suppress(Keyword("readLine"))
 fileName = QuotedString('"', escChar = "\\").setResultsName("fileName")
@@ -29,8 +29,8 @@ rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
 readLineExpr = readLineReservedWord + leftBracket + (fileName + comma + (lineNumber | varID)) + rightBracket
 
-# Joins strings and returns quoted string
 def readLine(sList, varStack):
+	"""Joins strings and returns quoted string"""
 	resultString = ''
 	lineNu = ''
 	fileN = ''

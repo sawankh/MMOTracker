@@ -23,11 +23,11 @@ from dsl.grammar.behaviour.readFile import *
 from dsl.grammar.behaviour.stringJoin import *
 from dsl.grammar.behaviour.readLine import *
 
-# Constants
+"""Constants"""
 UNDERSCORE = '_'
 varStack = []
 
-# Rules
+"""Rules"""
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
 string = QuotedString('"', unquoteResults = False)
@@ -37,6 +37,7 @@ assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | re
 
 
 def addStack(tokens):
+	""" Adds element to the execution stack """
 	if inList(varStack, tokens.varName):
 		del varStack[getIndex(varStack, tokens.varName)]
 		varStack.append(tokens[:])

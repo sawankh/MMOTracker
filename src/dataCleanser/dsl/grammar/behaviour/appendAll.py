@@ -23,10 +23,10 @@ from dsl.grammar.basic_functionality.variable import *
 import progressbar, datetime, glob
 import pandas as pd
 
-# Constants
+"""Constants"""
 SEPARATOR = "##############################################################################"
 
-# Rules
+"""Rules"""
 comma = Suppress(Literal(","))
 appendAllReservedWord = Suppress(Keyword("appendAll"))
 path = QuotedString('"', escChar = "\\").setResultsName("path")
@@ -36,8 +36,8 @@ rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
 appendAllExpr = appendAllReservedWord + leftBracket + (path + comma + (fileType | varID)) + rightBracket
 
-# Method appends all files
 def appendAll(tokens, varStack):
+	"""Method appends all files"""
 	path = ''
 	fileType = ''
 	if len(tokens.varID) > 0:

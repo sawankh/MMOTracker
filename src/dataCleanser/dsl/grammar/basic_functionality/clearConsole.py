@@ -21,7 +21,7 @@ from pyparsing import *
 
 import os
 
-# Rules
+"""Rules"""
 clearReservedWorld = Literal("clearConsole")
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))

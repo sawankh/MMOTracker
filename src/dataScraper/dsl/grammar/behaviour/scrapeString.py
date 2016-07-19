@@ -26,7 +26,7 @@ from dsl.req.jsonHandle import *
 from dsl.req.csvHandle import *
 from dsl.grammar.basic_functionality.variable import *
 
-# Constants
+"""Constants"""
 HEADERS = 0
 CONTENT = 1
 BLANK = ' '
@@ -35,7 +35,7 @@ LOG_EXTENSION = '.log'
 SEPARATOR = "##############################################################################"
 SUCCESS_REQUEST = 200
 
-# Rules
+"""Rules"""
 scrapeStringReservedWord = Suppress(Keyword("scrapeString"))
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
@@ -49,8 +49,8 @@ falseKeyword = CaselessKeyword("False")
 varID = identifier
 scrapeStringExpr = scrapeStringReservedWord + leftBracket + (string.setResultsName("content") | identifier.setResultsName("varIDC")) + comma + (node.setResultsName("node") | identifier.setResultsName("varIDN")) + comma + (fileName.setResultsName("fileName") | identifier.setResultsName("varIDF")) + comma + (Path.setResultsName("path") | identifier.setResultsName("varIDP")) + comma + (trueKeyword | falseKeyword).setResultsName("log") + rightBracket
 
-# Checks the stack and returns value
 def checkStack(element, alternative, stack):
+	"""Checks the stack and returns value"""
 	resultString = ''
 	if len(element) > 0:
 		for item in stack[:]:
@@ -65,8 +65,8 @@ def checkStack(element, alternative, stack):
 	else:
 		resultString = ''
 
-# Scrapes an String and returns csv
 def scrapeString(tokens):
+	"""Scrapes an String and returns csv"""
 	log = ast.literal_eval(tokens.log)
 	strContent = checkStack(tokens.varIDC, tokens.content, varStack)
 	strNode = checkStack(tokens.varIDN, tokens.node, varStack)

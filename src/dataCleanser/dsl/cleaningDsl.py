@@ -29,14 +29,14 @@ from dsl.grammar.behaviour.appendAll import *
 from dsl.grammar.behaviour.removeColumns import *
 from dsl.grammar.behaviour.removeLine import *
 
-# DSL types of expression
+"""DSL types of expression"""
 newLine = Suppress(White("\n"))
 agentDSL = ZeroOrMore((removeLinesExpr | removeColumnsExpr | appendAllExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
-# Parses an entire file
 def dslParseFile(fileName):
+	"""Parses an entire file"""
 	agentDSL.parseFile(fileName)
 
-# Parses a string
 def dslParseString(string):
+	"""Parses a string"""
 	agentDSL.parseString(string)

@@ -23,11 +23,11 @@ from dsl.grammar.behaviour.readFile import *
 from dsl.grammar.behaviour.stringJoin import *
 from dsl.grammar.behaviour.readLine import *
 
-# Constants
+"""Constants"""
 UNDERSCORE = '_'
 varStack = []
 
-# Rules
+"""Rules"""
 identifier = Word(alphas, alphanums + UNDERSCORE)
 number = Word(nums + '.')
 string = QuotedString('"', unquoteResults = False)
@@ -37,6 +37,7 @@ assignment =  identifier.setResultsName("varName") + arrow + ( readFileExpr | re
 
 
 def addStack(tokens):
+	""" Adds element to the execution stack """
 	if inList(varStack, tokens.varName):
 		del varStack[getIndex(varStack, tokens.varName)]
 		varStack.append(tokens[:])
@@ -49,30 +50,30 @@ def addStack(tokens):
 	else:
 		varStack.append(tokens[:])
 
-# Check if an element is in the list
 def inList(data, search):
+	"""Check if an element is in the list"""
 	for sublist in data:
 		if sublist[0] == search:
 			return True            
 
-# Get index of the element in the list
 def getIndex(data, search):
+	"""Get index of the element in the list"""
 	iterator = 0
 	for sublist in data:
 		if sublist[0] == search:
 			return iterator   
 		iterator += 1       
 
-# Checks if string is integer
 def isInteger(string):
+	"""Checks if string is integer"""
 	try:
 		int(string)
 		return True
 	except ValueError:
 		return False
 
-# Checks if the string is a integer or a variable, if is the last one returns its actual value from the stack
 def getValue(string):
+	"""Checks if the string is a integer or a variable, if is the last one returns its actual value from the stack"""
 	if isInteger(string):
 		return string
 	elif inList(varStack, string):

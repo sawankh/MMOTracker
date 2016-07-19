@@ -56,8 +56,8 @@ def main(argv):
 	else:
 		printError(READING_CONF_ERROR)
 
-# Prints errors 
 def printError(errorType):
+	"""Prints errors """
 	if errorType == OPTION_ERROR:
 		print 'Options Error: One or more options inserted do not exist'
 	elif errorType == PARAM_ERROR:
@@ -72,8 +72,8 @@ def printError(errorType):
 	sys.exit(2)
 
 
-# Prints help for the commands available
 def printHelp():
+	"""Prints help for the commands available"""
 	for help in COMMAND_HELP:
 		splitedText = help.split(":")
 		prefix = splitedText[0] + ":"
@@ -82,12 +82,12 @@ def printHelp():
 	sys.exit(2)
 
 
-# Asks user name
 def askUser():
+	"""Asks user name"""
 	return raw_input("Insert username: ")
 
-# Asks user password 
 def askPassword():
+	"""Asks user password """
 	return getpass.getpass("Enter password: ")
 
 if __name__ == '__main__':

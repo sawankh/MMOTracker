@@ -17,12 +17,12 @@
 # If not, seehttp://www.gnu.org/licenses/.
 #==============================================================================
 
-# Error Constants
+"""Error Constants"""
 OPTION_ERROR = 0
 PARAM_ERROR = 1
 NO_ARG = 2
 MAND_ARG_MISSING = 3
 READING_CONF_ERROR = 4
 
-# Instruction Constant
+"""Instruction Constant"""
 COMMAND_HELP = ['-c: Configuration file, where all the information about the API and the output is contained', '--username: Username, indicates that username is required for the use of the API', '--password: Password, indicates that password is required for the use of the API']

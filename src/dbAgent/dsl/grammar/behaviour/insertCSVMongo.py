@@ -24,7 +24,7 @@ from dsl.grammar.basic_functionality.variable import *
 import progressbar, csv
 
 
-# Constants
+"""Constants"""
 SEPARATOR = "##############################################################################"
 HOST = 0
 PORT = 1
@@ -32,7 +32,7 @@ DB_NAME = 2
 COLLECTION_NAME = 3
 FILE = 4
 
-# Rules
+"""Rules"""
 comma = Suppress(Literal(","))
 insertCSVMongoReservedWord = Suppress(Keyword("insertCSVMongo"))
 host = QuotedString('"', escChar = "\\").setResultsName("host")
@@ -45,8 +45,8 @@ rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
 insertCSVMongoExpr = insertCSVMongoReservedWord + leftBracket + (host | varID) + comma + (port | varID) + comma + (dbName | varID) + comma + (collectionName | varID) + comma + (fileToInsert | varID) + rightBracket
 
-# Insert csv file to MongoDB
 def insertCSVMongo(tokens, varStack):
+	"""Insert csv file to MongoDB"""
 	hostDB = ''
 	portDB = ''
 	dbNameDB = ''

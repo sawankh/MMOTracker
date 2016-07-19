@@ -19,7 +19,7 @@
 
 from pyparsing import *
 
-# Rules
+"""Rules"""
 comma = Suppress(Literal(","))
 stringJoinReservedWord = Suppress(Keyword("joinString"))
 string = QuotedString('"', escChar = "\\").setResultsName("stringsToJoin", listAllMatches = True)
@@ -28,8 +28,8 @@ rightBracket = Suppress(Literal(")"))
 varID = Word(alphas, alphanums + "_").setResultsName("varID", listAllMatches = True)
 joinStringExpr = stringJoinReservedWord + leftBracket + ((string | varID) + comma + (string | varID)) + ZeroOrMore(comma + (string | varID)) + rightBracket
 
-# Joins strings and returns quoted string
 def joinString(sList, varStack):
+	"""Joins strings and returns quoted string"""
 	resultString = ''
 	if len(sList.varID) > 0:
 		for var in sList.varID.asList():

@@ -28,14 +28,14 @@ from dsl.grammar.basic_functionality.variable import *
 from dsl.grammar.behaviour.scrapeURL import *
 from dsl.grammar.behaviour.scrapeString import *
 
-# DSL types of expression
+"""DSL types of expression"""
 newLine = Suppress(White("\n"))
 agentDSL = ZeroOrMore((scrapeURLExpr | scrapeStringExpr | clearExpr | commentsExpr | loopExpr.setParseAction(lambda tokens: loop(tokens, agentDSL)) | printExpr | sleepExpr | assignment) + Optional(newLine))
 
-# Parses an entire file
+"""Parses an entire file"""
 def dslParseFile(fileName):
 	agentDSL.parseFile(fileName)
 
-# Parses a string
+"""Parses a string"""
 def dslParseString(string):
 	agentDSL.parseString(string)

@@ -21,7 +21,7 @@ from pyparsing import *
 
 from dsl.grammar.basic_functionality.variable import *
 
-# Rules
+"""Rules"""
 printReservedWord = Suppress(Literal("printConsole"))
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
@@ -31,8 +31,8 @@ variableID = identifier
 plus = Suppress(Literal("+"))
 printExpr = printReservedWord + leftBracket + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)) + Optional(ZeroOrMore(plus + (message.setResultsName("message", listAllMatches=True) | variableID.setResultsName("varID", listAllMatches=True)))) + rightBracket
 
-# Prints console parsed object
 def printConsole(parsedObject):
+	"""Prints console parsed object"""
 	stringToPrint = ''
 	for element in parsedObject:
 		if len(parsedObject.varID) > 0:

@@ -21,15 +21,15 @@ from pyparsing import *
 
 import progressbar, time
 
-# Rules
+"""Rules"""
 sleepReservedWord = Suppress(Literal("sleep"))
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 number = Word(nums)
 sleepExpr = sleepReservedWord + leftBracket + number.setResultsName("value") + rightBracket
 
-# Sleeps the agent for the value especified of seconds
 def sleepAgent(tokens):
+	"""Sleeps the agent for the value especified of seconds"""
 	value = stringToInt(tokens.value)
 	if value > 0:
 		print "Agent is going to sleep for " + str(value) + " seconds"
@@ -42,8 +42,8 @@ def sleepAgent(tokens):
 		bar.finish()
 	else:
 		raise Exception("Sleep time cannot be 0")	
-# Converts string to int
 def stringToInt(strNumber):
+	"""Converts string to int"""
 	return int(strNumber)
 
 sleepExpr.setParseAction(sleepAgent)

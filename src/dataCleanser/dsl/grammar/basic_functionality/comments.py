@@ -19,5 +19,5 @@
 
 from pyparsing import *
 
-# Rules
+"""Rules"""
 commentsExpr = cppStyleComment

@@ -19,14 +19,14 @@
 
 from pyparsing import *
 
-# Rules
+"""Rules"""
 reservedWordReadFile = Suppress(Keyword("readFile"))
 fileName = QuotedString('"', escChar = "\\")
 leftBracket = Suppress(Literal("("))
 rightBracket = Suppress(Literal(")"))
 readFileExpr = reservedWordReadFile + leftBracket + fileName.setResultsName("fileName") + rightBracket
 
-# Reads file and returns quoted string to be possible to assign variable
+"""Reads file and returns quoted string to be possible to assign variable"""
 def readFile(fileN):
 	fp = open(fileN, 'r')
 	return "\"" + fp.read() + "\""

@@ -19,11 +19,11 @@
 
 import csv, progressbar, time
 
-# Constants
+"""Constants"""
 DEFAULT_PATH = ''
 
-# Writes content to a csv file
 def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
+	"""Writes content to a csv file"""
 	fileOpen = open(path + fileName, 'wb')
 	fileWriter = csv.writer(fileOpen)
 	fileWriter.writerow(headers)
@@ -37,8 +37,8 @@ def writeCSV(fileName, headers, content, path = DEFAULT_PATH):
 
 	fileOpen.close()
 
-# Writes a dictionary to CSV, better for JSON objects
 def writeDictCSV(fileName, headers, content, path = DEFAULT_PATH):
+	"""Writes a dictionary to CSV, better for JSON objects"""
 	with open(path + fileName, 'wb+') as f:
 	    writer = csv.DictWriter(f, headers, delimiter = ',', quoting = csv.QUOTE_MINIMAL)
 	    writer.writeheader()
