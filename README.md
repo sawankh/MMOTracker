@@ -1,4 +1,5 @@
-## PowerKnowledge
+![Powerknowledge](/src/resources/pwlogo.png)
+==========
 PowerKnowledge is a system designed to obtain raw data as input and convert it into powerful knowledge useful for many different applications. It receives an API as input, extracts raw data, cleans it, stores it into MongoDB, conducts an analysis using Python and finally via the representation of the results obtained previously it offers the user knowledge and conclusions about the topic researched.
 
 * version: 1.0
@@ -11,7 +12,11 @@ PowerKnowledge is a system designed to obtain raw data as input and convert it i
 This project is under GNU license.
 
 ## Branches
-*	[DataScraper Agent](https://github.com/sawankh/PowerKnowledge/tree/dataScraping): Implementation of the data scraper agent using python.
+*	[DataScraper Agent](https://github.com/sawankh/PowerKnowledge/tree/dataScraping): Implementation of the data scraper agent using Python.
+*	[DataCleanser Agent](https://github.com/sawankh/PowerKnowledge/tree/dataCleansing): Implementation of the data cleanser agent using Python.
+*	[Database Agent](https://github.com/sawankh/PowerKnowledge/tree/dbAgent): Implementation of the agent that is responsible to insert data into the database, used Python for development. Currently just MongoDB supported.
+*	[DataAnalysis Agent](https://github.com/sawankh/PowerKnowledge/tree/dataAnalysis): Implementation of the data analysis agent using Python. Currently it supports Python, R and Matlab scripts.
+*	[Graphic User Interface](https://github.com/sawankh/PowerKnowledge/tree/gui): Implementation of the GUI using Python Tkinter module.
 
 ## Python [![Python Logo](https://www.python.org/static/img/python-logo.png)](https://www.python.org) 
 
@@ -21,3 +26,4 @@ Python is an interpreted, object-oriented, high-level programming language with 
 * *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting.
 * *Python* - <a href="https://www.python.org">Download</a> and Install Python.
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
+* Install all the packages in the file *packages.txt*
