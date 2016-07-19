@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dataScraper.dsl.req.requestHandle &mdash; PowerKnowledge 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="top" title="PowerKnowledge 1.0.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="Module code" href="../../../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">PowerKnowledge 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for dataScraper.dsl.req.requestHandle</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># Title: requesthandle.py</span>
+<span class="c1"># Description: Handles all the request and collects the results</span>
+<span class="c1"># Author: Sawan J. Kapai Harpalani</span>
+<span class="c1"># Date: 2016-06-17</span>
+<span class="c1"># Version: 0.1</span>
+<span class="c1"># Usage: python requesthandle.py</span>
+<span class="c1"># Notes: </span>
+<span class="c1"># python_version: 2.6.6</span>
+<span class="c1"># License: Copyright 200X Sawan J. Kapai Harpalani </span>
+<span class="c1"># This file is part of MMOTracker. MMOTracker is free software: you can redistribute it  and/or modify </span>
+<span class="c1"># it under the terms of the GNU GeneralPublic License as published by the Free Software  Foundation, </span>
+<span class="c1"># either version 3 of the License,  or (at your option) any later version </span>
+<span class="c1"># MMOTracker is distributed in the hope that it willbe useful, but WITHOUT ANY WARRANTY; without </span>
+<span class="c1"># even the implied warranty of MERCHANTABILITY or FITNESSFOR A PARTICULAR PURPOSE. See the GNU General </span>
+<span class="c1"># PubliLicense for more details.You should have received a copy of the GNU GeneralPublic License along with MMOTracker. </span>
+<span class="c1"># If not, seehttp://www.gnu.org/licenses/.</span>
+<span class="c1">#==============================================================================</span>
+
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">sys</span>
+ 
+<span class="n">requests</span><span class="o">.</span><span class="n">packages</span><span class="o">.</span><span class="n">urllib3</span><span class="o">.</span><span class="n">disable_warnings</span><span class="p">()</span>
+
+<span class="c1"># Execute a get request </span>
+<div class="viewcode-block" id="getRequest"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getRequest">[docs]</a><span class="k">def</span> <span class="nf">getRequest</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="n">TOKEN</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+	<span class="k">try</span><span class="p">:</span>
+		<span class="n">mf</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;token.tok&quot;</span><span class="p">)</span>
+		<span class="n">TOKEN</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+	<span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+		<span class="nb">print</span> <span class="s2">&quot;No token&quot;</span>
+		
+	<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span> <span class="s1">&#39;authorization&#39;</span><span class="p">:</span> <span class="s1">&#39; Bearer &#39;</span> <span class="o">+</span> <span class="n">TOKEN</span><span class="p">}</span>
+	<span class="k">if</span> <span class="ow">not</span> <span class="n">TOKEN</span><span class="p">:</span>
+		<span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+	<span class="k">elif</span> <span class="n">TOKEN</span><span class="p">:</span>
+		<span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">headers</span> <span class="o">=</span> <span class="n">HEADERS</span><span class="p">,</span> <span class="n">verify</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Something happened while requesting&quot;</span><span class="p">)</span></div>
+
+<span class="c1"># Execute a get request with payload</span>
+<div class="viewcode-block" id="getRequestPayload"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getRequestPayload">[docs]</a><span class="k">def</span> <span class="nf">getRequestPayload</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">payload</span><span class="p">)</span></div>
+
+<span class="c1"># Execute a post request</span>
+<div class="viewcode-block" id="postRequest"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.postRequest">[docs]</a><span class="k">def</span> <span class="nf">postRequest</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">content</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">content</span><span class="p">)</span></div>
+
+<span class="c1"># Gets url of the request</span>
+<div class="viewcode-block" id="getURL"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getURL">[docs]</a><span class="k">def</span> <span class="nf">getURL</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span></div>
+
+<span class="c1"># Gets status code for request</span>
+<div class="viewcode-block" id="getCode"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getCode">[docs]</a><span class="k">def</span> <span class="nf">getCode</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">status_code</span></div>
+
+<span class="c1"># Gets raw response for request</span>
+<div class="viewcode-block" id="getRaw"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getRaw">[docs]</a><span class="k">def</span> <span class="nf">getRaw</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">raw</span></div>
+
+<span class="c1"># Get raw content for request</span>
+<div class="viewcode-block" id="getContent"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getContent">[docs]</a><span class="k">def</span> <span class="nf">getContent</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">content</span></div>
+
+<span class="c1"># Gets JSON response from request</span>
+<div class="viewcode-block" id="getJSON"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.getJSON">[docs]</a><span class="k">def</span> <span class="nf">getJSON</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+
+<span class="c1"># Prints code of request</span>
+<div class="viewcode-block" id="printCode"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.printCode">[docs]</a><span class="k">def</span> <span class="nf">printCode</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="nb">print</span> <span class="s2">&quot;The request&#39;s status code is: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span></div>
+
+<span class="c1"># Prints url</span>
+<div class="viewcode-block" id="printURL"><a class="viewcode-back" href="../../../../dataScraper.dsl.req.html#dataScraper.dsl.req.requestHandle.printURL">[docs]</a><span class="k">def</span> <span class="nf">printURL</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+	<span class="nb">print</span> <span class="s2">&quot;The request&#39;s url is: &quot;</span> <span class="o">+</span> <span class="n">request</span><span class="o">.</span><span class="n">url</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">PowerKnowledge 1.0.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, Sawan J. Kapai Harpalani.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.5.
+    </div>
+  </body>
+</html>
