@@ -18,6 +18,7 @@
 #==============================================================================
 
 from Tkinter import *
+import tkMessageBox
 from ttk import *
 from collections import OrderedDict
 from gui.guiEditor import *
@@ -190,6 +191,10 @@ def runExternal(typeAgent, terminal):
 	t = threading.Thread(target = task)
 	t.start()
 
+# Shows basic information about the application
+def showInfo(event):
+	tkMessageBox.showinfo(title = 'Information', message = ' Button pressed! ')
+
 # Creates a Notebook and adds
 def createNotebook(parent):
 	notebook = Notebook(parent)
@@ -210,6 +215,7 @@ def createNotebook(parent):
 	iOpen = Image.open("resources/pwlogo.png").resize((247, 192), Image.ANTIALIAS)
 	img = ImageTk.PhotoImage(iOpen)
 	panel = Label(parent, image = img)
+	panel.bind('<Button-1>', showInfo)
 	panel.image = img
 	panel.place(relx = 0.76, rely = 0.05, relheight = 0.25, relwidth = 0.182)
 
