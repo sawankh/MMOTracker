@@ -208,25 +208,25 @@ def showInfo(event):
 # Adds Template of specific function to the editor
 def templateFunction(typeFunction, editor):
 	if typeFunction == BTON_SCRAPE_URL:
-		editor.insert(INSERT, "scrapeURL(URL, node, outputFileName, outputFilePath, logBool)")
+		editor.insert(INSERT, "scrapeURL(URL, node, outputFileName, outputFilePath, logBool)\n")
 	elif typeFunction == BTON_SCRAPE_STRING:
-		editor.insert(INSERT, "scrapeString(string, node, outputFileName, outputFilePath, logBool)")
+		editor.insert(INSERT, "scrapeString(string, node, outputFileName, outputFilePath, logBool)\n")
 	elif typeFunction == BTON_REMOVE_COLUMNS:
-		editor.insert(INSERT, "removeColumns(file, columns*)")
+		editor.insert(INSERT, "removeColumns(file, columns*)\n")
 	elif typeFunction == BTON_REMOVE_LINES:
-		editor.insert(INSERT, "removeColumns(file, lines*)")
+		editor.insert(INSERT, "removeLines(file, lines*)\n")
 	elif typeFunction == BTON_APPEND_FILES:
-		editor.insert(INSERT, "appendFile(filesPath, fileExtension)")
+		editor.insert(INSERT, "appendAll(filesPath, fileExtension)\n")
 	elif typeFunction == BTON_INSERT_CSV:
 		editor.insert(INSERT, "insertCSVMongo(host, port, databaseName, collectionName, csvFile)\n")
 	elif typeFunction == BTON_INSERT_JSON:
-		editor.insert(INSERT, "insertCSVMongo(host, port, databaseName, collectionName, jsonFile)\n")
+		editor.insert(INSERT, "insertJSONMongo(host, port, databaseName, collectionName, jsonFile)\n")
 	elif typeFunction == BTON_EXECUTE_MATLAB:
-		editor.insert(INSERT, "executeMatlab(file, arguments*)")
+		editor.insert(INSERT, "executeMatlab(file, arguments*)\n")
 	elif typeFunction == BTON_EXECUTE_PYTHON:
-		editor.insert(INSERT, "executePython(file, arguments*)")
+		editor.insert(INSERT, "executePython(file, arguments*)\n")
 	elif typeFunction == BTON_EXECUTE_R:
-		editor.insert(INSERT, "executeR(file, arguments*)")
+		editor.insert(INSERT, "executeR(file, arguments*)\n")
 
 # Creates a Notebook and adds
 def createNotebook(parent):
