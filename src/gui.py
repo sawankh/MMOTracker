@@ -45,6 +45,7 @@ RUN_EDITOR = "Run editor"
 SAVE_EDITOR = "Save editor"
 RUN_EXTERNAL = "Run script"
 CLEAR_CONSOLE = "Clear"
+SCRAPE_URL = "Scrape URL"
 SEPARATOR = "==============================================================================\n"
 
 # Main method
@@ -209,7 +210,8 @@ def createNotebook(parent):
 	runEditorDS = Button(frameDS, name = "bRunEditor", text = RUN_EDITOR, command = (lambda: runEditor(guiDS.editorText, DATA_SCRAPER, terminalDS)))
 	saveScriptDS = Button(frameDS, name = "bSaveScript", text = SAVE_EDITOR, command = (lambda: saveScript(guiDS.editorText)))
 	runExternalDS = Button(frameDS, name = "bRunExtern", text = RUN_EXTERNAL, command = (lambda: runExternal(DATA_SCRAPER, terminalDS)))	
-	
+	scrapeURL = Button(frameDS, name = "bScrapeURL", text = SCRAPE_URL)	
+
 	
 	guiDS.place(relx = 0.01, rely = 0.02, relheight = 0.55, relwidth = 0.7)
 	terminalDS.place(relx = 0.035, rely = 0.6, relheight = 0.39, relwidth = 0.92)
@@ -217,6 +219,7 @@ def createNotebook(parent):
 	runEditorDS.place(relx = 0.79, rely = 0.43)
 	saveScriptDS.place(relx = 0.86, rely = 0.43)
 	runExternalDS.place(relx = 0.79, rely = 0.49)
+	scrapeURL.place(relx = 0.79, rely = 0.3)
 
 	guiDC = GuiEditor(frameDC, name = "editor")
 	terminalDC = ScrolledText(frameDC, name = "terminal", state = "disabled")
