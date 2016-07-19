@@ -1,4 +1,4 @@
-![](/src/resources/pwlogo.png =605x470)
+![](/src/resources/gh.png)
 ==========
 PowerKnowledge is a system designed to obtain raw data as input and convert it into powerful knowledge useful for many different applications. It receives an API as input, extracts raw data, cleans it, stores it into MongoDB, conducts an analysis using Python and finally via the representation of the results obtained previously it offers the user knowledge and conclusions about the topic researched.
 
