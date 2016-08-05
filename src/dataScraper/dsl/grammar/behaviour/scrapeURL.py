@@ -80,10 +80,10 @@ def scrapeURL(tokens):
 	print SEPARATOR
 	printCode(requestURL)
 	printURL(requestURL)
-	jsonString = getContent(requestURL)
-	jsonObject = stringToJSON(jsonString)
 	print SEPARATOR
-	if getCode(requestURL) == SUCCESS_REQUEST: 
+	if getCode(requestURL) == SUCCESS_REQUEST:
+		jsonString = getContent(requestURL)
+		jsonObject = stringToJSON(jsonString) 
 		if log is True:
 			print "Writing log file..."
 			with open(strPath + strFileName + LOG_EXTENSION, "w") as logFile:
@@ -102,6 +102,5 @@ def scrapeURL(tokens):
 		print "CSV written successfully ---> " + strPath + strFileName + CSV_EXTENSION
 	else:
 		print "Shutting down wrong error in request!"
-		sys.exit(2)
 
 scrapeURLExpr.setParseAction(lambda tokens: scrapeURL(tokens))
